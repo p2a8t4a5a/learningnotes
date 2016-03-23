@@ -1,0 +1,7 @@
+#charpter seven
+
+A isinstance B 
+from random import choice
+choice([1,2])
+
+

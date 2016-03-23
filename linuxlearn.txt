@@ -1,0 +1,50 @@
+linux learn
+
+#learn tar zip
+tar -zx -f *.tar.gz
+tar -xvf *.tar
+
+#recover my files
+grep -a  -B 10 -A 500 'charpter one' /dev/sda1 > tmp.txt
+chmod 755
+cp	 #fuzhi
+mv 1.txt 2.txt	#rename
+rm -f 	#del a file
+rm -rf	 #del all file and folder
+dpkg -S packagename #know the location
+find / -name python
+jobs #see if has program run in background
+poweroff #close
+reboot 
+... & #run in background
+
+#upload
+scp /home/yao/linuxlearn.txt root@45.63.124.217:/root/newupdate.txt 
+#download
+scp zhangying@192.168.1.5:/var/www/zhangying/test.sql /home/zhangy/database_bak/
+
+#kill a process
+ps -ef | grep ss-qt5 #find ss-qt5 info
+pgrep ss-qt5
+kill -s 9 1234
+ps -ef|grep ss-qt5 | grep -v grep | cut -c 9-15| xargs kill -s 9
+
+
+#mysql learn
+mysqladmin shutdown -p
+mysqld start
+edit my /ect/mysql/my.cnf
+
+#vimlearn
+ggVGg?	#something interesting
+Ctrl+r =2+2 #useful command
+:ab asap as soon as possible
+ctrl + n	#zi dong bu quan
+di(	#to delect the thing in ()  such as di" di{ di[
+zz #lower case make the text middle 
+ctrl + z #pause   press fg return 
+$ # move to the end of line
+add & after the application #can use it without the console
+y #copy yy copy current line
+p # paste 
+
