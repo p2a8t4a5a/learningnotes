@@ -29,6 +29,10 @@ pgrep ss-qt5
 kill -s 9 1234
 ps -ef|grep ss-qt5 | grep -v grep | cut -c 9-15| xargs kill -s 9
 
+#net
+netstat -n #not jiexi -t tcp -l listening
+-p progress
+
 
 #mysql learn
 mysqladmin shutdown -p
