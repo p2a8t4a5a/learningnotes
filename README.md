@@ -1,4 +1,4 @@
 # learningnotes
 this is mylearningnotes
-it is my backup file
+it is just for backup
 

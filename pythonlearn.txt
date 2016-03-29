@@ -1,7 +1,221 @@
 #charpter seven
 
-A isinstance B 
+a isinstance b 
 from random import choice
 choice([1,2])
+
+class person():
+	print 'asd'
+	#however can shadow it by give it a new value
+	#if it is visited by the method a.allcount
+	#it becomes a local variable
+	allcount=0 #this is like a static variable but not  
+	def setname(self,name):
+		self.name=name
+	def getname(self):
+		print self.name
+		self.__secret() #can not less self
+	def __secret(self):
+		print 'it is secret'
+
+#getname=foo    #can be ok
+#foo(): print 'hahh'
+#you can visit by a._Person__secret()
+#but it cant be import by (from module import *)
+foo=lambda x:x*x
+
+#inherit
+__metaclass__=type
+class Filter():
+	def init(self):
+		self.blocked=[]
+	def filter(self,seq):
+		#there are no :
+		return [x for x in seq if x not in self.blocked]
+	
+class SpamFilter(Filter):
+	def init(self):
+		self.blocked=['SPAM']
+
+issubclass(SpamFilter,Filter)
+SpamFilter.__base__
+isinstance(a,SpamFilter)
+
+class C(A,B) #multi inherit
+
+hasattr(SpamFilter,'init')
+callable(getattr(SpamFilter,'init',None))
+
+setattr(a,'calc',lambda self,x:x*x)
+
+
+
+#charpter eight
+raise Exception
+
+import exceptions
+dir(exceptions)
+class MyException(Exception):pass
+
+try:
+except (ZeroDivisonError,TypeError,NameError)
+
+#example you can input anyway
+while 1:
+	try:
+		x=input('first')
+		y=input('second')
+		print x/y
+	except Exception,a:
+		print 'this is a ',a
+	else:
+		break
+	finally:
+		print 'it is finished'
+
+
+#charpter nine
+
+#call the super
+class A(B):
+	def __init__(self,name='yaoge'):
+		B.__init__(self) #super(A,self).__init__()
+		self.name=name
+		
+#magic
+def check(key):
+	if not isinstance(key,(int,long)):raise TypeError
+	if key<0 :raise IndexError
+
+class MySeq:
+	def __init__(self,start=0,step=1):
+		self.start=start
+		self.step=step
+		self.changed={}
+	
+	def __getitem__(self,key):
+		check(key)
+		try:
+			return self.changed[key]
+		except KeyError:
+			return self.start+self.step*key
+	
+	def __setitem__(self,key,value):
+		check(key)
+		self.changed[key]=value
+		
+	def __len__(self):
+		return 1000
+	
+	def __delitem__(self,key):
+		check(key)
+		try:
+			self.changed.pop(key)
+		except KeyError:
+			print 'this is a key error'
+			
+		
+#property
+class Rect:
+	def getSize(self):
+		return self.width,self.height
+	def setSize(self,size):
+		self.width,self.height=size
+	#you can use like this
+	def __setattr__(self,name,value):
+		if name=='size':
+			self.width,self.height=value
+		else:
+			self.__dict__[name]=value
+	#it is called only if the dict dont have 'size'
+	def __getattr__(self,name): 
+		if name=='size':
+			return self.width,self.height
+		else:
+			raise AttributeError
+	#or you can just use like this
+	size=property(getSize,setSize,doc="hah")			
+
+#decorator
+__metaclass__=type
+class MyClass:
+	#or can be used by @staticmethod
+	def smeth():	
+		print 'static method'
+	smeth=staticmethod(smeth)
+	def cmeth(cls):
+		print 'this is a class method',cls
+	cmeth=classmethod(cmeth)
+		
+#iterators 1	
+class Fibs:
+	def __init__(self):
+		self.a=0
+		self.b=1
+	def next(self):
+		self.a,self.b=self.b,self.a+self.b
+		return self.a
+	def __iter__(self):
+		return self
+
+#iterators 2
+def Fibs(max=100):
+	a,b=0,1
+	for i in xrange(max):
+		a,b=b,a+b
+		yield a 
+
+#iterators 3
+#unpack the []
+a=[1,2,3,[4,5,6,[7,8,[9]]]]
+#0.1
+g=lambda s:(isinstance(s,list) and y or s for x in isinstance(s,list) and s or [1] for y in isinstance(s,list) and g(x) or [1])
+#0.2
+def g(s):
+	try:
+		for x in s:
+			for y in g(x):
+				yield y
+	except TypeError:
+		yield s
+
+#0.3
+g=lambda s:( y for x in s for y in (isinstance(x,list) and g(x) or [x]) )
+	
+#0.4
+def g(s):
+	try:
+		try:s+''
+		except TypeError:pass
+		else:raise TypeError
+		for x in s:
+			for y in g(x):
+				yield y
+	except TypeError:
+		yield s
+
+#eight queens question
+def check(ans,num):
+	t=len(ans)
+	for i in range(t):
+		if ans[i]==num or  ans[i]+i==num+t:
+			return False
+	return True
+
+def queens(num,ans=()):
+	for i in range(num):
+		if check(ans,i):
+			if len(ans)==num-1:
+				yield (i,)
+			else :
+				for j in queens(num,ans+(i,)):
+					yield (i,)+j
+def myprint(ans):
+	def printline(pos,length=len(ans)):
+		print '.'*pos+'X'+'.'*(length-pos-1)
+	for pos in ans:
+		printline(pos)	
+
+#charpter 10
 
 
