@@ -1,5 +1,12 @@
 linux learn
 
+#in .profile for all users
+#in .bashrc 
+export PATH=$PATH:~
+
+#run immediately 
+source ~/.bashrc
+ 
 #learn tar zip
 tar -zx -f *.tar.gz
 tar -xvf *.tar

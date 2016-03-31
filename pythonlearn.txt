@@ -146,7 +146,25 @@ class MyClass:
 	def cmeth(cls):
 		print 'this is a class method',cls
 	cmeth=classmethod(cmeth)
-		
+
+import time
+import functools
+def log(text):
+	def wrapper(func):
+		@functools.wraps(func)
+		def decorator(*args,**kw):
+			print '%s %s'%(text,func.__name__)
+			return func(*args,**kw)
+		return decorator
+	return wrapper
+
+@log('log:')
+def now():
+	print time.ctime()
+
+
+
+
 #iterators 1	
 class Fibs:
 	def __init__(self):
@@ -217,5 +235,131 @@ def myprint(ans):
 		printline(pos)	
 
 #charpter 10
+import sys
+sys.path.append('home/yao')
+import test
+#if you want to reload the test
+test=reload(test)
+if(__name__=='__main__') test()
+
+import sys,pprint
+pprint.pprint(sys.path)
+
+#package
+#import mytest.test
+#from mytest import test 
+#from mytest import *
+__init__.py #in the package and others
+
+#browse the package
+[i for i in dir(copy) if not i.startswith('_')]
+__all__=['test','test2']
+
+print copy.__doc__
+print copy.__file__
+
+import sys
+sys.argv #the script name
+sys.exit('asd') sys.exit(1)
+sys.modules
+sys.path
+sys.platform
+sys.modules
+
+f=open('./mytest/test.py')
+f.readline()
+
+
+import os
+os.system('...')
+os.linesep #sep,pathsep
+os.environ('PYTHONPATH')
+os.urandom(3) #cryptographically 
+
+import webbrowser
+webbrowser.open('http://www.baidu.com')
+
+#fileinput
+
+import fileinput                                   #  1
+for line in fileinput.input(inplace=True):         #  2
+    line=line.rstrip()                             #  3
+    line=line.replace('\t','    ')                 #  4
+    num=fileinput.lineno()                         #  5
+    print '%-50s # %2i' % (line,num)               #  6
+
+#datastructures
+#set
+a=set(range(3))
+b={2,3,4}
+a|b
+a<=b
+a-b
+set.union(a,b)
+a.add(frozenset(b))
+
+#Heaps
+import heapq
+heap=[]
+heappush(heap,3)
+
+#deque
+from collections import deque
+a=deque(range(5))
+a.append(2)
+a.appendleft(2)
+a.pop()
+a.rotate()
+
+#time
+import time
+time.asctime() #return string
+time.localtime() #return tuple
+time.sleep()
+time.time() #return seconds
+
+#timeit calculate the time it takes to
+import timer
+timer.timer(test,number=10)
+#random
+random.random()
+random.shuffle(a) #a=[12,3,4,4,5]
+random.getrandbits(32)
+random.choice(seq)
+random.uniform(0,360) #return double
+random.randrange(1,11) #return int
+
+#shelve --- a simple way to store thing in file
+import shelve
+s=shelve.open('data.in')
+s['x']=[1,2,3,4]
+s.close()
+
+#regular expression
+. #match everything \\.
+[ab] #matchab
+[a-z]
+[^a-z]
+'^ht+p' #means ht+p appears in the front
+'$ht+p' #means ht+p appears in the end
+| #or
+
+#example
+r'(http://)?(www\.)?python\.org'
+*	 #0-INF
++	 #1-INF
+a{n1,n2} #repeat a n1-n2 times
+
+#regular expression usage
+re.match(pat,s) #find the pat at the begin 
+re.findall(pat,s)
+
+
+som_text="aaaasd,,,,,qwe,,,123,ggg,0"
+re.split('[,]+',som_text)
+
+pat = r'[.?\-",]+' #change the meaning of -
+
+
 
 
