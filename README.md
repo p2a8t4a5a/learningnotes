@@ -1,4 +1,4 @@
 # learningnotes
-this is mylearningnotes
-it is just for backup
+this is mylearningnotes\n
+it is just for backup\n
 

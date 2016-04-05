@@ -264,16 +264,15 @@ sys.exit('asd') sys.exit(1)
 sys.modules
 sys.path
 sys.platform
-sys.modules
 
-f=open('./mytest/test.py')
-f.readline()
+f=open('./mytest/test.py','r') #'r','w','a' means appending,'b' means binary
+f.readline() #include the \n
 
 
 import os
 os.system('...')
 os.linesep #sep,pathsep
-os.environ('PYTHONPATH')
+os.environ['PYTHONPATH']
 os.urandom(3) #cryptographically 
 
 import webbrowser
@@ -341,7 +340,7 @@ s.close()
 [a-z]
 [^a-z]
 '^ht+p' #means ht+p appears in the front
-'$ht+p' #means ht+p appears in the end
+'ht+p$' #means ht+p appears in the end
 | #or
 
 #example
@@ -356,10 +355,28 @@ re.findall(pat,s)
 
 
 som_text="aaaasd,,,,,qwe,,,123,ggg,0"
-re.split('[,]+',som_text)
+re.split(',+',som_text)
 
 pat = r'[.?\-",]+' #change the meaning of -
 
+text="hello,name."
+pat=re.compile('name')
+pat.sub('yaoge',text)
+
+re.escape('hello yaoge')
+
+m=re.match(r'www\.(.*)\..{3}','www.python.org')
+m.group(1)
+m.start(1)
+m.end(1)
+m.span(1)
+
+pat=re.compile('\*([^\*]+)\*')
+pat.sub('<em>\\1</em>','hello,*world*')
+
+pat=re.compie(r'\*{2}(.+?)\*{2}') #? means it is not greedy
+$ #bi xu pi pei dao jie wei
+^ #bi xu cong kai tou kaishi pipei
 
 
 

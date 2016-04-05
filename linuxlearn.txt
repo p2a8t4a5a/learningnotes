@@ -23,7 +23,6 @@ find / -name python
 jobs #see if has program run in background
 poweroff #close
 reboot 
-... & #run in background
 
 #upload
 scp /home/yao/linuxlearn.txt root@45.63.124.217:/root/newupdate.txt 
@@ -35,6 +34,12 @@ ps -ef | grep ss-qt5 #find ss-qt5 info
 pgrep ss-qt5
 kill -s 9 1234
 ps -ef|grep ss-qt5 | grep -v grep | cut -c 9-15| xargs kill -s 9
+
+ctrl+z #put a job back and stop
+& #put a job back and run
+jobs #see bakground jobs
+fg 1 #bring the job forward
+bg 2 #make the job background run
 
 #net
 netstat -n #not jiexi -t tcp -l listening
@@ -58,4 +63,5 @@ $ # move to the end of line
 add & after the application #can use it without the console
 y #copy yy copy current line
 p # paste 
+
 
