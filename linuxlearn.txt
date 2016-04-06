@@ -64,4 +64,16 @@ add & after the application #can use it without the console
 y #copy yy copy current line
 p # paste 
 
+:20,23 !sort #means subsitute the 20-23 with the result
+:20,23 w !sort #means not substitute
+
+#duo hang ti huan
+#yuan wen shi :.,+3 s/^/#/g
+:10,13 s/^/#
+:.,+3 s/^/# 
+
+#suo jin 
+< #shift+tab
+> #tab
+
 

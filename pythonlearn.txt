@@ -1,2 +1,65 @@
 charpter 11
+#file
+f=open('data.out','w',-1) #-1 means default size of buffering
+						  #0 means no buffering
+						  #int means the size of buffering
+#only when you use flush or close will use the disk
 
+import sys
+sys.stdin.readline() #include the \n
+raw_input() #not the \n
+
+#sys.stdin in  python3
+import sys, io
+string = "A line from the string as stdin IO \n This line wont be read"    # A line of text we'll use as stdin
+file = open('test.txt')   # A text file we'll use as stdin
+line = input()    # Input from stdin, hopefully keyboard in this case
+print(line)
+sys.stdin = io.StringIO(string)    # Assigning stdin a File-like object from the string
+line = input()    # Read a line from the stdin
+print(line)
+sys.stdin = file    # Assign stdin the file object, so it will read from it
+line = input()    # Read a line from file
+print(line)
+sys.stdin = sys.__stdin__    # Reset the stdin to its default value
+
+
+#input 1
+while 1:
+	try:
+		a=raw_input()
+	except EOFError:
+		break;
+	print a
+#input 2
+import sys
+for line in sys.stdin:
+	print line
+
+
+f.write('012345678910')
+f.seek(5) #move to
+f.write('hello,world')
+
+f.tell() #return current position 
+
+#close file automatically
+with open('data.in') as file:
+    for lines in file:
+         print lines
+
+f.writelines(lines)
+
+#fileinput lazy line iteration
+import fileinput
+for line in fileinput.input('data.in'):
+	print line
+
+#most elegant way
+f=open(filename)
+for line in f:
+	print line
+f.close()
+
+
+#charpter 12
