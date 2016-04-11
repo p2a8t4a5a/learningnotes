@@ -62,5 +62,93 @@ for line in f:
 f.close()
 
 
-#charpter 12
-	asd
+#charpter 15
+\s #匹配空格字符\n\t空格
+re.VERBOSE #ignore the 空白字符 除\n等
+.* #不匹配\n 
+
+
+#找出jobs网上的工作信息
+pat=re.compile(r'''
+	\s*	
+ 	<span\ class="listing-new">New</span>
+	\s*
+	<a\ href="(.*?)">(.*?)</a><br/>
+	\s*
+     (.*?)\s*</span>'''
+,re.VERBOSE)
+
+#Tidy a tool that repair the html file
+
+from subprocess import Popen,PIPE
+text=open('data.in').read()
+tidy=Popen('tidy',stdin=PIPE,stdout=PIPE,stderr=PIPE)
+tidy.stdin.write(text)
+tidy.stdin.close()
+print tidy.stdout.read()
+
+#HTMLParser
+from urllib import urlopen
+from HTMLParser import HTMLParser
+
+class Scraper(HTMLParser):
+	in_h2=False
+	in_link=False
+	
+	def handle_starttag(self,tag,attrs):
+		attrs=dict(attrs)
+		if tag=='h2':
+			self.in_h2=True
+		if tag=='a' and 'href' in attrs:
+			self.in_link=True
+			self.chunks=[]
+			self.url=attrs['href']
+
+	def handle_data(self,data):	
+		if self.in_link and self.in_h2:
+			self.chunks.append(data)
+	
+	def handle_endtag(self,tag):
+		if tag=='h2':
+			self.in_h2=False
+		if tag=='a':
+			if self.in_h2 and self.in_link:
+				print '%s (%s)'%(''.join(self.chunks),self.url)
+			self.in_link=False
+	
+text=urlopen('https://python.org/jobs').read()
+parser=Scraper()
+parser.feed(text)
+parser.close()
+
+#BeautifulSoup
+from BeautifulSoup import BeautifulSoup
+soup=BeautifulSoup('lxml')
+soup.title.a #only one
+soup.title.a['class']
+soup.title.a.string #value
+
+
+
+#examples
+from urllib import urlopen
+from BeautifulSoup import BeautifulSoup
+
+text=urlopen('https://python.org/jobs').read()
+soup=BeautifulSoup(text)
+print 'load ok'
+jobs=set()
+for header in soup('h2'):
+	links=header('a')
+	if not links:continue
+	
+	link=links[0]
+	jobs.add('%s (%s)'%(link.string,link['href']))
+
+print '\n'.join(sorted(jobs,key=lambda s:s.lower()))
+
+
+
+
+
+

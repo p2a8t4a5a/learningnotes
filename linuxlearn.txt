@@ -4,12 +4,20 @@ linux learn
 #in .bashrc 
 export PATH=$PATH:~
 
+
+export JAVA_HOME=/usr/local/java/jdk1.6.0_30  
+export JRE_HOME=/usr/local/java/jdk1.6.0_30/jre  
+export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH  
+export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$JAVA_HOME:$PATH  
+
+
 #run immediately 
 source ~/.bashrc
  
 #learn tar zip
 tar -zx -f *.tar.gz
 tar -xvf *.tar
+tar zvxf *.tar.gz
 
 #recover my files
 grep -a  -B 10 -A 500 'charpter one' /dev/sda1 > tmp.txt
@@ -75,5 +83,13 @@ p # paste
 #suo jin 
 < #shift+tab
 > #tab
+
+#ubuntu 默认.deb
+alien .rpm #zidong zhuanhuawei .deb
+dpkg -i .deb
+dpkg -l #show all
+dpkg -r #remove
+
+
 
 
