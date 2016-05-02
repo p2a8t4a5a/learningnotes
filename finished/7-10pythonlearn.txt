@@ -229,6 +229,7 @@ def queens(num,ans=()):
 			else :
 				for j in queens(num,ans+(i,)):
 					yield (i,)+j
+
 def myprint(ans):
 	def printline(pos,length=len(ans)):
 		print '.'*pos+'X'+'.'*(length-pos-1)
@@ -354,6 +355,8 @@ a{n1,n2} #repeat a n1-n2 times
 re.match(pat,s) #find the pat at the begin 
 re.findall(pat,s)
 
+(?:abc) #(?:) 非捕获型括号
+(?P=<name>) #有名字括号
 
 som_text="aaaasd,,,,,qwe,,,123,ggg,0"
 re.split(',+',som_text)

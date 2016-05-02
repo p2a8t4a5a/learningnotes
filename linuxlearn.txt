@@ -52,7 +52,7 @@ bg 2 #make the job background run
 #net
 netstat -n #not jiexi -t tcp -l listening
 -p progress
-
+nm-tool #more advanced
 
 #mysql learn
 mysqladmin shutdown -p
@@ -91,5 +91,5 @@ dpkg -l #show all
 dpkg -r #remove
 
 
-
+du -sh /home 
 

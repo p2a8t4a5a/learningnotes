@@ -149,6 +149,43 @@ print '\n'.join(sorted(jobs,key=lambda s:s.lower()))
 
 
 
+#多线程
+import threading  
+from  network import mypost
+class timer(threading.Thread):   
+    def __init__(self,say):
+        threading.Thread.__init__(self)
+        self.say=say
 
+    def run(self): 
+        mypost(self.say)
+ 
+def test():  
+    threads=[None]*7
+    for i in range(7):
+        threads[i]=timer(chr(i+97))
+    for i in range(7):
+        threads[i].start()  
+ 
+if __name__ == '__main__':  
+    test()  
+
+
+#gevent 协程
+from gevent import monkey
+import gevent
+monkey.patch_all()
+import requests
+
+def test(url):
+    print 'start:',url
+    response=requests.get(url)
+    print 'finish',url
+
+
+gevent.joinall(
+    [gevent.spawn(test,'http://www.sina.com'),
+     gevent.spawn(test,'http://www.wantjr.com'),
+     gevent.spawn(test,'http://www.python.org')])
 
 

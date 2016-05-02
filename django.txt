@@ -1,0 +1,62 @@
+mark 68
+render_to_response('a.html',locals())
+mark 121 
+
+#send email
+sudo apt-get install postfix
+In your settings, put:
+EMAIL_HOST = 'localhost'
+
+
+mark 161
+伪造跨站点请求 伪造跨站点请求 第14章
+
+cookie 第12章 （会话伪造劫持）
+
+
+
+不要直接在 cookie 中存储数据,而是保存一个映射后台 session 数据的 session ID。
+如果使用 Django 内置的 session 框架(即 request.session ),它会自动进行处理。这个
+session 框架仅在 cookie 中存储一个 session ID,所有的 session 数据将会被存储在数据库
+中。
+
+
+
+请注意,以上没有一种准则和工具能够阻止中间人攻击。这些类型的攻击是几乎不可能被探
+测的。如果你的站点允许登陆用户去查看任意敏感数据的话,你应该 总是 通过 HTTPS 来提
+供网站服务。此外,
+如果你的站点使用 SSL,
+你应该将 SESSION_COOKIE_SECURE 设置为 True ,
+这样就能够使 Django 只通过 HTTPS 发送会话 cookie。
+
+
+
+
+#from django.db.models import F
+#1单条数据
+c1=q1.choice_set.get(id=1)
+c1.votes=F('votes')+1   #==update c1 set votes=votes +1 where...
+c1.save()#the c1 has been changed
+#c1.refresh_from_db()  #become the original c1
+
+#2多条数据（更快）
+c1=Choice.objects.filter(id=1)
+c1.update(votes=F('votes')+1)
+
+#3组合新的字段
+company = Company.objects.annotate(
+    chairs_needed=F('num_employees') - F('num_chairs'))
+#指定输出类型
+fromdjango.db.modelsimportDateTimeField, ExpressionWrapper, F 
+Ticket.objects.annotate(
+    expires=ExpressionWrapper(
+        F('active_at') + F('duration'), output_field=DateTimeField()))
+
+
+
+
+
+
+
+
+
