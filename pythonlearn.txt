@@ -189,3 +189,33 @@ gevent.joinall(
      gevent.spawn(test,'http://www.python.org')])
 
 
+#判断是否是IP地址
+import re
+def judge(res):
+    pat=re.compile(r'^(?:\d{1,3}\.){3}(?:\d{1,3})$')
+    a=pat.match(res)
+    if a:
+        s=a.group(0).split('.')
+        return reduce(lambda a,b:a and 0<=int(b)<=255 ,s,True)
+    return False
+
+判断是否是 a.b 的形式
+不需要以.bat .exe 的格式
+
+前向否定
+pat=re.compile(r'^[^.]+[.](?!bat$|exe$)[^.]+$')
+
+(?<!abc) 尾巴不是abc
+
+hex(16)
+int('123',8) #123是八进制
+oct()
+bin()
+
+
+import struct
+a=struct.pack('!2I3sI',1,2,'abc',3)#!网络字节序 >大端 <小端
+a=struct.unpack('!2I3sI',a)
+
+charpter 16
+

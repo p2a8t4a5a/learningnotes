@@ -152,6 +152,7 @@ y=x
 x={}	#give a new value
 #y={'key',123}
 
+#不复制dict里面的数组
 y=x.copy()
 x.clear()	#clear the pointer
 #y=origin

@@ -1,0 +1,25 @@
+# os
+import os
+fd=os.open(file_path,os.O_RDWR|os.O_CREAT,
+                     stat.S_IRUSR | stat.S_IWUSR)
+os.write(fd,'data.in')
+os.close(fd)
+
+
+# fcntl 文件控制
+import fcntl
+#在调用exec前,自动帮你关闭文件描述符 就相当于在exec前的代码增加os.close(fd)
+fcntl.fcntl(fd,fcntl.F_SETFD,fcntl.FD_CLOEXEC)
+
+
+# 劝告性锁
+# 互斥锁定 无法建立锁定时，不被阻断，马上返回进程
+# os.SEEK_SET - 文件的开头， 可以用 0 代替
+ fcntl.lockf(fd, fcntl.LOCK_EX | fcntl.LOCK_NB,
+                  0, 0, os.SEEK_SET)
+
+
+#execlp 调用其他程序 
+os.execlp('./hello','hello',str(123))
+
+

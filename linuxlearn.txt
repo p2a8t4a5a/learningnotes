@@ -93,3 +93,30 @@ dpkg -r #remove
 
 du -sh /home 
 
+
+开机启动
+/etc/rc.local
+
+
+
+#/etc/rc.local   添加一个开机启动项 nohup 更加高端的 &
+nohup bash /usr/local/bin/dl.sh>/home/yaoge/shlog.txt &
+
+#安装.deb
+sudo dpkg -i app.deb
+#卸载 app
+sudo dpkg -r app
+
+
+修改dns
+1.vim /etc/resolvconf/resolv.conf.d/base 
+    nameserver 8.8.8.8
+sudo resolvconf -u
+
+或ubuntu14.04
+2.vim /run/resolvconf/interface/NetworkManager 
+    nameserver 8.8.8.8
+
+
+
+
