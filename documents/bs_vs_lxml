@@ -1,0 +1,55 @@
+BeautifulSoup 和lxml选型文档
+BeautifulSoup 
+优点:
+1.易用性: BeautifulSoup用起来比较简单，API非常人性化
+缺点:
+1.因为sgmllib的问题，导致解析出错 
+from BeautifulSoup import BeautifulSoup
+html = u'<a onclick="if(x>10) alert(x);" href="javascript:void(0)">hello</a>'
+print BeautifulSoup(html).find('a').attrs 
+2.BeautifulSoup是基于DOM的，会载入整个文档，解析整个DOM树，因此时间和内存开销都会大很多
+ 
+lxml 
+优点:
+1.速度比BeautifulSoup要快10倍(lxml只会局部遍历，另外lxml是用c写的，而BeautifulSoup是用python写的，因此性能方面自然会差很多)
+缺点:
+1.lxml也有它自己的问题，那就是多线程方面貌似有重入性问题，如果需要解析大量网页，那只能启动多个进程来试试了。 (未测试，不确定是否是真的这样)
+2.中文文档较少
+ 
+BeautifulSoup4
+优点:
+1.可以选择解析器，如指定lxml为解析器
+2. 易用性: BeautifulSoup用起来比较简单，API非常人性化，支持css选择器
+3.有中文文档
+缺点:
+1.即使用了lxml解析器的BS4时间和lxml相差6倍
+ 
+
+
+总结：
+在BeautifulSoup4和lxml之间选择：
+1.对于速度的需求： lxml 更好
+10000个最基本的网页解析
+lxml :  1.0945 s  
+BS4  : 6.6950 s
+ 
+2.对于准确性的需求 ：通过
+“<a onclick="if(x>10) alert(x);" 
+		href="javascript:void(0)">hello</a>”
+“<div class=我的CSS类>hello</div>”
+ 
+3.对于快速开发的需求：BeautifulSoup更好
+ 
+4.根据文档结构树,判断网页是否更新 ：未测试
+ 
+原来以为速度会相差很少，但是即使是用了lxml解析器的BS4速度还是达到了６倍,同时，因为需求比较确定，性能要求较高，所以最终应该选择lxml。
+ 
+
+参考文档：
+http://stackoverflow.com/questions/1922032/parsing-html-in-python-lxml-or-beautifulsoup-which-of-these-is-better-for-wha 
+http://my.oschina.net/apoptosis/blog/118647?p=1 
+https://www.zhihu.com/question/26494302 
+https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/ 等
+ 
+ 
+ 
