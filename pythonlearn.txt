@@ -217,5 +217,13 @@ import struct
 a=struct.pack('!2I3sI',1,2,'abc',3)#!网络字节序 >大端 <小端
 a=struct.unpack('!2I3sI',a)
 
+#print error
+1.print >> sys.stderr,'123'
+2.sys.stderr.write('123')
+3.from __future__ import print_function
+print('123',file=sys.stderr)
+
+
+
 charpter 16
 

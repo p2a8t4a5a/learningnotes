@@ -1,0 +1,43 @@
+https://www.zhihu.com/question/20899988
+
+1. Bloom Filter 用来判重
+    http://billmill.org/bloomfilter-tutorial/
+
+In the following text, we will refer to a Bloom filter with k hashes, m bits in the filter, and n elements that have been inserted. 
+Your false positive rate will be approximately (1-e-kn/m)k, 
+we have a function to choose the optimal value of k: (m/n)ln(2)
+
+
+
+2.访问过的url放到运行在master上的Redis里，这样保证所有操作都是O(1)。（至少平摊是O(1)，Redis的访问效率见:LINSERT – Redis) 
+http://redis.io/commands/linsert
+ O(N) where N is the number of elements to traverse before seeing the value pivot. This means that inserting somewhere on the left end on the list (head) can be considered O(1) and inserting somewhere on the right end (tail) is O(N).
+
+redis>  RPUSH mylist "Hello"
+(integer) 1
+redis>  RPUSH mylist "World"
+(integer) 2
+redis>  LINSERT mylist BEFORE "World" "There"
+(integer) 3
+redis>  LRANGE mylist 0 -1
+1) "Hello"
+2) "There"
+3) "World"
+redis>  
+
+
+
+3.scrapy-redis 
+https://github.com/rolando/scrapy-redis
+
+
+
+# 汇总
+http://cuiqingcai.com/1052.html
+
+scrapy 框架
+http://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/examples.html
+
+其他教程
+http://cuiqingcai.com/1052.html
+

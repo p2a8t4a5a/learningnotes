@@ -1,0 +1,52 @@
+#新建用户
+create user 'yaoge'@'localhost' identified by '123456'
+create user 'yaoge'@'%' identified by '123456'
+
+grant select,insert on *.* to '';
+grant all on wantjrdb.* to 'wantjruser'@'localhost';
+
+
+# MySQL数据类型   含义
+char(n)     固定长度，最多255个字符
+varchar(n)  固定长度，最多65535个字符
+tinytext    可变长度，最多255个字符
+text    可变长度，最多65535个字符
+mediumtext  可变长度，最多2的24次方-1个字符
+longtext    可变长度，最多2的32次方-1个字符
+
+date    日期 '2008-12-2'
+time    时间 '12:25:36'
+datetime    日期时间 '2008-12-2 22:06:44'
+timestamp   自动存储记录修改时间
+
+
+
+
+
+# create trigger
+create table student_log(
+    id int not null auto_increment,
+    message char(100) ,
+    date timestamp null DEFAULT CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP,
+    primary key (id));
+
+
+drop trigger insert_log;
+delimiter $$
+create trigger insert_log after insert on test
+for each row
+    insert into student_log(message) 
+    values(concat(new.id,' ',new.num,' ',new.name,' ',user()));
+$$
+delimiter ;
+
+insert into test values(16,1016,'yaoge16 ');
+select * from test;
+select * from student_log;
+
+
+
+
+
+    
+

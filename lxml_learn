@@ -1,0 +1,102 @@
+# Element class
+root[1].getprevious() #root[0]
+root[0].getnext()     #root[1]
+
+root[0].get('href')
+attributes = root[0].attrib
+root[0].items()
+root[0].values()
+root[0].text
+root[0].tail
+
+#method="html" method="xml"
+etree.tostring(root,pretty_print=False,with_tail=True,
+                method="text",encoding="unicode") 
+
+root.xpath("//text()")
+for item in root:
+    #root 这一层
+ 
+for item in root.iter():
+    #root 下整棵树
+
+root.iter('child1','child2') # or
+root.iter(tag=etree.Element)
+
+
+# ElementTree class
+parser = etree.XMLParser(remove_blank_text=True)
+root = etree.XML("<root>  <a/>   <b>  </b>     </root>", parser)
+
+# Incremental parsing
+# one
+>>> class DataSource:
+...     data = [ b"<roo", b"t><", b"a/", b"><", b"/root>" ]
+...     def read(self, requested_size):
+...         try:
+...             return self.data.pop(0)
+...         except IndexError:
+...             return b''
+
+>>> tree = etree.parse(DataSource())
+
+# second
+>>> etree.tostring(tree)
+b'<root><a/></root>'
+
+>>> parser = etree.XMLParser()
+
+>>> parser.feed("<roo")
+>>> parser.feed("t><")
+>>> parser.feed("a/")
+>>> parser.feed("><")
+>>> parser.feed("/root>")
+
+>>> root = parser.close()
+
+>>> etree.tostring(root)
+b'<root><a/></root>'
+
+
+Event-driven parsing
+>>> some_file_like = BytesIO("<root><a>data</a></root>")
+
+>>> for event, element in etree.iterparse(some_file_like,
+...                                       events=("start", "end")):
+...     print("%5s, %4s, %s" % (event, element.tag, element.text))
+start, root, None
+start,    a, data
+  end,    a, data
+    end, root, None
+
+
+>>> some_file_like = BytesIO(
+...     "<root><a><b>data</b></a><a><b/></a></root>")
+
+>>> for event, element in etree.iterparse(some_file_like):
+...     if element.tag == 'b':
+...         print(element.text)
+...     elif element.tag == 'a':
+...         print("** cleaning up the subtree")
+...         element.clear()
+data
+** cleaning up the subtree
+None
+** cleaning up the subtree
+
+
+# ElementPath
+iterfind()
+findall()
+find()
+findtext()
+
+root.find("a")    # 当前层
+root.find(".//a") # 所有层
+
+root.find(".//a[@href]")
+
+
+# Xpath
+
+
