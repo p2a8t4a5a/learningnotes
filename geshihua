@@ -1,0 +1,9 @@
+ cat /proc/partitions
+
+sudo mkfs -t ext4 /dev/sdb4
+
+ mkdir /mnt/sda6 
+ [root@localhost beinan]# chmod 777 /mnt/sda6 
+ [root@localhost beinan]# mount /dev/sda6   /mnt/sda6
+
+
