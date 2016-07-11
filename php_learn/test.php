@@ -1,4 +1,3 @@
 <?php
-
-require 'password.php';
-$passwordHash = password_hash('secret-password',PASSWORD_DEFAULT);
+echo $_SERVER['HTTP_USER_AGENT'];
+?>
