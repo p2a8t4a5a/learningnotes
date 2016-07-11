@@ -1,0 +1,29 @@
+模板查找顺序:
+    字典类型查找 （比如 foo["bar"] )
+    属性查找 (比如 foo.bar )
+    方法调用 （比如 foo.bar() )
+    列表类型索引查找 (比如 foo[bar] )
+
+
+silent_variable_failure 设置
+>>> class SilentAssertionError(AssertionError):
+...     silent_variable_failure = True
+>>> class PersonClass4:
+...     def first_name(self):
+...         raise SilentAssertionError
+>>> p = PersonClass4()
+>>> t.render(Context({"person": p}))
+u'My name is .'
+
+
+# 防止误删除
+def delete(self):
+    # Delete the account
+delete.alters_data = True
+
+
+{% ifequal %} 和 {% endifequal %} 
+{# this is comment %}
+
+
+
