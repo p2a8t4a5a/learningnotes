@@ -47,6 +47,8 @@ select * from student_log;
 
 
 
+# rename mysql database name 
+for table in `mysql -u root -p123456 -sNe "show tables from mysql_learn"`;do mysql -u root -p123456 -sNe "rename table mysql_learn.$table to learn.$table"; done;
 
-    
+
 

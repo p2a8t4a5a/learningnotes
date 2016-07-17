@@ -1,0 +1,15 @@
+# 参数
+set [global | session]read_buffer_size = 5242822
+select @@global.read_buffer_size ;
+
+# 日志
+错误日志 /var/log/mysql/error.log
+
+# 慢查询日志
+long_query_time  = 10
+log_slow_queries = OFF
+log_queries_not_using_indexes
+# 记录每分钟最多记录的次数　default = 0
+log_throttle_queries_not_using_indexes
+
+#

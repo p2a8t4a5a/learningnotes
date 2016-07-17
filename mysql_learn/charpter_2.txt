@@ -1,0 +1,65 @@
+查看innodb状态
+show engine innodb status
+
+优化１
+专用mysql服务器设置的大小： 操作系统内存的70%-80%最佳。
+通过修改innodb 缓冲区的大小
+innodb_buffer_pool_size = 200M
+innodb_buffer_pool_instances = 1
+
+# 可以设置LRU配置
+innodb_old_blocks_time = 1000
+innodb_old_blocks_pct = 37
+set global innodb_old_block_pct = 20
+
+#　插入缓冲的优化
+1.索引是辅助索引且索引不是唯一的
+
+# 两次写
+1.先写到doublewrite buffer ->共享表空间 -> 数据文件
+
+# 从服务器 或者　有些文件系统本身提供部分写失效的防范机制
+可以设置skip_innodb_doublewrite 禁止两次写
+
+# 自适应哈希索引的优化 (AHI)
+根据相同条件的查询一样，且达到一定的次数，自动创建哈希索引
+
+# 异步IO
+同时提交多个IO,由异步IO判断是否是连续，可以直接合并(windows 和linux 内核级别的支持)
+
+# 刷新邻接页
+innodb_flush_neighbors
+刷新脏页时顺便把所在区的所有页一起刷新
+但是对于SSD可能不需要这个功能，因为可能频繁的把不需要一直写的也刷新了
+
+# innodb_fast_shutdown = 1
+0: 完成所有的full_purge 和 merge insert buffer操作,将脏页写会磁盘
+1: 只将脏页写会磁盘
+2: 只写日志
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
