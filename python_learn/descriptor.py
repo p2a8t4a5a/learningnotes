@@ -96,9 +96,10 @@ class NonNegative(object):
         self.data = WeakKeyDictionary()
 
     def __get__(self,instance,owner):
+        print 'this is get'
         return self.data.get(instance,self.default)
 
-    def __set___(self,instance,value):
+    def __set__(self,instance,value):
         print 'this is set '
         if value<0:
             raise ValueError('Negative value')
@@ -106,8 +107,9 @@ class NonNegative(object):
 
 
 class Movie(object):
+
     budget = NonNegative(0)
     
     def __init__(self,budget=0):
-        budget = budget
-
+        pass
+    
