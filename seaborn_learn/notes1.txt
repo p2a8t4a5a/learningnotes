@@ -1,0 +1,7 @@
+# style
+darkgrid, whitegrid, dark, white, and ticks
+
+import seaborn as sns
+sns.set_style("dark")
+
+
