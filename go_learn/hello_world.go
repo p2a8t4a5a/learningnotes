@@ -1,6 +1,9 @@
 package main
 import "fmt"
 import "unsafe"
+import (
+    // "math"
+)
 
 var (
     a int = 66
@@ -26,10 +29,83 @@ const(
     K
 )
 
+func test3(a float32,b int)(float32,float32){
+    return a,float32(b)
+}
 
+
+type Circle struct{
+    radius float64
+}
+func(a Circle) getArea() float64{return a.radius*a.radius}
+
+
+func my_func(par []int,size int){
+    for i:=0;i<size;i++{
+        fmt.Println(i)
+    }
+}
+
+// http://www.runoob.com/go/go-pointers.html
 func main(){
-    fmt.Println(H,I,J,K)
+    var arr= [4]int{1,2,3,4}
+    my_func(arr,3)
     /* 
+        Array := [3][2]int
+        t := Array[1]
+        fmt.Println(t)
+
+        var a Circle
+        a.radius=2.0
+        fmt.Println(a.getArea())
+
+        fmt.Println(test3(2,3))
+        my_func := func()func()int{
+            var i int=0
+            return func() int{
+                i+=1
+                return i
+            }
+        }
+        temp := my_func()
+        fmt.Println(temp())
+        fmt.Println(temp())
+        fmt.Println(temp())
+        fmt.Println(temp())
+
+        numbers := [6]int{1,2,3,4}
+        fmt.Println(numbers)
+        for i:=range numbers{
+            fmt.Printf("%d \n",i)
+        }
+        var i ,j int ="a",4
+        for i<j{
+            fmt.Println("123")
+            i+=1
+        }
+        
+        fmt.Println(H,I,J,K)
+        fmt.Printf("a,%d\n",123)
+        var a int =2147483648
+        fmt.Println(a)
+        var b * int
+        b= &a
+        fmt.Printf("%T",b)
+        if (1==2){
+            fmt.Println(1)
+        }else{
+            fmt.Println(2)
+        }
+        if (1==1){
+            fmt.Println(3)
+        }
+        switch(3){
+            case 1:
+                fmt.Println(111)
+                break
+            case 3:
+                fmt.Println(333)
+        }
         fmt.Println(E,F,FF,FFF,G)
         fmt.Println(C,CLEN,D,DLEN)
         fmt.Println("Hello,Wolrd")
@@ -42,6 +118,23 @@ func main(){
         fmt.Println(a,age,age2,age3,age4,age5)
     */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 func test(){
     var age byte = 128
