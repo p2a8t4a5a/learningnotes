@@ -2,7 +2,7 @@
 import MySQLdb
 
 #mysql connect charset='gb2312' ='utf8'
-db=MySQLdb.connect(host="localhost",user="root",passwd="",db="school")
+db=MySQLdb.connect(host="localhost",user="root",passwd="123456",db="stock")
 cursor =db.cursor()
 cursor.execute('select version()')
 data=cursor.fetchone()
