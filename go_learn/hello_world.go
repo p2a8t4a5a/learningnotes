@@ -48,7 +48,7 @@ func my_func(par []int,size int){
 
 // http://www.runoob.com/go/go-pointers.html
 func main(){
-    var arr= [4]int{1,2,3,4}
+    var arr= []int{1,2,3,4}
     my_func(arr,3)
     /* 
         Array := [3][2]int
@@ -118,14 +118,6 @@ func main(){
         fmt.Println(a,age,age2,age3,age4,age5)
     */
 }
-
-
-
-
-
-
-
-
 
 
 

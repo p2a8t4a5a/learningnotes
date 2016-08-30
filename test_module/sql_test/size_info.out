@@ -1,0 +1,12 @@
+# 表格大小 4000 * 3 * 200
+select concat(round(sum(DATA_LENGTH/1024/1024),2),'MB') as data  from information_schema.TABLES where TABLE_NAME='history_stock_stat';
+size = 376.14MB
+
+
+# 索引大小
+# 1个主键索引
+# 33个索引 (除 stock_id)
+SELECT CONCAT(ROUND(SUM(index_length)/(1024*1024), 2), ' MB') AS 'Total Index Size' FROM information_schema.TABLES  WHERE table_name='history_stock_stat';
+size = 903.43 MB 
+
+

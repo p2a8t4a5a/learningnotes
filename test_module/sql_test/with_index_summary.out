@@ -1,0 +1,16 @@
+one conditions per test = 100
+conditions_num = 1 , average_time = 0.175190544128, average_ans_len = 726944.6 
+conditions_num = 2 , average_time = 0.270797240734, average_ans_len = 226736.96 
+conditions_num = 3 , average_time = 0.132461018562, average_ans_len = 38713.14 
+conditions_num = 4 , average_time = 0.0921309399605, average_ans_len = 3771.56 
+conditions_num = 5 , average_time = 0.0928424859047, average_ans_len = 4657.8 
+conditions_num = 6 , average_time = 0.0513277459145, average_ans_len = 1404.71 
+conditions_num = 7 , average_time = 0.0278763079643, average_ans_len = 13.76 
+conditions_num = 8 , average_time = 0.0196435713768, average_ans_len = 6.71 
+conditions_num = 9 , average_time = 0.0189882087708, average_ans_len = 0.4 
+conditions_num = 10 , average_time = 0.00898466110229, average_ans_len = 0.01 
+conditions_num = 11 , average_time = 0.00809425115585, average_ans_len = 0.0 
+conditions_num = 12 , average_time = 0.00777744293213, average_ans_len = 0.0 
+conditions_num = 13 , average_time = 0.0071186375618, average_ans_len = 0.0 
+conditions_num = 14 , average_time = 0.00859974384308, average_ans_len = 0.0 
+conditions_num = 15 , average_time = 0.00762131214142, average_ans_len = 0.0 

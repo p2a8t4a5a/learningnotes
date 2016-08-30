@@ -1,0 +1,450 @@
+sql = select count(*) from history_stock_stat where `price` > 0.310537295728
+length : (1655211L,) time: 0.653017997742
+
+sql = select count(*) from history_stock_stat where `sector_news` = 19
+length : (18840L,) time: 0.60805106163
+
+sql = select count(*) from history_stock_stat where `yjyg_rate` > 0.949628555307
+length : (121157L,) time: 0.607340097427
+
+sql = select count(*) from history_stock_stat where `sj_rate` > 0.649113949716
+length : (842344L,) time: 0.628793954849
+
+sql = select count(*) from history_stock_stat where `network_level` = 126
+length : (18610L,) time: 0.60468506813
+
+sql = select count(*) from history_stock_stat where `gszyq` = 122
+length : (18939L,) time: 0.606068134308
+
+sql = select count(*) from history_stock_stat where `sectors` like "%1404%"
+length : (6464L,) time: 1.23695611954
+
+sql = select count(*) from history_stock_stat where `price` > 0.396044041428
+length : (1450362L,) time: 0.641069889069
+
+sql = select count(*) from history_stock_stat where `yjyg_rate` > 0.742001436833
+length : (619380L,) time: 0.622609138489
+
+sql = select count(*) from history_stock_stat where `days` = 9135
+length : (0L,) time: 0.000142812728882
+
+sql = select count(*) from history_stock_stat where `sy_rate` > 0.978196830366 and `network_level` = 29
+length : (432L,) time: 0.628010034561
+
+sql = select count(*) from history_stock_stat where `mgsy` > 0.870028721074 and `turnover` > 0.139128053319
+length : (268345L,) time: 0.640100002289
+
+sql = select count(*) from history_stock_stat where `yy_date` > 1449403638 and `rate` > 0.150176053278
+length : (661413L,) time: 0.662075996399
+
+sql = select count(*) from history_stock_stat where `flow_control` = 7 and `sectors` like "%2418%"
+length : (42L,) time: 0.636513948441
+
+sql = select count(*) from history_stock_stat where `flow_control` = 117 and `sy_rate` > 0.0264584762703
+length : (18414L,) time: 0.629253149033
+
+sql = select count(*) from history_stock_stat where `yzyqyec_rate` > 0.14186659881 and `sy_rate` > 0.939217378459
+length : (125555L,) time: 0.676020145416
+
+sql = select count(*) from history_stock_stat where `yy_date` > 1409995106 and `jlr_rate` > 0.403092197264
+length : (490957L,) time: 0.666595935822
+
+sql = select count(*) from history_stock_stat where `gszyq` = 92 and `ltsz` > 0.534554537163
+length : (8732L,) time: 0.639718055725
+
+sql = select count(*) from history_stock_stat where `rzrqyec_change` > 0.434342604025 and `mgsy` > 0.90599049326
+length : (127624L,) time: 0.678927898407
+
+sql = select count(*) from history_stock_stat where `mgjzc` > 0.0481235769721 and `zb` like "%2139%"
+length : (6281L,) time: 1.25879001617
+
+sql = select count(*) from history_stock_stat where `sector_news` = 89 and `jzcsy_rate` > 0.286903128599 and `sectors` like "%1241%"
+length : (39L,) time: 0.635128974915
+
+sql = select count(*) from history_stock_stat where `network_level` = 121 and `sy_rate` > 0.0952087217167 and `days` = 10544
+length : (0L,) time: 0.000170946121216
+
+sql = select count(*) from history_stock_stat where `gszyq` = 98 and `sy_rate` > 0.365174780259 and `yy_time` > 1199990659
+length : (5371L,) time: 0.630134105682
+
+sql = select count(*) from history_stock_stat where `yjyg_type` = 126 and `yj_types` = 40 and `mgsy` > 0.458673189258
+length : (80L,) time: 0.634225130081
+
+sql = select count(*) from history_stock_stat where `yjyg_rate` > 0.749024010573 and `sy_rate` > 0.485879902614 and `report_level` = 87
+length : (2416L,) time: 0.643826007843
+
+sql = select count(*) from history_stock_stat where `sj_rate` > 0.467014856999 and `yg_type` = 64 and `yjyg_type` = 77
+length : (67L,) time: 0.640589952469
+
+sql = select count(*) from history_stock_stat where `sector_news` = 68 and `turnover` > 0.657453290579 and `mgjzc` > 0.800404231471
+length : (1241L,) time: 0.640065908432
+
+sql = select count(*) from history_stock_stat where `jlrtb_rate` > 0.416525681916 and `sy_rate` > 0.0784930709715 and `sectors` like "%1117%"
+length : (3532L,) time: 1.01799178123
+
+sql = select count(*) from history_stock_stat where `yy_time` > 416383036 and `turnover` > 0.780757630425 and `sector_news` = 4
+length : (3256L,) time: 0.627355098724
+
+sql = select count(*) from history_stock_stat where `ltg` = 21236 and `days` = 25394 and `ystb_rate` > 0.120168933336
+length : (0L,) time: 0.000271081924438
+
+sql = select count(*) from history_stock_stat where `mgsy` > 0.453050576202 and `stock_news` = 39 and `yg_type` = 115 and `ltg` = 8546
+length : (0L,) time: 0.629935026169
+
+sql = select count(*) from history_stock_stat where `mgjzc` > 0.533349395337 and `days` = 23359 and `yy_type` = 108 and `report_level` = 108
+length : (0L,) time: 0.000226974487305
+
+sql = select count(*) from history_stock_stat where `jzcsy_rate` > 0.880253496562 and `stock_news` = 27 and `yjyg_rate` > 0.15283957308 and `rzrqyec_change` > 0.303546393471
+length : (1293L,) time: 0.629662036896
+
+sql = select count(*) from history_stock_stat where `sectors` like "%1369%" and `yy_date` > 1010498516 and `zb` like "%2866%" and `report_level` = 73
+length : (0L,) time: 0.643052816391
+
+sql = select count(*) from history_stock_stat where `ltsz` > 0.0277585623444 and `days` = 13974 and `ystb_rate` > 0.882659216224 and `rzrqyec_change` > 0.286673895105
+length : (0L,) time: 0.00016188621521
+
+sql = select count(*) from history_stock_stat where `jlr_rate` > 0.901048586258 and `jzcsy_rate` > 0.950227682936 and `days` = 6073 and `ltsz` > 0.761996022668
+length : (0L,) time: 0.000118970870972
+
+sql = select count(*) from history_stock_stat where `yjyg_type` = 78 and `stock_news` = 65 and `flow_control` = 19 and `ltsz` > 0.893950810956
+length : (0L,) time: 0.62490105629
+
+sql = select count(*) from history_stock_stat where `report_level` = 73 and `flow` > 8125249804262060324 and `sj_rate` > 0.707703724862 and `jzcsy_rate` > 0.243880293638
+length : (474L,) time: 0.635439157486
+
+sql = select count(*) from history_stock_stat where `sector_news` = 70 and `price` > 0.258984078869 and `flow_rate` > 0.0397385198285 and `jlrtb_rate` > 0.524061926986
+length : (6268L,) time: 0.638783931732
+
+sql = select count(*) from history_stock_stat where `yy_time` > 652161412 and `yjyg_rate` > 0.374078824764 and `sector_news` = 45 and `sj_rate` > 0.526519262464
+length : (3942L,) time: 0.63797211647
+
+sql = select count(*) from history_stock_stat where `ltsz` > 0.253376391155 and `report_level` = 120 and `mgsy` > 0.804106136149 and `yy_date` > 59372563 and `rzrqyec_change` > 0.608392638962
+length : (1053L,) time: 0.629868030548
+
+sql = select count(*) from history_stock_stat where `sector_news` = 94 and `jlr_rate` > 0.847804228953 and `jlrtb_rate` > 0.484658459973 and `gszyq` = 106 and `flow_rate` > 0.679294287971
+length : (2L,) time: 0.627861022949
+
+sql = select count(*) from history_stock_stat where `sector_news` = 107 and `days` = 17920 and `ystb_rate` > 0.803448019934 and `price` > 0.590832185617 and `stock_news` = 112
+length : (0L,) time: 0.000192165374756
+
+sql = select count(*) from history_stock_stat where `yy_time` > 1046652999 and `stock_news` = 48 and `flow_rate` > 0.583951199023 and `mgsy` > 0.613200532187 and `ltg` = 3858
+length : (0L,) time: 0.624107122421
+
+sql = select count(*) from history_stock_stat where `ltg` = 1591 and `flow` > 5367885725818819878 and `mgjzc` > 0.831288661626 and `network_level` = 54 and `turnover` > 0.250569166473
+length : (0L,) time: 0.639533042908
+
+sql = select count(*) from history_stock_stat where `yjyg_type` = 54 and `zb` like "%1705%" and `yy_type` = 106 and `jzcsy_rate` > 0.0238787531902 and `flow` > 7810309874450745202
+length : (1L,) time: 0.637516021729
+
+sql = select count(*) from history_stock_stat where `gszyq` = 98 and `sj_rate` > 0.249826984864 and `days` = 8428 and `mgsy` > 0.512951611553 and `yg_type` = 70
+length : (0L,) time: 0.000170946121216
+
+sql = select count(*) from history_stock_stat where `sy_rate` > 0.555054183893 and `ystb_rate` > 0.856861254044 and `price` > 0.449309699776 and `yy_time` > 1492864057 and `yzyqyec_rate` > 0.795413346799
+length : (5287L,) time: 0.66983294487
+
+sql = select count(*) from history_stock_stat where `price` > 0.24899592351 and `mgsy` > 0.269071213664 and `sectors` like "%2512%" and `flow` > 3266250618856910143 and `yy_date` > 940390282
+length : (1362L,) time: 1.04246497154
+
+sql = select count(*) from history_stock_stat where `ltsz` > 0.354084468108 and `sy_rate` > 0.400450020588 and `yjyg_rate` > 0.959898042995 and `rate` > 0.99689348077 and `days` = 2107
+length : (0L,) time: 0.000200986862183
+
+sql = select count(*) from history_stock_stat where `yjyg_type` = 104 and `yj_types` = 49 and `zb` like "%2977%" and `network_level` = 127 and `ltg` = 16345 and `ltsz` > 0.801795915833
+length : (0L,) time: 0.643500089645
+
+sql = select count(*) from history_stock_stat where `sj_rate` > 0.718247376281 and `report_level` = 1 and `yy_date` > 1768288297 and `yjyg_rate` > 0.673413442794 and `yjyg_type` = 120 and `flow_control` = 75
+length : (0L,) time: 0.645170211792
+
+sql = select count(*) from history_stock_stat where `yy_date` > 297608386 and `flow` > 6799262283128463875 and `yjyg_type` = 17 and `yjyg_rate` > 0.583980746439 and `yy_type` = 65 and `sectors` like "%1463%"
+length : (0L,) time: 0.648222923279
+
+sql = select count(*) from history_stock_stat where `ltg` = 15295 and `yjyg_rate` > 0.635939129608 and `jzcsy_rate` > 0.609607374592 and `mgsy` > 0.722692759062 and `yg_type` = 60 and `ystb_rate` > 0.69567419916
+length : (0L,) time: 0.645571947098
+
+sql = select count(*) from history_stock_stat where `ystb_rate` > 0.274859266204 and `yjyg_type` = 24 and `rate` > 0.984463608108 and `ltg` = 4933 and `report_level` = 60 and `yjyg_rate` > 0.874115407628
+length : (0L,) time: 0.640752077103
+
+sql = select count(*) from history_stock_stat where `flow_control` = 126 and `stock_news` = 30 and `yy_type` = 43 and `mgsy` > 0.620929659481 and `sj_rate` > 0.958397868603 and `sy_rate` > 0.389619058359
+length : (0L,) time: 0.63432598114
+
+sql = select count(*) from history_stock_stat where `days` = 3136 and `mgsy` > 0.185456665044 and `sectors` like "%2015%" and `jlrtb_rate` > 0.189763929221 and `jlr_rate` > 0.154278080172 and `network_level` = 99
+length : (0L,) time: 0.000216960906982
+
+sql = select count(*) from history_stock_stat where `yjyg_rate` > 0.151429928851 and `sj_rate` > 0.450962707838 and `yg_type` = 34 and `ltg` = 15408 and `yjyg_type` = 69 and `turnover` > 0.859819102125
+length : (0L,) time: 0.635627031326
+
+sql = select count(*) from history_stock_stat where `mgsy` > 0.347878452027 and `yjyg_rate` > 0.148014984748 and `rzrqyec_change` > 0.112684446853 and `network_level` = 15 and `price` > 0.980902139688 and `flow_rate` > 0.983025485312
+length : (2L,) time: 0.635188102722
+
+sql = select count(*) from history_stock_stat where `zb` like "%1420%" and `mgsy` > 0.281123193319 and `ystb_rate` > 0.752022060397 and `flow` > 810222823059434291 and `yzyqyec_rate` > 0.286789319341 and `yy_date` > 212811276
+length : (648L,) time: 1.25342917442
+
+sql = select count(*) from history_stock_stat where `mgsy` > 0.101989071879 and `ltsz` > 0.395244830349 and `report_level` = 103 and `sy_rate` > 0.405884854681 and `flow_rate` > 0.0436729837838 and `yy_type` = 7 and `days` = 4048
+length : (0L,) time: 0.000191926956177
+
+sql = select count(*) from history_stock_stat where `ltsz` > 0.195124396353 and `turnover` > 0.757057606969 and `yy_time` > 1208260928 and `yj_types` = 0 and `jzcsy_rate` > 0.35448657985 and `yg_type` = 55 and `flow_rate` > 0.501717985789
+length : (4L,) time: 0.637385845184
+
+sql = select count(*) from history_stock_stat where `jlrtb_rate` > 0.593004343563 and `rzrqyec_change` > 0.554360274068 and `ltsz` > 0.291019581964 and `yjyg_type` = 20 and `turnover` > 0.160894400252 and `mgjzc` > 0.109739827859 and `sector_news` = 33
+length : (12L,) time: 0.632350921631
+
+sql = select count(*) from history_stock_stat where `mgsy` > 0.181746382693 and `report_level` = 91 and `days` = 28552 and `yjyg_type` = 63 and `network_level` = 80 and `stock_news` = 31 and `price` > 0.179022456061
+length : (0L,) time: 0.000189065933228
+
+sql = select count(*) from history_stock_stat where `report_level` = 121 and `sector_news` = 40 and `jzcsy_rate` > 0.295613234775 and `mgjzc` > 0.105529827763 and `yg_type` = 124 and `network_level` = 69 and `rzrqyec_change` > 0.563926680939
+length : (0L,) time: 0.639235973358
+
+sql = select count(*) from history_stock_stat where `yjyg_rate` > 0.225445027842 and `yy_date` > 881607815 and `zb` like "%2701%" and `ltsz` > 0.295401475638 and `yg_type` = 78 and `jlrtb_rate` > 0.939097005987 and `days` = 23464
+length : (0L,) time: 0.000211954116821
+
+sql = select count(*) from history_stock_stat where `days` = 11960 and `flow` > 1592344903177110500 and `sj_rate` > 0.726644792032 and `sy_rate` > 0.191715342448 and `sector_news` = 78 and `mgsy` > 0.0109106789905 and `yj_types` = 71
+length : (0L,) time: 0.000162124633789
+
+sql = select count(*) from history_stock_stat where `zb` like "%1189%" and `gszyq` = 40 and `sy_rate` > 0.370624789106 and `rzrqyec_change` > 0.00980333563911 and `yg_type` = 9 and `yy_type` = 81 and `yy_time` > 1240049446
+length : (0L,) time: 0.638670921326
+
+sql = select count(*) from history_stock_stat where `sj_rate` > 0.121017312993 and `zb` like "%1867%" and `stock_news` = 120 and `turnover` > 0.433112017017 and `yy_time` > 514307573 and `flow` > 7854231319209993673 and `rate` > 0.531215467057
+length : (0L,) time: 0.634622097015
+
+sql = select count(*) from history_stock_stat where `mgjzc` > 0.78751686922 and `network_level` = 55 and `jlr_rate` > 0.49769547518 and `ystb_rate` > 0.785950449479 and `yjyg_type` = 114 and `yg_type` = 100 and `zb` like "%2916%"
+length : (0L,) time: 0.628469944
+
+sql = select count(*) from history_stock_stat where `days` = 11331 and `sj_rate` > 0.210028353256 and `mgsy` > 0.0359345386893 and `yjyg_type` = 69 and `flow_control` = 103 and `sy_rate` > 0.996701137006 and `price` > 0.233234037085 and `jzcsy_rate` > 0.487103148762
+length : (0L,) time: 0.000221014022827
+
+sql = select count(*) from history_stock_stat where `yg_type` = 101 and `yj_types` = 0 and `ltsz` > 0.813154277406 and `jzcsy_rate` > 0.212605906069 and `ystb_rate` > 0.260925518691 and `yjyg_type` = 33 and `rzrqyec_change` > 0.493355615753 and `flow_control` = 97
+length : (0L,) time: 0.635150909424
+
+sql = select count(*) from history_stock_stat where `sy_rate` > 0.0147909234817 and `sectors` like "%2505%" and `yy_date` > 244730047 and `yj_types` = 116 and `yjyg_type` = 110 and `sj_rate` > 0.569155836128 and `mgsy` > 0.192624486183 and `rate` > 0.819881707991
+length : (0L,) time: 0.633995056152
+
+sql = select count(*) from history_stock_stat where `flow_rate` > 0.832683767697 and `yy_time` > 1701681312 and `rate` > 0.835384614937 and `mgsy` > 0.31090075394 and `ltsz` > 0.926561429263 and `days` = 5802 and `flow` > 1593146907020316251 and `sy_rate` > 0.203894186669
+length : (0L,) time: 0.000249862670898
+
+sql = select count(*) from history_stock_stat where `days` = 7919 and `sj_rate` > 0.93822038372 and `flow_rate` > 0.0173505605031 and `stock_news` = 68 and `sectors` like "%2887%" and `ltg` = 25796 and `price` > 0.361053527421 and `sy_rate` > 0.461180131257
+length : (0L,) time: 0.000185966491699
+
+sql = select count(*) from history_stock_stat where `days` = 6310 and `jzcsy_rate` > 0.302289871923 and `yg_type` = 33 and `sj_rate` > 0.0147485567947 and `report_level` = 82 and `zb` like "%2233%" and `price` > 0.256151451183 and `flow` > 740937021136374063
+length : (0L,) time: 0.000176906585693
+
+sql = select count(*) from history_stock_stat where `yy_type` = 15 and `yj_types` = 39 and `days` = 29529 and `ystb_rate` > 0.275493766029 and `mgsy` > 0.357715268151 and `yjyg_type` = 123 and `yy_time` > 806163077 and `jlrtb_rate` > 0.306989663576
+length : (0L,) time: 0.000179052352905
+
+sql = select count(*) from history_stock_stat where `yy_date` > 795933560 and `jzcsy_rate` > 0.693794453095 and `ltsz` > 0.488069844822 and `flow` > 5800541848068174039 and `yjyg_rate` > 0.136471300388 and `yzyqyec_rate` > 0.890590181995 and `ltg` = 20961 and `price` > 0.63438615582
+length : (0L,) time: 0.637187004089
+
+sql = select count(*) from history_stock_stat where `flow_rate` > 0.144309631889 and `sectors` like "%1936%" and `yy_date` > 960465661 and `yy_type` = 111 and `jzcsy_rate` > 0.704611771321 and `jlr_rate` > 0.213700909904 and `network_level` = 103 and `ltsz` > 0.591043672162
+length : (0L,) time: 0.645458936691
+
+sql = select count(*) from history_stock_stat where `yzyqyec_rate` > 0.869596680876 and `yy_date` > 210444242 and `yj_types` = 103 and `jzcsy_rate` > 0.840833377033 and `ltg` = 16160 and `ystb_rate` > 0.160256985941 and `zb` like "%2518%" and `jlrtb_rate` > 0.297142924098
+length : (0L,) time: 0.639198064804
+
+sql = select count(*) from history_stock_stat where `jlr_rate` > 0.19485032999 and `yg_type` = 113 and `flow` > 5383514977930401617 and `sectors` like "%2471%" and `mgjzc` > 0.211492327645 and `rate` > 0.146140976527 and `days` = 20312 and `stock_news` = 5 and `turnover` > 0.712589562942
+length : (0L,) time: 0.000174045562744
+
+sql = select count(*) from history_stock_stat where `yg_type` = 47 and `sj_rate` > 0.766680245909 and `ltg` = 887 and `gszyq` = 97 and `yjyg_rate` > 0.133779744688 and `report_level` = 40 and `yy_time` > 1369489976 and `yjyg_type` = 126 and `jlr_rate` > 0.860193204519
+length : (0L,) time: 0.635470151901
+
+sql = select count(*) from history_stock_stat where `flow_rate` > 0.0584136404168 and `jlr_rate` > 0.356481833128 and `sector_news` = 52 and `yzyqyec_rate` > 0.0747220594253 and `flow` > 42847684819652846 and `report_level` = 15 and `jlrtb_rate` > 0.598927980142 and `ystb_rate` > 0.442011917203 and `gszyq` = 39
+length : (0L,) time: 0.629989862442
+
+sql = select count(*) from history_stock_stat where `yjyg_type` = 67 and `ltg` = 31502 and `days` = 23739 and `sj_rate` > 0.743889161962 and `yjyg_rate` > 0.60142851897 and `mgsy` > 0.143176624256 and `sectors` like "%1783%" and `flow_control` = 118 and `network_level` = 56
+length : (0L,) time: 0.000208139419556
+
+sql = select count(*) from history_stock_stat where `report_level` = 116 and `stock_news` = 35 and `sy_rate` > 0.153526692377 and `ystb_rate` > 0.161198889892 and `zb` like "%2256%" and `sectors` like "%1904%" and `mgsy` > 0.193582353926 and `yzyqyec_rate` > 0.362852072372 and `jlrtb_rate` > 0.730091285178
+length : (0L,) time: 0.627691030502
+
+sql = select count(*) from history_stock_stat where `ltsz` > 0.475621676797 and `yg_type` = 73 and `yj_types` = 127 and `gszyq` = 65 and `report_level` = 3 and `jlr_rate` > 0.388494569239 and `yy_time` > 941955164 and `yzyqyec_rate` > 0.194108848729 and `yy_type` = 43
+length : (0L,) time: 0.631218194962
+
+sql = select count(*) from history_stock_stat where `sectors` like "%2860%" and `ystb_rate` > 0.90696197637 and `yjyg_rate` > 0.927144832661 and `ltg` = 18508 and `price` > 0.717219958617 and `yy_date` > 1967423494 and `rate` > 0.979817815908 and `sy_rate` > 0.0341981561188 and `mgsy` > 0.983699711541
+length : (0L,) time: 0.632649183273
+
+sql = select count(*) from history_stock_stat where `sectors` like "%2158%" and `flow_rate` > 0.598746245669 and `rate` > 0.896769027405 and `gszyq` = 8 and `yzyqyec_rate` > 0.12157918304 and `mgjzc` > 0.702204529195 and `yj_types` = 21 and `stock_news` = 9 and `sj_rate` > 0.746570068251
+length : (0L,) time: 0.622370958328
+
+sql = select count(*) from history_stock_stat where `ltg` = 28973 and `turnover` > 0.526484083619 and `rate` > 0.404381250768 and `yjyg_rate` > 0.0634182472168 and `yzyqyec_rate` > 0.0399361320594 and `ystb_rate` > 0.111694619457 and `zb` like "%1445%" and `sj_rate` > 0.319441497919 and `sector_news` = 81
+length : (0L,) time: 0.633450031281
+
+sql = select count(*) from history_stock_stat where `sectors` like "%2486%" and `ltsz` > 0.482009399599 and `mgsy` > 0.667461127648 and `jlrtb_rate` > 0.551068068258 and `jzcsy_rate` > 0.212085578246 and `sj_rate` > 0.401039356302 and `flow_control` = 34 and `yy_date` > 1879500173 and `flow_rate` > 0.959534383272
+length : (0L,) time: 0.64982008934
+
+sql = select count(*) from history_stock_stat where `yzyqyec_rate` > 0.633544744448 and `rate` > 0.505995302793 and `zb` like "%2483%" and `yy_date` > 1356701527 and `flow` > 8091694455464819541 and `network_level` = 77 and `flow_rate` > 0.372967621425 and `yj_types` = 25 and `yg_type` = 1 and `flow_control` = 10
+length : (0L,) time: 0.627110004425
+
+sql = select count(*) from history_stock_stat where `rzrqyec_change` > 0.0628199834572 and `ltsz` > 0.0785204828849 and `jlrtb_rate` > 0.515945932076 and `flow_rate` > 0.615988639089 and `sectors` like "%1918%" and `ltg` = 15378 and `flow` > 4836064390346327684 and `yy_time` > 1224042955 and `days` = 1253 and `sj_rate` > 0.421834947392
+length : (0L,) time: 0.000303983688354
+
+sql = select count(*) from history_stock_stat where `zb` like "%2701%" and `ltg` = 12432 and `yjyg_rate` > 0.331996100555 and `gszyq` = 15 and `report_level` = 0 and `yy_type` = 87 and `mgjzc` > 0.339542648028 and `sj_rate` > 0.549850670038 and `ltsz` > 0.228714448603 and `yjyg_type` = 16
+length : (0L,) time: 0.625134944916
+
+sql = select count(*) from history_stock_stat where `yy_time` > 783101318 and `flow` > 4837424095966156903 and `mgsy` > 0.555704454684 and `stock_news` = 79 and `yzyqyec_rate` > 0.96765627977 and `ltsz` > 0.45317031217 and `price` > 0.0488309895582 and `flow_control` = 28 and `gszyq` = 115 and `network_level` = 40
+length : (0L,) time: 0.630930900574
+
+sql = select count(*) from history_stock_stat where `yj_types` = 56 and `yy_type` = 105 and `sector_news` = 44 and `mgsy` > 0.094741603679 and `network_level` = 101 and `gszyq` = 24 and `price` > 0.852836042797 and `flow` > 4137713284897188797 and `yjyg_type` = 122 and `ltsz` > 0.733874917012
+length : (0L,) time: 0.621845006943
+
+sql = select count(*) from history_stock_stat where `yg_type` = 61 and `jzcsy_rate` > 0.304902173789 and `sj_rate` > 0.723622950341 and `price` > 0.420256264079 and `mgsy` > 0.668507672334 and `flow` > 3084107063513504684 and `days` = 24760 and `report_level` = 96 and `rzrqyec_change` > 0.204387259562 and `network_level` = 31
+length : (0L,) time: 0.000187873840332
+
+sql = select count(*) from history_stock_stat where `ystb_rate` > 0.278093287338 and `flow` > 3805985521584992394 and `jzcsy_rate` > 0.450884168081 and `report_level` = 53 and `yy_date` > 578358781 and `days` = 4973 and `yy_time` > 1278470250 and `turnover` > 0.548899151947 and `rate` > 0.95824726326 and `flow_rate` > 0.54229948874
+length : (0L,) time: 0.000111103057861
+
+sql = select count(*) from history_stock_stat where `zb` like "%2177%" and `flow` > 3856400014180289674 and `ltg` = 2254 and `yjyg_rate` > 0.330130619789 and `stock_news` = 106 and `sy_rate` > 0.685289390751 and `yjyg_type` = 52 and `jlrtb_rate` > 0.515691773168 and `sj_rate` > 0.000631292057411 and `network_level` = 114
+length : (0L,) time: 0.62587594986
+
+sql = select count(*) from history_stock_stat where `yjyg_type` = 35 and `yy_type` = 109 and `stock_news` = 3 and `mgsy` > 0.600372870772 and `sector_news` = 93 and `yjyg_rate` > 0.11747167023 and `days` = 23541 and `rzrqyec_change` > 0.695823653924 and `gszyq` = 35 and `rate` > 0.535095016683
+length : (0L,) time: 0.00017786026001
+
+sql = select count(*) from history_stock_stat where `turnover` > 0.989562859862 and `gszyq` = 51 and `zb` like "%1585%" and `yy_date` > 1219941222 and `ystb_rate` > 0.403381272441 and `sectors` like "%2598%" and `sy_rate` > 0.845343214826 and `network_level` = 98 and `report_level` = 20 and `jlrtb_rate` > 0.693204900372
+length : (0L,) time: 0.628991127014
+
+sql = select count(*) from history_stock_stat where `turnover` > 0.0152937691436 and `yg_type` = 15 and `report_level` = 40 and `stock_news` = 57 and `yy_time` > 1209387895 and `jzcsy_rate` > 0.90470854531 and `ltsz` > 0.0337490855663 and `price` > 0.600775319908 and `sectors` like "%1017%" and `yzyqyec_rate` > 0.164789964214 and `jlrtb_rate` > 0.0262857284215
+length : (0L,) time: 0.634837150574
+
+sql = select count(*) from history_stock_stat where `price` > 0.307548046782 and `yjyg_rate` > 0.666806219508 and `stock_news` = 24 and `turnover` > 0.714202171707 and `report_level` = 9 and `ystb_rate` > 0.453609075197 and `zb` like "%1698%" and `jlrtb_rate` > 0.15973488863 and `yjyg_type` = 120 and `flow_control` = 15 and `flow` > 8271085947231391757
+length : (0L,) time: 0.622687101364
+
+sql = select count(*) from history_stock_stat where `ltg` = 23715 and `yg_type` = 50 and `price` > 0.342506818049 and `yjyg_type` = 96 and `yy_time` > 706389177 and `jlr_rate` > 0.508385736613 and `mgsy` > 0.176589894029 and `sector_news` = 55 and `rate` > 0.734462212714 and `stock_news` = 46 and `network_level` = 26
+length : (0L,) time: 0.630771875381
+
+sql = select count(*) from history_stock_stat where `yzyqyec_rate` > 0.197673446678 and `sj_rate` > 0.123173192858 and `ltg` = 14741 and `jzcsy_rate` > 0.485371587294 and `jlrtb_rate` > 0.289559761874 and `sector_news` = 50 and `days` = 24733 and `flow_rate` > 0.0328855553897 and `jlr_rate` > 0.47636212094 and `yjyg_type` = 49 and `yy_type` = 0
+length : (0L,) time: 0.000194072723389
+
+sql = select count(*) from history_stock_stat where `sectors` like "%1587%" and `yg_type` = 25 and `gszyq` = 61 and `flow_control` = 45 and `jlrtb_rate` > 0.701163479449 and `flow` > 241334438909335998 and `jlr_rate` > 0.808676799841 and `flow_rate` > 0.429997414343 and `yy_date` > 834126615 and `yzyqyec_rate` > 0.314905880292 and `ystb_rate` > 0.274603734339
+length : (0L,) time: 0.645152807236
+
+sql = select count(*) from history_stock_stat where `mgsy` > 0.69035451344 and `sector_news` = 56 and `ltsz` > 0.201647106573 and `yjyg_type` = 46 and `rzrqyec_change` > 0.718117745005 and `yjyg_rate` > 0.745244388373 and `zb` like "%2839%" and `yy_type` = 68 and `rate` > 0.187440102155 and `turnover` > 0.0508498496049 and `sectors` like "%2227%"
+length : (0L,) time: 0.638062953949
+
+sql = select count(*) from history_stock_stat where `flow` > 7222411568237048575 and `flow_rate` > 0.31844659039 and `yy_time` > 2139019890 and `jlrtb_rate` > 0.456765239147 and `turnover` > 0.663371535837 and `network_level` = 18 and `jzcsy_rate` > 0.110154888468 and `yg_type` = 49 and `rate` > 0.104668768281 and `rzrqyec_change` > 0.265873568469 and `jlr_rate` > 0.976813106225
+length : (0L,) time: 0.636270999908
+
+sql = select count(*) from history_stock_stat where `rzrqyec_change` > 0.911573755937 and `jzcsy_rate` > 0.660111819547 and `yzyqyec_rate` > 0.575261695155 and `yj_types` = 109 and `network_level` = 53 and `turnover` > 0.878655005847 and `yg_type` = 24 and `yy_date` > 288675590 and `mgsy` > 0.255404681656 and `mgjzc` > 0.81267175108 and `yy_type` = 83
+length : (0L,) time: 0.634415149689
+
+sql = select count(*) from history_stock_stat where `yjyg_rate` > 0.104364425734 and `mgsy` > 0.00293647202451 and `yy_type` = 54 and `gszyq` = 72 and `rzrqyec_change` > 0.0705319518766 and `rate` > 0.770023826318 and `ystb_rate` > 0.732146347501 and `jlrtb_rate` > 0.0269614058302 and `ltsz` > 0.578529004147 and `network_level` = 92 and `flow_control` = 68
+length : (0L,) time: 0.636505842209
+
+sql = select count(*) from history_stock_stat where `jlrtb_rate` > 0.249543328154 and `network_level` = 82 and `flow_rate` > 0.82694769387 and `rzrqyec_change` > 0.4631333139 and `mgsy` > 0.4389080837 and `ltsz` > 0.248022491024 and `zb` like "%1620%" and `jlr_rate` > 0.800611165649 and `ltg` = 31722 and `yy_time` > 780494564 and `yzyqyec_rate` > 0.390175531957
+length : (0L,) time: 0.623391866684
+
+sql = select count(*) from history_stock_stat where `jlrtb_rate` > 0.461669080208 and `rzrqyec_change` > 0.112800724351 and `yg_type` = 16 and `yy_type` = 80 and `sy_rate` > 0.618643391406 and `report_level` = 19 and `sj_rate` > 0.96767274739 and `stock_news` = 84 and `jzcsy_rate` > 0.562343641957 and `flow_control` = 37 and `rate` > 0.172194990033 and `flow_rate` > 0.107471833731
+length : (0L,) time: 0.631718873978
+
+sql = select count(*) from history_stock_stat where `yy_time` > 1452586737 and `ltsz` > 0.796085597151 and `yj_types` = 61 and `price` > 0.89318433334 and `yg_type` = 88 and `report_level` = 24 and `rzrqyec_change` > 0.0340182778699 and `sector_news` = 82 and `zb` like "%1023%" and `jlrtb_rate` > 0.23540817756 and `turnover` > 0.896266802864 and `jlr_rate` > 0.563461442217
+length : (0L,) time: 0.63462305069
+
+sql = select count(*) from history_stock_stat where `yjyg_type` = 110 and `sectors` like "%1021%" and `sy_rate` > 0.282523051475 and `gszyq` = 27 and `price` > 0.0571612240468 and `mgjzc` > 0.543725340979 and `ystb_rate` > 0.521241717013 and `yzyqyec_rate` > 0.0513447303027 and `yy_type` = 127 and `turnover` > 0.0888222270683 and `yy_date` > 1273659796 and `flow_control` = 90
+length : (0L,) time: 0.634687185287
+
+sql = select count(*) from history_stock_stat where `stock_news` = 96 and `yjyg_type` = 126 and `jlrtb_rate` > 0.525366688865 and `turnover` > 0.5430962875 and `yjyg_rate` > 0.818456333722 and `mgsy` > 0.357980985743 and `jlr_rate` > 0.76836168453 and `price` > 0.991418858174 and `ystb_rate` > 0.246094994612 and `jzcsy_rate` > 0.886620211434 and `rate` > 0.306504563618 and `yzyqyec_rate` > 0.579440931466
+length : (0L,) time: 0.623476982117
+
+sql = select count(*) from history_stock_stat where `ystb_rate` > 0.441281544931 and `yjyg_type` = 62 and `jlrtb_rate` > 0.749906783799 and `yy_date` > 834415707 and `price` > 0.466445404865 and `jzcsy_rate` > 0.849433962531 and `report_level` = 81 and `days` = 17459 and `mgjzc` > 0.596844758646 and `flow_rate` > 0.294139974336 and `flow_control` = 88 and `rate` > 0.700354512271
+length : (0L,) time: 0.000242948532104
+
+sql = select count(*) from history_stock_stat where `sj_rate` > 0.147299971382 and `flow_rate` > 0.0681841679848 and `yy_time` > 350065764 and `yj_types` = 15 and `jlr_rate` > 0.268018799146 and `days` = 18549 and `sectors` like "%2646%" and `ltsz` > 0.0512215169016 and `mgsy` > 0.036392585044 and `yjyg_type` = 30 and `stock_news` = 25 and `flow_control` = 4
+length : (0L,) time: 0.000172853469849
+
+sql = select count(*) from history_stock_stat where `sy_rate` > 0.182728991937 and `flow` > 1564274853243411177 and `yj_types` = 1 and `zb` like "%2940%" and `sj_rate` > 0.95180655364 and `rate` > 0.515900304883 and `yy_time` > 1752554978 and `stock_news` = 23 and `mgsy` > 0.609362639822 and `yjyg_type` = 96 and `yy_type` = 67 and `days` = 16611
+length : (0L,) time: 0.000205039978027
+
+sql = select count(*) from history_stock_stat where `price` > 0.450896071292 and `ltg` = 31393 and `stock_news` = 127 and `jzcsy_rate` > 0.833585007597 and `mgsy` > 0.909740062272 and `yy_type` = 33 and `sectors` like "%2414%" and `jlr_rate` > 0.0316587371989 and `sj_rate` > 0.262819489007 and `jlrtb_rate` > 0.594446537518 and `flow_rate` > 0.440405862497 and `yj_types` = 60
+length : (0L,) time: 0.636620044708
+
+sql = select count(*) from history_stock_stat where `jzcsy_rate` > 0.517948320107 and `yj_types` = 80 and `gszyq` = 90 and `yg_type` = 78 and `yjyg_rate` > 0.513187255019 and `mgsy` > 0.216136828642 and `stock_news` = 44 and `turnover` > 0.365674905789 and `yjyg_type` = 59 and `report_level` = 73 and `days` = 14514 and `jlrtb_rate` > 0.0816560884088
+length : (0L,) time: 0.000245809555054
+
+sql = select count(*) from history_stock_stat where `yjyg_type` = 103 and `gszyq` = 32 and `yy_type` = 78 and `yy_time` > 95079087 and `ystb_rate` > 0.427712705412 and `rzrqyec_change` > 0.631382073091 and `rate` > 0.461305521051 and `ltg` = 28510 and `sector_news` = 89 and `sectors` like "%2085%" and `price` > 0.742221027334 and `stock_news` = 38
+length : (0L,) time: 0.633515834808
+
+sql = select count(*) from history_stock_stat where `mgjzc` > 0.160828293961 and `rzrqyec_change` > 0.816298929308 and `jlr_rate` > 0.967819551621 and `ltsz` > 0.176500068832 and `turnover` > 0.395634545135 and `yg_type` = 62 and `sectors` like "%1052%" and `flow` > 8588906893974758399 and `yjyg_type` = 102 and `yy_type` = 43 and `yy_time` > 489970875 and `sj_rate` > 0.865308445107 and `flow_rate` > 0.144145990603
+length : (0L,) time: 0.632305860519
+
+sql = select count(*) from history_stock_stat where `flow_control` = 40 and `zb` like "%1457%" and `network_level` = 24 and `sectors` like "%1329%" and `ltg` = 25696 and `yg_type` = 79 and `days` = 27760 and `flow_rate` > 0.787892598191 and `ltsz` > 0.129050507477 and `sector_news` = 25 and `mgsy` > 0.434815783444 and `sj_rate` > 0.658139800847 and `yjyg_rate` > 0.175833965525
+length : (0L,) time: 0.000194072723389
+
+sql = select count(*) from history_stock_stat where `network_level` = 68 and `yj_types` = 86 and `turnover` > 0.215982268653 and `flow_control` = 117 and `yy_type` = 34 and `jzcsy_rate` > 0.474077786304 and `jlr_rate` > 0.126973288396 and `price` > 0.419276029636 and `sector_news` = 71 and `rate` > 0.72363888829 and `flow_rate` > 0.743052389837 and `gszyq` = 26 and `sy_rate` > 0.646592079415
+length : (0L,) time: 0.628004074097
+
+sql = select count(*) from history_stock_stat where `mgsy` > 0.318641573258 and `flow_control` = 111 and `jlrtb_rate` > 0.429549514798 and `mgjzc` > 0.513602977203 and `gszyq` = 117 and `ystb_rate` > 0.946029169281 and `yzyqyec_rate` > 0.0149817921595 and `yjyg_type` = 37 and `sj_rate` > 0.725740499756 and `rate` > 0.349663918319 and `turnover` > 0.179854074455 and `yy_type` = 25 and `report_level` = 80
+length : (0L,) time: 0.634033203125
+
+sql = select count(*) from history_stock_stat where `yj_types` = 44 and `yy_type` = 1 and `network_level` = 55 and `stock_news` = 71 and `sy_rate` > 0.821442741549 and `sector_news` = 86 and `zb` like "%1902%" and `yg_type` = 67 and `report_level` = 106 and `sj_rate` > 0.721111109629 and `days` = 1147 and `jlr_rate` > 0.193524909114 and `yy_date` > 442620019
+length : (0L,) time: 0.000253915786743
+
+sql = select count(*) from history_stock_stat where `turnover` > 0.443448517797 and `sector_news` = 112 and `ystb_rate` > 0.151605336914 and `flow_rate` > 0.410497256766 and `network_level` = 79 and `flow` > 6057427282801043704 and `yy_time` > 1892902080 and `rzrqyec_change` > 0.282283741887 and `yy_type` = 79 and `mgsy` > 0.886928004956 and `flow_control` = 51 and `ltsz` > 0.0812118397178 and `yzyqyec_rate` > 0.852760873182
+length : (0L,) time: 0.636453151703
+
+sql = select count(*) from history_stock_stat where `ystb_rate` > 0.133766698924 and `ltg` = 25121 and `yj_types` = 45 and `days` = 12072 and `jlr_rate` > 0.734850585687 and `price` > 0.69095931192 and `yg_type` = 107 and `flow_control` = 96 and `sy_rate` > 0.264287986031 and `yy_time` > 357362203 and `mgjzc` > 0.199497673288 and `yy_date` > 1574811319 and `stock_news` = 79
+length : (0L,) time: 0.00022292137146
+
+sql = select count(*) from history_stock_stat where `sy_rate` > 0.272389336191 and `stock_news` = 115 and `flow_rate` > 0.486510207613 and `yzyqyec_rate` > 0.292207908057 and `ystb_rate` > 0.852304501366 and `mgsy` > 0.325262929387 and `jlrtb_rate` > 0.411652538969 and `yjyg_rate` > 0.146719378215 and `ltg` = 30675 and `yjyg_type` = 97 and `jlr_rate` > 0.922943000478 and `flow_control` = 38 and `ltsz` > 0.586398665455
+length : (0L,) time: 0.632613897324
+
+sql = select count(*) from history_stock_stat where `days` = 29185 and `flow_control` = 86 and `ltsz` > 0.443488493104 and `yy_time` > 1311148468 and `flow_rate` > 0.491189707664 and `sectors` like "%1346%" and `sector_news` = 60 and `yjyg_type` = 63 and `mgsy` > 0.956935596363 and `rzrqyec_change` > 0.451588846417 and `jlr_rate` > 0.5631135523 and `sy_rate` > 0.659889694818 and `yzyqyec_rate` > 0.644792003203
+length : (0L,) time: 0.000205993652344
+
+sql = select count(*) from history_stock_stat where `sj_rate` > 0.817112768615 and `yy_date` > 796545227 and `flow_rate` > 0.453590939335 and `sy_rate` > 0.738026341761 and `yjyg_type` = 37 and `days` = 23566 and `zb` like "%1316%" and `rzrqyec_change` > 0.996285559455 and `jzcsy_rate` > 0.521406399444 and `ltsz` > 0.258279430402 and `yg_type` = 26 and `flow` > 1387072528168157630 and `rate` > 0.363575888824
+length : (0L,) time: 0.000165939331055
+
+sql = select count(*) from history_stock_stat where `price` > 0.96285261521 and `sectors` like "%1373%" and `yzyqyec_rate` > 0.608957734922 and `yg_type` = 66 and `jzcsy_rate` > 0.163587239894 and `ystb_rate` > 0.968376238742 and `jlr_rate` > 0.00466484024223 and `yj_types` = 79 and `ltg` = 28526 and `yy_time` > 1221126826 and `yjyg_type` = 121 and `days` = 25993 and `sy_rate` > 0.455072792478 and `yy_type` = 27
+length : (0L,) time: 0.0001380443573
+
+sql = select count(*) from history_stock_stat where `yzyqyec_rate` > 0.793937952656 and `yy_type` = 122 and `zb` like "%2512%" and `ystb_rate` > 0.662571757859 and `flow` > 4361640744010665205 and `rate` > 0.326292627552 and `jlrtb_rate` > 0.167513703495 and `yjyg_rate` > 0.443818122416 and `yy_time` > 532508958 and `sector_news` = 117 and `jlr_rate` > 0.540267547067 and `mgjzc` > 0.0719361076587 and `turnover` > 0.0516172759261 and `flow_rate` > 0.420007258362
+length : (0L,) time: 0.62785577774
+
+sql = select count(*) from history_stock_stat where `jlr_rate` > 0.976603730811 and `jlrtb_rate` > 0.0529368307013 and `yjyg_rate` > 0.49560884167 and `yjyg_type` = 111 and `sectors` like "%1985%" and `price` > 0.616772244281 and `sy_rate` > 0.0426743611871 and `flow` > 2484833442787216934 and `days` = 8769 and `ltg` = 25411 and `yg_type` = 34 and `yy_type` = 87 and `sj_rate` > 0.074018960107 and `yy_time` > 1411620936
+length : (0L,) time: 0.000236988067627
+
+sql = select count(*) from history_stock_stat where `rate` > 0.44044453484 and `ltg` = 16705 and `sj_rate` > 0.28596839314 and `jlrtb_rate` > 0.995264497298 and `mgsy` > 0.114332429064 and `yy_date` > 55145134 and `yjyg_rate` > 0.894897522058 and `flow_rate` > 0.63676490477 and `jlr_rate` > 0.701114564379 and `price` > 0.577603936593 and `days` = 6383 and `jzcsy_rate` > 0.413268765109 and `yy_time` > 320809872 and `flow` > 5593033623457237935
+length : (0L,) time: 0.000143051147461
+
+sql = select count(*) from history_stock_stat where `flow` > 8299967036885615539 and `yy_type` = 83 and `yy_time` > 528808630 and `price` > 0.534289859167 and `jlr_rate` > 0.386980125362 and `flow_rate` > 0.685585074975 and `yzyqyec_rate` > 0.702556463174 and `jlrtb_rate` > 0.817779208045 and `gszyq` = 13 and `report_level` = 81 and `days` = 10117 and `yj_types` = 21 and `mgsy` > 0.509419953608 and `ltg` = 19645
+length : (0L,) time: 0.000190019607544
+
+sql = select count(*) from history_stock_stat where `zb` like "%1043%" and `mgjzc` > 0.654554131352 and `sector_news` = 58 and `ltsz` > 0.222161593885 and `sectors` like "%2600%" and `flow_control` = 66 and `mgsy` > 0.627456791914 and `yjyg_rate` > 0.394077673702 and `flow` > 9221856565985213357 and `rzrqyec_change` > 0.921738404 and `rate` > 0.177144526849 and `jzcsy_rate` > 0.0727126822598 and `sy_rate` > 0.803034130601 and `yy_date` > 570806388
+length : (0L,) time: 0.637866973877
+
+sql = select count(*) from history_stock_stat where `ltsz` > 0.811966259571 and `yy_type` = 117 and `yj_types` = 79 and `yg_type` = 76 and `yy_date` > 2071274556 and `jlr_rate` > 0.656267083944 and `yy_time` > 48942045 and `ystb_rate` > 0.328806120933 and `flow` > 2918396682629936826 and `network_level` = 104 and `sj_rate` > 0.80080260173 and `sector_news` = 46 and `jzcsy_rate` > 0.656270830413 and `zb` like "%2444%"
+length : (0L,) time: 0.63254904747
+
+sql = select count(*) from history_stock_stat where `flow_control` = 16 and `ystb_rate` > 0.97188558867 and `yy_time` > 425066390 and `ltsz` > 0.0843762753858 and `zb` like "%2959%" and `sectors` like "%1386%" and `yjyg_type` = 76 and `yy_type` = 37 and `network_level` = 41 and `turnover` > 0.0438029733248 and `mgsy` > 0.770580893698 and `jlr_rate` > 0.102166769804 and `sy_rate` > 0.918087073545 and `days` = 18110
+length : (0L,) time: 0.000195980072021
+
+sql = select count(*) from history_stock_stat where `sj_rate` > 0.678045564917 and `sectors` like "%1203%" and `report_level` = 31 and `ltg` = 28534 and `price` > 0.360356742889 and `mgjzc` > 0.891171892809 and `yj_types` = 19 and `yjyg_type` = 8 and `flow` > 3015446373510013021 and `sector_news` = 118 and `jzcsy_rate` > 0.439247365135 and `yjyg_rate` > 0.372414289964 and `gszyq` = 32 and `sy_rate` > 0.0570649629202
+length : (0L,) time: 0.629580974579
+
+sql = select count(*) from history_stock_stat where `ltsz` > 0.5982680956 and `sector_news` = 32 and `yy_date` > 634897747 and `ystb_rate` > 0.266988377767 and `gszyq` = 108 and `turnover` > 0.647139016911 and `yy_time` > 8708243 and `flow` > 2947876495276686743 and `mgjzc` > 0.0115983546051 and `jlr_rate` > 0.465811952012 and `sj_rate` > 0.0393552072987 and `sy_rate` > 0.789562012255 and `stock_news` = 23 and `sectors` like "%1153%"
+length : (0L,) time: 0.629854202271
+
+sql = select count(*) from history_stock_stat where `sector_news` = 15 and `yy_time` > 1526170240 and `days` = 20115 and `jzcsy_rate` > 0.620431111318 and `mgsy` > 0.128698924057 and `stock_news` = 106 and `report_level` = 101 and `rzrqyec_change` > 0.625621237464 and `gszyq` = 21 and `rate` > 0.668978998429 and `ltg` = 7091 and `price` > 0.107114493063 and `yjyg_type` = 114 and `yjyg_rate` > 0.453309107662 and `ltsz` > 0.515216187288
+length : (0L,) time: 0.000270843505859
+
+sql = select count(*) from history_stock_stat where `gszyq` = 47 and `flow` > 8566137737075423018 and `network_level` = 75 and `report_level` = 28 and `sj_rate` > 0.719039705567 and `yy_time` > 1043142386 and `stock_news` = 115 and `yy_date` > 86581049 and `yy_type` = 15 and `price` > 0.775341253748 and `zb` like "%2299%" and `yzyqyec_rate` > 0.38981206566 and `rzrqyec_change` > 0.967097574495 and `yg_type` = 92 and `ystb_rate` > 0.42397795338
+length : (0L,) time: 0.632937908173
+
+sql = select count(*) from history_stock_stat where `yy_time` > 1195472564 and `yy_type` = 117 and `flow` > 1760427093411707446 and `mgjzc` > 0.291854859048 and `yy_date` > 1067027827 and `jlr_rate` > 0.720934578173 and `rate` > 0.369622976849 and `network_level` = 48 and `yj_types` = 19 and `stock_news` = 13 and `yjyg_type` = 45 and `flow_control` = 43 and `sy_rate` > 0.300992776955 and `zb` like "%2302%" and `jlrtb_rate` > 0.233613518637
+length : (0L,) time: 0.635088920593
+
+sql = select count(*) from history_stock_stat where `yy_date` > 1135047486 and `mgjzc` > 0.982712175907 and `zb` like "%1321%" and `yy_time` > 1827278121 and `days` = 4454 and `report_level` = 88 and `flow_control` = 118 and `jzcsy_rate` > 0.236187311962 and `sy_rate` > 0.614171782104 and `ystb_rate` > 0.885610816456 and `flow` > 5114753579270155698 and `jlrtb_rate` > 0.269234482189 and `ltsz` > 0.273458566904 and `yg_type` = 117 and `turnover` > 0.728641558903
+length : (0L,) time: 0.000268936157227
+
+sql = select count(*) from history_stock_stat where `yy_date` > 608949352 and `rzrqyec_change` > 0.552453470544 and `sectors` like "%1818%" and `sj_rate` > 0.0784240600904 and `sy_rate` > 0.140571354418 and `zb` like "%1750%" and `rate` > 0.413325383195 and `turnover` > 0.612433831417 and `yj_types` = 93 and `network_level` = 29 and `jzcsy_rate` > 0.370209139996 and `mgjzc` > 0.121517461802 and `ltsz` > 0.326291241596 and `gszyq` = 85 and `yzyqyec_rate` > 0.118453408932
+length : (0L,) time: 0.636640071869
+
+sql = select count(*) from history_stock_stat where `zb` like "%2912%" and `ltg` = 6331 and `price` > 0.768049258328 and `jlr_rate` > 0.795430118032 and `ltsz` > 0.285235884083 and `network_level` = 38 and `jlrtb_rate` > 0.118797342435 and `stock_news` = 14 and `ystb_rate` > 0.731376279132 and `yy_time` > 778827433 and `flow` > 5561903480411981410 and `yjyg_rate` > 0.893211578437 and `jzcsy_rate` > 0.773864146902 and `sj_rate` > 0.756393958749 and `yj_types` = 37
+length : (0L,) time: 0.635568857193
+
+sql = select count(*) from history_stock_stat where `rzrqyec_change` > 0.108964655344 and `flow_control` = 68 and `yzyqyec_rate` > 0.887698506878 and `sy_rate` > 0.667468467707 and `sj_rate` > 0.127134336413 and `yy_type` = 41 and `network_level` = 75 and `days` = 16408 and `jlrtb_rate` > 0.335760744063 and `flow` > 320250438701133999 and `sector_news` = 110 and `sectors` like "%1392%" and `yjyg_type` = 124 and `yjyg_rate` > 0.589608555885 and `gszyq` = 120
+length : (0L,) time: 0.000230073928833
+
+sql = select count(*) from history_stock_stat where `stock_news` = 121 and `turnover` > 0.861138646734 and `zb` like "%2486%" and `yy_date` > 2108379590 and `yy_type` = 84 and `yy_time` > 431076955 and `gszyq` = 35 and `rzrqyec_change` > 0.066600983216 and `rate` > 0.843313257381 and `network_level` = 7 and `jzcsy_rate` > 0.481487877225 and `yj_types` = 39 and `ltg` = 14472 and `sectors` like "%2097%" and `sj_rate` > 0.129394508969
+length : (0L,) time: 0.637313127518
+
+sql = select count(*) from history_stock_stat where `yg_type` = 105 and `sectors` like "%2781%" and `flow` > 5289796534772554627 and `rzrqyec_change` > 0.655339815962 and `mgjzc` > 0.848073279488 and `mgsy` > 0.90866457021 and `report_level` = 40 and `ystb_rate` > 0.120680373472 and `sj_rate` > 0.875551013667 and `yy_time` > 1300078140 and `yj_types` = 57 and `price` > 0.0276786760646 and `flow_control` = 60 and `yjyg_rate` > 0.993422055843 and `ltsz` > 0.946744463127
+length : (0L,) time: 0.638247966766
+
+sql = select count(*) from history_stock_stat where `network_level` = 108 and `yg_type` = 9 and `yzyqyec_rate` > 0.296079866878 and `yy_date` > 628656752 and `turnover` > 0.64191786682 and `flow_control` = 68 and `sector_news` = 23 and `ystb_rate` > 0.0148324417518 and `zb` like "%2509%" and `yy_time` > 2074123350 and `yjyg_type` = 5 and `flow_rate` > 0.721051747687 and `gszyq` = 35 and `yy_type` = 31 and `rzrqyec_change` > 0.249382629474
+length : (0L,) time: 0.628895998001
+
