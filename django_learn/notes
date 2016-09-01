@@ -26,4 +26,13 @@ delete.alters_data = True
 {# this is comment %}
 
 
+ALLOWED_ORIGINS_PAT = re.compile(r"https?://(\w\.)?(wantjr)\.(com|cn|cc)")
+
+def get_json_context(request, context):
+    ans = json.dumps(context)
+    response = HttpResponse(ans, content_type="application/json")
+    origin_addr = request.META.get("HTTP_ORIGIN", "NOT")
+    if ALLOWED_ORIGINS_PAT.match(origin_addr):
+        response['Access-Control-Allow-Origin'] = origin_addr
+    return response
 
