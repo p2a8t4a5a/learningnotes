@@ -1,41 +1,20 @@
-linux learn
-
-#in .profile for all users
-#in .bashrc 
-export PATH=$PATH:~
-
-
+# 配置java环境路径
 export JAVA_HOME=/usr/local/java/jdk1.6.0_30  
 export JRE_HOME=/usr/local/java/jdk1.6.0_30/jre  
 export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH  
 export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$JAVA_HOME:$PATH  
 
-
-#run immediately 
-source ~/.bashrc
- 
 #learn tar zip
 tar -zx -f *.tar.gz
 tar -xvf *.tar
 tar zvxf *.tar.gz
 
-#recover my files
+# recover my files
 grep -a  -B 10 -A 500 'charpter one' /dev/sda1 > tmp.txt
-chmod 755
-cp	 #fuzhi
-mv 1.txt 2.txt	#rename
-rm -f 	#del a file
-rm -rf	 #del all file and folder
-dpkg -S packagename #know the location
-find / -name python
-jobs #see if has program run in background
+
+# 关机重启
 poweroff #close
 reboot 
-
-#upload
-scp /home/yao/linuxlearn.txt root@45.63.124.217:/root/newupdate.txt 
-#download
-scp zhangying@192.168.1.5:/var/www/zhangying/test.sql /home/zhangy/database_bak/
 
 #kill a process
 ps -ef | grep ss-qt5 #find ss-qt5 info
@@ -43,8 +22,7 @@ pgrep ss-qt5
 kill -s 9 1234
 ps -ef|grep ss-qt5 | grep -v grep | cut -c 9-15| xargs kill -s 9
 
-ctrl+z #put a job back and stop
-& #put a job back and run
+
 jobs #see bakground jobs
 fg 1 #bring the job forward
 bg 2 #make the job background run
@@ -55,34 +33,47 @@ netstat -n #not jiexi -t tcp -l listening
 nm-tool #more advanced
 
 #mysql learn
+service mysqld restart
 mysqladmin shutdown -p
 mysqld start
-edit my /ect/mysql/my.cnf
+/ect/mysql/my.cnf
 
-#vimlearn
+
+
+
+
+
+
+dpkg -S packagename #know the location
+
+
+
+
+
+
+
+
+
+
+
+
+
+# vimlearn
 ggVGg?	#something interesting
 Ctrl+r =2+2 #useful command
 :ab asap as soon as possible
 ctrl + n	#zi dong bu quan
-di(	#to delect the thing in ()  such as di" di{ di[
-zz #lower case make the text middle 
-ctrl + z #pause   press fg return 
-$ # move to the end of line
-add & after the application #can use it without the console
-y #copy yy copy current line
-p # paste 
 
+ctrl + z #pause   press fg return 
+:r !date #直接写入
 :20,23 !sort #means subsitute the 20-23 with the result
 :20,23 w !sort #means not substitute
 
-#duo hang ti huan
-#yuan wen shi :.,+3 s/^/#/g
+# 多行替换
+:.,+3 s/^/#/g
 :10,13 s/^/#
-:.,+3 s/^/# 
 
-#suo jin 
-< #shift+tab
-> #tab
+
 
 #ubuntu 默认.deb
 alien .rpm #zidong zhuanhuawei .deb

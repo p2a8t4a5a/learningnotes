@@ -1,0 +1,13 @@
+#  增加用户
+rabbitmqctl add_user rabbit_uesr 123456
+rabbitmqctl list_users
+
+# 增加权限
+rabbitmqctl set_permissions -p "/" rabbit_user ".*" ".*" ".*"
+rabbitmqctl set_permissions -p /vhost1 user_admin '.*' '.*' '.*'
+rabbitmqctl list_permissions -p /
+
+# 增加标签
+rabbitmqctl set_user_tags rabbit_user administrator
+rabbitmqctl list_users
+

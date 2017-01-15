@@ -1,0 +1,21 @@
+1.导出数据库（sql脚本） 
+  mysqldump -u 用户名 -p 数据库名 > 导出的文件名
+  　　mysqldump -u root -p db_name > test_db.sql
+  　　2.mysql导出数据库一个表
+  　　mysqldump -u 用户名 -p 数据库名 表名> 导出的文件名
+  　　mysqldump -u wcnc -p test_db users> test_users.sql （结尾没有分号）
+
+  方法三
+
+  启动mysql服务
+  /etc/init.d/mysql start
+
+  导出整个数据库
+  mysqldump dbname > c:mydb.sql -u root -p 
+
+  导入数据库
+  source mydb.sql
+
+  mysql -u用户名 -p 数据库名 < 数据库名.sql
+
+  更详细的导入数据库教程

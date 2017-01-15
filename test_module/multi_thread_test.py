@@ -38,6 +38,7 @@ def multi_thread_test_with_i(func, n_out, n_in, *args, **kwargs):
 
 if __name__ == '__main__':
     def print_test(a,b):
+        time.sleep(1)
         print a+b
     multi_thread_test(print_test,2,5,1,b=2)
 

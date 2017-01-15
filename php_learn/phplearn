@@ -1,6 +1,0 @@
-$userData = array();
-foreach ($userList as $user) {
-    $userData[] = '("' . $user['first_name'] . '", "' . $user['last_name'] . '")';
- }
-$query = 'INSERT INTO users (first_name,last_name) VALUES' . implode(',', $userData);
-mysql_query($query);

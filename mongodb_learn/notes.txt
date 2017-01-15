@@ -1,0 +1,57 @@
+# 创建数据库
+use mydb
+show dbs
+
+# 删除数据库
+db.dropDatabase()
+
+# 创建集合
+db.student.insert()
+show collections
+
+# 删除集合
+db.student.drop()
+
+# 插入文档
+db.student.insert({})
+db.student.save({_id: ObjectId(7df78ad8902c),})
+
+# 查询文档 
+db.student.find({},{"title":1}).pretty()
+db.student.findOne().pretty()
+
+等于  {"name":"yaoge"}
+大于  {"age":{$gt:50}}
+小于等于  {"age":{$lte:50}}
+不等于  {"age":{$ne:50}}
+
+与 {"name":"yaoge","age":13}
+或 {$or:["yaoge","age":13]}
+
+
+
+
+# 更新文档
+db.student.update({},{$set:{"name":"yaoge"}},{multi:true})
+
+# 覆盖文档
+db.student.update({},{"name":"yaoge"})
+
+# 删除文档
+db.student.remove({"name":"yaoge"})
+
+
+
+# 其他
+db.student.find().limit(2)
+# 降序
+db.student.find().sort("age":-1)
+
+
+# 创建索引
+db.student.ensureIndex({"title":-1})
+
+# group by
+db.student.aggregate([{$group:{_id:"$name",monaey:{$sum:"$money"}}}])
+
+

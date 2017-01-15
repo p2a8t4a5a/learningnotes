@@ -1,8 +1,15 @@
+
+
+
+
+
+
+
 #新建用户
-create user 'yaoge'@'localhost' identified by '123456'
+create user 'freeweb'@'localhost' identified by '122'
 create user 'yaoge'@'%' identified by '123456'
 
-grant select,insert on *.* to '';
+grant select,insert,update,create,alter on web_db.* to 'freeweb'@'localhost';
 grant all on wantjrdb.* to 'wantjruser'@'localhost';
 
 
@@ -31,14 +38,55 @@ create table student_log(
     primary key (id));
 
 
-drop trigger insert_log;
+
+CREATE TABLE `eo_api_cache_log` (
+  `cacheID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `projectID` int(10) unsigned NOT NULL,
+  `groupID` int(10) unsigned NOT NULL,
+  `apiID` int(10) unsigned NOT NULL,
+  `apiJson` longtext NOT NULL,
+  `starred` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cacheID`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+
+DELIMITER $$
+CREATE TRIGGER price_update BEFORE UPDATE ON sells
+FOR EACH ROW 
+BEGIN 
+IF(NEW.beer_price > OLD.beer_price + 1) THEN  
+INSERT INTO ripo_off_bar (beer_name) VALUES (NEW.beer_name);
+END IF;
+END;$$
+
+
+drop trigger eo_api_cache_trigger_insert;
 delimiter $$
-create trigger insert_log after insert on test
+create trigger eo_api_cache_trigger_insert after insert  on eo_api_cache
 for each row
-    insert into student_log(message) 
-    values(concat(new.id,' ',new.num,' ',new.name,' ',user()));
+    insert into eo_api_cache_log(projectID,operate,groupID,apiID,apiJson,starred) values (new.projectID,'INSERT',new.groupID,new.apiID,new.apiJson,new.starred);
 $$
 delimiter ;
+
+drop trigger eo_api_cache_trigger_update;
+delimiter $$
+create trigger eo_api_cache_trigger_update after update on eo_api_cache
+for each row
+    insert into eo_api_cache_log(projectID,operate,groupID,apiID,apiJson,starred) values (new.projectID,'UPDATE',new.groupID,new.apiID,new.apiJson,new.starred);
+$$
+delimiter ;
+
+drop trigger eo_api_cache_trigger_delete;
+delimiter $$
+create trigger eo_api_cache_trigger_delete before delete on eo_api_cache
+for each row
+    insert into eo_api_cache_log(projectID,operate,groupID,apiID,apiJson,starred) values (old.projectID,'DELETE',old.groupID,old.apiID,old.apiJson,old.starred);
+$$
+delimiter ;
+
+
+
+
 
 insert into test values(16,1016,'yaoge16 ');
 select * from test;

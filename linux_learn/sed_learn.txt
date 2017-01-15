@@ -1,0 +1,53 @@
+
+# 基本替换并显示 必须要g
+sed "s/my/Hao/g" pets.txt
+# -i 命令 替换源文件
+
+# 第三行
+sed "3s/my/Hao/g" pets.txt
+
+# 第三到六行
+sed "3,6s/my/Hao/g" pets.txt
+
+
+# 替换每行的第二个
+sed "s/my/Hao/2" pets.txt
+
+
+# 一次替换多个
+sed '1,3s/my/your/g; 3,$s/This/That/g' my.txt
+sed -e '1,3s/my/your/g' -e '3,$s/This/That/g' my.txt
+
+# 匹配
+sed 's/my/[&]/g' my.txt   [my]
+
+# 圆括号匹配
+sed 's/This is my \([^,]*\),.*is \(.*\)/\1:\2/g' my.txt 
+
+# 把下一行的内容一起匹配
+sed 'N;s/\n/,/'
+
+# 其他命令
+# i --- insert  "1 i qwe" 第一行前插入 qwe
+# a ---- after  "/fist/a qwe" 匹配到fish的行后插入 qwe
+# c ----- 替换行
+# d 删除行
+# p 输出 sed  -n "/fish/p" data.out 
+
+# 混用
+# p 输出 sed  -n "/dog/,/fish/p" data.out  # 从dog开始，fish行结束
+
+#  匹配到dog的第三行,全部注释
+# 使用了相对位置
+sed '/dog/,+3s/^/# /g' pets.txt
+
+# 命令嵌套
+sed "/aaa/{/123/d}" data.out # 查到aaa匹配，继续匹配123
+
+# 多个命令
+sed "/123/d;s/456/666/g" data.out
+
+# 小trick: 倒序输出
+# 貌似本地有问题
+sed ‘1!G;h;$!d’  data.out
+

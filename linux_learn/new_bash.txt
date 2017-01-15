@@ -1,0 +1,28 @@
+
+
+# 截取字符串
+var=a.b.c
+echo ${var%.c}
+echo ${var#a.}
+
+# 子命令
+( cd ../; touch aaa;)
+
+# 检查变量是否存在
+input_file=${1:?usage: $0 input_file}
+
+# 将字符串作为文件
+diff test.sh <(echo aaa)
+
+# 并集 
+cat a.txt b.txt | sort | uniq 
+# 交集 
+cat a.txt b.txt | sort | uniq  -d
+# 差集 
+cat a.txt b.txt | sort | uniq  -u
+
+# sort
+sort -k2  # 第二列排序
+sort -k2 -t ':' # 用: 分隔 
+sort -k1 | sort -s -k2  # 先以第二列，再以第一列排序
+

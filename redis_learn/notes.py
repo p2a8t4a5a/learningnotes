@@ -33,7 +33,7 @@ setbit key 0 1
 lrange key 0 -1
 lindex key 0 
 lset key 0 "four"  O(n)
-linsert mylist before "world" "there""
+linsert mylist before "world" "there"
 
 
 
