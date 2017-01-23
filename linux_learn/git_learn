@@ -1,0 +1,81 @@
+# 列出文件名的改动历史
+git log --pretty=oneline 文件名
+
+# 列出具体的改动
+git show 356f6def9d3fb7f3b9032ff5aa4b9110d4cca87e
+
+# 放弃修改
+git checkout -- filename
+
+# 版本回退 
+git reset 123213
+git reset --hard 123123213
+git reset --soft # 用来只修改commit的内容
+git reset --mixed # (默认)回到add前的状况
+
+#  忽略文件
+git rm --cached aa.log
+
+
+# ==================================================
+# 查看作者
+git log --oneline --graph --author="dongen.yao"
+
+# 查看文件变更
+git log -p myfile.txt
+
+# 查看文件第几行更新
+git log -L 20,30:myfile.txt
+
+# 展示其他版本的文件
+git show release:test/ime_credit_test/cdt_integrated_interface_01.py
+
+# 显示很其他版本文件的区别
+git diff some-branch some-filename.js
+
+# 变更基线 ??
+git pull --rebase 
+
+# 保留提交的记录
+git merge –no-ff some-branch-name
+
+# 合并私有分支，squash的意思是将私有分支上的多个提交合并成一个
+git merge cnltrack_offline_log --squash 
+
+# 追加到最新的提交
+git add a.txt
+git commmit -amend
+
+# 某个文件回退
+git reset HEAD a.txt
+
+# 将dev分支的a.txt合并到当前分支
+git checkout dev a.txt
+
+# 回退版本 但是不提交，只是看一眼
+git revert -n
+
+# 忽略空格变更
+git diff -w 
+
+# 暂存变更
+git stash  <-p file.txt>
+git stash pop #恢复
+git stash –keep-index # 只备份没有add的文件
+
+# alias 新的命令
+git config --global alias.st status
+
+# bitsect 二分查找
+运行整个git bisect的过程中你会用到的所有命令如下：
+git bisect start ——通知git你开始二分查找。
+git bisect good {{some-commit-hash}} ——反馈给git 这个版本是没有问题的（例如：你休假之前的最后一个版本）。
+git bisect bad {{some-commit-hash}} ——告诉git 已知的有问题的版本（例如master分支中的HEAD）。git bisect bad HEAD （HEAD 代表最新版本）。
+这时git 会签出中间版本，并告诉你去测试这个版本。
+git bisect bad ——通知git当前版本是问题版本。
+git bisect good ——通知git当前签出的版本没有问题。
+当找到第一个问题版本后，git会告诉你。这时， git bisect 结束了。
+git bisect reset——返回到 git bisect进程的初始状态（例如，master分支的HEAD版本）。
+git bisect log ——显示最后一次完全成功的 git bisect日志。
+
+
