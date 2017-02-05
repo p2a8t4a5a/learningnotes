@@ -1,3 +1,6 @@
-echo 1
-exit 2
-echo 2
+
+run(){
+    local a=1
+    echo $a
+}
+run

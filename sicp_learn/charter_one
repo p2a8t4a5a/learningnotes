@@ -1,0 +1,69 @@
+基本运算
+( + 1 2 )
+
+变量
+(define size 2 )
+
+函数
+( define (square x ) ( * x x) )
+( define f ( lambda (x y ) (+ x y ) ) )
+
+判断1
+(cond ( (< x 0 )  0)
+      ( (< y 0 )  0)
+      ( else 2 ) )
+
+判断2
+( if ( < x 0 ) (-x) x )
+
+# 迭代判断
+( and 1 2 3 4 )
+
+# 列表
+'(1 2 3 )
+
+# 去除列表第一个
+( cdr (list 1 2 3 4) )
+;;; 2 3 4 
+
+# 获取列表第一个
+( car (list 1 2 3 4 ) )
+;;; 1 
+
+# 获取列表第二个
+( cadr (list 1 2 3 4 ) )
+;;; 2
+
+# 连接常数和列表
+(cons 1 (list  2 3 4 ) )
+
+# 输出
+(display "123" )
+
+# 字符串连接
+( string-append "hello," "world" )
+
+# true false 
+#t #f
+
+# 判断是否是正数 
+(positive? 1 )
+
+# 换行 
+( newline)
+
+# 循环写法
+( define (count n )
+        ( and (display ( - 4 n ) )
+              ( if (= 0 n ) #t (count (- n 1 ) ))))
+
+# 取模
+(modulo 23 100)
+
+# 函数式编程
+map，filter
+( map (lambda ( x ) (+ x 1 ) ) '(1 2 3 4) )
+
+
+
+

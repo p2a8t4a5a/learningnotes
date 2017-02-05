@@ -18,3 +18,9 @@ find . -mtime +5 # 修改时间5天以上
 find . -type f -exec cat {} \; 
 cat `find . -type f`
 
+
+# 设置环境变量,在sudo中
+sudo env "PATH=$PATH" cassandra -f
+
+# vim sudo 保存
+:w !sudo tee %

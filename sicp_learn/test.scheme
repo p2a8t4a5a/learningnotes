@@ -1,0 +1,10 @@
+( define ( run a ) 
+         ( display a )  )
+
+
+( define ( run a b ) 
+         ( and ( display a )
+               ( display b ) ) )
+
+( run 1 )
+( run 1 2 )

@@ -1,0 +1,78 @@
+;=========================== 快速幂 =========================
+( define ( **  a n)
+         ( cond ( ( = 0 n ) 1 )
+                ( ( even? n ) ( ** (square a) (/ n 2 ) ) )
+                ( else (* a ( ** a ( - n 1 ) ) ) )))
+;=============================gcd ============================
+( define ( gcd a b )
+         ( if ( = b 0 ) a ( gcd b ( modulo a b ) )))
+
+
+;===========================素数算法==========================
+; cal (k**n) % m == k
+( define ( check-prime n ) 
+         ( define a  ( + ( random (- n 1 ) ) 1 )  )
+         ( = ( sub-cal a n n ) a ) )
+; cal (k**n) % m
+( define ( sub-cal k n m )         
+         ( cond ( ( = 0 n ) 1 )
+                ( (even? n )
+                  ( modulo (sub-cal ( modulo (* k k ) m ) (/ n 2) m ) m) )
+                ( else 
+                  ( modulo (* k (sub-cal k ( - n 1 ) m ) ) m ) ) ) )
+( define ( check-many-time n x ) 
+         ( cond  ( (= 0 n )  #t )
+                 ( else ( and ( check-prime x ) ))))
+; 找到大于n的t个素数
+( define ( find-t t n )
+         ( cond ( ( > t 5 ) #t )
+                ( else ( or ( and (check-many-time 10000 n )  (display n) (newline) (find-t (+ 1 t ) ( + n 1 ) ) ) 
+                            ( find-t t (+ 1 n ) ) ) ) ))
+
+;===========================新的定理miller-check==========================
+( define ( check-prime n ) 
+         ( define a  ( + ( random (- n 1 ) ) 1 )  )
+         ( = ( sub-cal a (- n 1) n ) 1 ) )
+(define (square-and-miller-check k x m)
+        (if (and ( not (= 1 k) )
+                 ( not (= (- m 1 ) k) ) 
+                 (= 1 (modulo (* x x ) m ) ) )
+            0
+            (modulo (* x x ) m )))
+( define ( sub-cal k n m )         
+         ( cond ( ( = 0 n ) 1 )
+                ( (even? n )
+                  ( square-and-miller-check k (sub-cal k (/ n 2)  m )  m) ) 
+                ( else 
+                  ( modulo (* k 
+                              (sub-cal k ( - n 1 ) m ) )
+                           m ) ) ) ) 
+
+; ======================sqrt 检验素数算法====================
+(define (sub-min-divisor t x )
+        ( cond ( ( > (square t ) x ) x )
+                 ( (= 0 ( modulo x t ) )  t ) 
+                 ( else (sub-min-divisor (+ 1 t) x ) ) ) )
+(define ( min-divisor x ) 
+        ( sub-min-divisor 2 x )  )
+
+
+;===========================高阶函数=========================
+; 高阶函数
+(define ( sum cal a next b  )
+        ( if ( > a b )
+             0 
+             (+ (cal a ) ( sum cal (next a ) next b ) ) ) )
+
+(define (int-sum a b )
+        ( sum ( lambda(a) (+ a a) ) a ( lambda(a) (+ a 1) )  b ) )
+
+; (int-sum 1 10)
+
+
+
+
+
+;==========================run time ==========================
+
+

@@ -1,0 +1,13 @@
+
+
+
+# case 用法
+read -p "input:" _input
+case "$_input" in 
+    install|uninstall)
+    echo "aaa"
+    ;;
+    *)
+    echo "bbb"
+    ;;
+esac
