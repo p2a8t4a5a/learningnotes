@@ -11,3 +11,29 @@ case "$_input" in
     echo "bbb"
     ;;
 esac
+
+
+# 序列 sequence
+seq -f "%02g" 0 23
+
+# 近似等于
+if [[ "asd" =~ "as" ]] ; then echo 123; fi
+
+# 昨天
+last_date=`date +'%Y%m%d' '-d yesterday'`
+
+# 忽略文件名
+grep -h  *
+
+
+# 确定变量不为空
+1. ${a:?var is empty}
+2. [[ $a == "" ]] && exit 255
+3. [[ -z $a ]] && exit 255 
+4. set -u       # 相对的关闭set +u
+
+# 变量加""的好习惯
+echo "$a"
+防止 rm ~  的发生 # 应该 rm "~"
+
+

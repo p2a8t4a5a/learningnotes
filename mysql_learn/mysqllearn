@@ -1,17 +1,14 @@
-
-
-
-
-
-
-
 #新建用户
 create user 'freeweb'@'localhost' identified by '122'
+create user 'freeweb'@'192.168.%' identified by '122'
 create user 'yaoge'@'%' identified by '123456'
 
 grant select,insert,update,create,alter on web_db.* to 'freeweb'@'localhost';
 grant all on wantjrdb.* to 'wantjruser'@'localhost';
 
+flush privileges;
+
+# 有时候问题是bind-address = 127.0.0.1 不能访问
 
 # MySQL数据类型   含义
 char(n)     固定长度，最多255个字符
