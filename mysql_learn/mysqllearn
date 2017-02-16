@@ -97,3 +97,4 @@ for table in `mysql -u root -p123456 -sNe "show tables from mysql_learn"`;do mys
 
 
 
+drop index_aaa on table_aaa;
