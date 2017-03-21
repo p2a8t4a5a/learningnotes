@@ -37,3 +37,48 @@ echo "$a"
 防止 rm ~  的发生 # 应该 rm "~"
 
 
+# 扫描网段的ip
+nmap -sL 192.168.1.0/24　
+
+
+
+# 神奇替换
+yaodongen@home:~$ sudo echo 123
+123
+yaodongen@home:~$ ^123^456^
+sudo echo 456
+456
+
+yaodongen@home:~$ !!:s/123/456
+sudo echo 456
+456
+
+# 大括号展开功能
+cp filename{,.bak}
+echo {a,b}{c,d}
+
+
+# 开内存当硬盘使用 /dev/shm 默认就有
+mount -t tmpfs -o size=1024m tmpfs /mnt/ram
+
+
+用DIFF对比远程文件跟本地文件
+ssh user@host cat /path/to/remotefile | diff /path/to/localfile -
+
+
+通过 SSH 挂载远程主机上的文件夹
+sshfs name@server:/path/to/folder /path/to/mount/point
+卸载的话使用 fusermount 命令: fusermount -u /path/to/mount/point
+
+
+显示当前目录中所有子目录的大小 du -h --max-depth=1
+
+
+
+# 测试时间
+yaodongen@home:~$ time read
+
+利用中间管道嵌套使用SSH ssh -t host_A ssh host_B
+
+
+
