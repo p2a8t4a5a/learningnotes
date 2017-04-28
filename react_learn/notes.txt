@@ -5,13 +5,203 @@
 # babel src --out-dir build
 babel --presets react src --watch --out-dir build
 
-添加组件属性，有一个地方需要注意，就是 class 属性需要写成 className ，for 属性需要写成 htmlFor ，这是因为 class 和 for 是 JavaScript 的保留字。
+# jsx 转化为 js
+babel src --out-dir build
+
+1. 数组增加, push()
+2. class属性写成className for属性写成htmlFor
+3. this.props.children 表示所以节点
+
+
+# 安全的遍历所有子节点
+React.Children.map(this.props.children, function (child) {
+     return <li>{child}</li>;
+})
 
 
 
-this.props.children
+ref 属性: 获取真实 DOM 的节点，这时就要用到 
+this.refs.myTextInput.focus()
+<input type="text" ref="myTextInput" />
 
 
+
+# 特殊用法
+Mounting：已插入真实 DOM
+Updating：正在被重新渲染
+Unmounting：已移出真实 DOM
+
+componentWillMount()
+componentDidMount()
+componentWillUpdate(object nextProps, object nextState)
+componentDidUpdate(object prevProps, object prevState)
+componentWillUnmount()
+此外，React 还提供两种特殊状态的处理函数。
+componentWillReceiveProps(object nextProps)：已加载组件收到新的参数时调用
+shouldComponentUpdate(object nextProps, object nextState)：组件判断是否重新渲染时调用
+
+
+# 定时任务用法
+componentDidMount: function () {
+  this.timer = setInterval(function () {
+    var opacity = this.state.opacity;
+    opacity -= .05;
+    if (opacity < 0.1) {
+      opacity = 1.0;
+    }
+    this.setState({
+      opacity: opacity
+    });
+  }.bind(this), 100);
+},
+
+
+
+# promise 异步用法
+componentDidMount() {
+    this.props.promise.then(
+      value => this.setState({loading: false, data: value}),
+      error => this.setState({loading: false, error: error}));
+},
+
+<RepoList
+    promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')}
+>,
+
+
+// setState 用法函数
+this.setState((prevState, props) => ({
+  counter: prevState.counter + props.increment
+}));
+
+this.setState(function(prevState, props) {
+  return {
+    counter: prevState.counter + props.increment
+  };
+});
+
+
+// 数组用法
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map((number) => number * 2);
+console.log(doubled);
+
+
+// key 必须要
+const todoItems = todos.map((todo, index) =>
+  // Only do this if items have no stable IDs
+  <li key={index}>
+    {todo.text}
+  </li>
+);
+
+
+
+# 更新前算法
+componentWillReceiveProps() and componentWillUpdate() 
+shouldComponentUpdate()
+
+
+# select 组件用法
+<select value={this.state.value} onChange={this.handleChange}>
+        <option value="grapefruit">Grapefruit</option>
+        <option value="lime">Lime</option>
+        <option value="coconut">Coconut</option>
+        <option value="mango">Mango</option>
+</select>
+
+
+// 变量用法
+var name = "apple";
+this.setState({
+  [name]: value
+});
+
+//Uncontrolled Components
+<input type="text" defaultValue="Bob" ref={(input) => this.input = input} />
+handleSubmit(event) {
+    alert('A name was submitted: ' + this.input.value);
+    event.preventDefault();
+}
+
+two usage
+//event.targe.type
+//event.targe.name
+
+
+//setState 用法
+this.setState({scale: 'c', temperature})
+
+
+//传递所以变量
+<Greeting {...props} />;
+
+
+// 传递函数
+for (let i = 0; i < props.numTimes; i++) {
+    items.push(props.children(i));
+  }
+  return <div>{items}</div>;
+
+function ListOfTenThings() {
+  return (
+    <Repeat numTimes={10}>
+      {(index) => <div key={index}>This is item {index} in the list</div>}
+    </Repeat> )
+
+
+// 显示地显示null
+var myVariable = null;
+return <div>
+  My JavaScript variable is {String(myVariable)}.
+</div>
+
+
+// 查看组件的运行时间
+http://localhost:3000/?react_perf
+
+
+//shadow 检查 props或者state是否变化
+class CounterButton extends React.PureComponent 
+// usage 1
+return Object.assign({}, colormap, {right: 'blue'});
+// usage 2
+return {...colormap, right: 'blue'};
+
+
+//immutable usage
+var a = Map({"a":1});
+a.toJS(); //{"a":1}
+JSON.stringify(deep) // '{"a":1,"b":2,"c":[3,4,5]}'
+_.fromJS({})
+
+
+// ES2015
+const mapped = foo.map(x => x * x);
+// ES3
+var mapped = foo.map(function (x) { return x * x; });
+
+
+const { fromJS } = require('immutable')
+const nested = fromJS({ a: { b: { c: [ 3, 4, 5 ] } } })
+const nested2 = nested.mergeDeep({ a: { b: { d: 6 } } })
+// Map { a: Map { b: Map { c: List [ 3, 4, 5 ], d: 6 } } }
+
+nested2.getIn([ 'a', 'b', 'd' ]) // 6
+
+const nested3 = nested2.updateIn([ 'a', 'b', 'd' ], value => value + 1)
+// Map { a: Map { b: Map { c: List [ 3, 4, 5 ], d: 7 } } }
+
+const nested4 = nested3.updateIn([ 'a', 'b', 'c' ], list => list.push(6))
+// Map { a: Map { b: Map { c: List [ 3, 4, 5, 6 ], d: 7 } } }
+
+
+assert(map1 !== map2) // two different instances
+assert(is(map1, map2)) // have equivalent values
+assert(map1.equals(map2)) // alternatively use the equals method
+const list2 = list1.withMutations(function (list) {
+  list.push(4).push(5).push(6);
+});
 
 
 

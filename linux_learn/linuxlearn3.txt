@@ -82,3 +82,13 @@ yaodongen@home:~$ time read
 
 
 
+把/var/www/html下的文件全部改成664，文件夹改成775，怎么做呢
+先把所有文件及文件夹改成664，然后把所有文件夹改成775
+root@iZ25bq9kj7yZ:/var/www/html chmod -R 664 ./
+sudo find imetest/ -type d | awk '{printf"\"%s\"\n",$0}' | sudo xargs chmod 755
+
+或者直接
+chmod g=u -R .
+
+# xargs 复杂命令
+ls | xargs -I{} sh -c 'n={};cp $n ${n%.sample}'

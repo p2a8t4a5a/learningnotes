@@ -244,3 +244,34 @@ parser.add_option("-q", "--quiet", action="store_false", dest="verbose", default
 
 # better
 argparse
+
+
+# 管道的用法
+import pipe
+"a a b b b c d" | pipe.Pipe(lambda x:split("\s+",x)) | pipe.groupby(lambda x:x)|pipe.select(lambda x:(x[0],(x[1] |pipe.count))) |pipe.sort(key=lambda x:x[1], reverse=True)
+
+
+# itertools
+imap ifilter
+product:  m*n 笛卡尔积
+permutations: 全排列
+combinations: 无重复组合
+combinations_with_replacement: 有重复组合
+
+list(combinations("ABCD", 2))
+[('A', 'B'), ('A', 'C'), ('A', 'D'), ('B', 'C'), ('B', 'D'), ('C', 'D')]
+
+
+# with open as rs: 的用法 
+
+from contextlib import contextmanager
+@contextmanager
+def tag(name):
+    print("<{}>".format(name))
+    yield
+    print("</{}>".format(name))
+>>> with tag("h1"):
+    print("foo")
+<h1>
+foo
+</h1>

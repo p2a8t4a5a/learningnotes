@@ -79,3 +79,9 @@ git bisect reset——返回到 git bisect进程的初始状态（例如，maste
 git bisect log ——显示最后一次完全成功的 git bisect日志。
 
 
+# 有冲突用dev的
+git merge -X theirs dev
+
+# 用冲突用我们的
+git merge -s ours dev
+
