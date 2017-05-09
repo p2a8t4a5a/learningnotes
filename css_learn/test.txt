@@ -1,0 +1,119 @@
+
+
+
+就可以分享相同的声明
+h1,h2,h3,h4,h5,h6 {
+  color: green;
+}
+
+派生选择器
+li strong {
+    font-style: italic;
+    font-weight: normal;
+}
+
+#red {color:red;}
+id 选择器
+
+
+id 选择器 + 派生选择器
+#sidebar p {
+    font-style: italic;
+    text-align: right;
+    margin-top: 0.5em;
+}
+
+老版本用法
+div#sidebar {
+    border: 1px dotted #000;
+    padding: 10px;
+}
+
+
+CSS 类选择器 以一个点号显示
+.center {text-align: center}
+
+相同
+.fancy td {
+    color: #f60;
+    background: #666;
+}
+
+td.fancy {
+    color: #f60;
+    background: #666;
+    }
+
+
+# 对title=相应值 用法
+[title=W3School]
+{
+border:5px solid blue;
+}
+
+同时包含两个属性
+a[href][title] {color:red;}
+
+input[type="button"]
+{
+  width:120px;
+  margin-left:35px;
+  display:block;
+  font-family: Verdana, Arial;
+}
+
+模糊匹配
+img[title~="Figure"] {border: 1px solid gray;}
+
+
+
+通配符选择器
+* {color:red;}
+
+
+CSS 多类选择器
+<p class="important warning">
+This paragraph is a very important warning.
+</p>
+这两个词的顺序无关紧要
+
+
+
+后代选择器 只要包含即可
+h1 em {color:red;}
+<h1><p><em>123</em></p></h1>
+
+
+
+子元素选择器
+h1 > strong {color:red;}
+
+
+相邻兄弟选择器
+li + li {font-weight:bold;}
+
+
+
+CSS 伪类
+
+锚伪类
+a:link {color: #FF0000}     /* 未访问的链接 */
+a:visited {color: #00FF00}  /* 已访问的链接 */
+a:hover {color: #FF00FF}    /* 鼠标移动到链接上 */
+a:active {color: #0000FF}   /* 选定的链接 */
+在 CSS 定义中，a:hover 必须被置于 a:link 和 a:visited 之后，才是有效的。
+在 CSS 定义中，a:active 必须被置于 a:hover 之后，才是有效的。
+
+
+:first-child 伪类
+没有第一个元素匹配文本
+
+
+伪元素
+伪元素可以在元素的内容前面插入新内容。
+h1:before
+{
+    content:url(logo.gif);
+}
+
+

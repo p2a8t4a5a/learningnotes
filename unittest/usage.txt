@@ -1,0 +1,7 @@
+
+
+# both ok
+python -m unittest test
+python -m unittest test.TestStringMethods
+python -m unittest test.TestStringMethods.test_method
+
