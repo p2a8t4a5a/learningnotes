@@ -85,3 +85,17 @@ git merge -X theirs dev
 # 用冲突用我们的
 git merge -s ours dev
 
+
+
+
+
+
+
+
+
+
+
+# GIT 仓库的子目录独立成新仓库
+https://juejin.im/entry/586afb42ac502e006d81b1da
+
+

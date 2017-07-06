@@ -90,6 +90,11 @@ select * from test;
 select * from student_log;
 
 
+alter table abc 
+ADD column_name datatype
+DROP COLUMN column_name
+MODIFY column_name datatype
+CHANGE column_name_old column_name char(50);
 
 
 # rename mysql database name 
@@ -98,3 +103,6 @@ for table in `mysql -u root -p123456 -sNe "show tables from mysql_learn"`;do mys
 
 
 drop index_aaa on table_aaa;
+
+
+index
