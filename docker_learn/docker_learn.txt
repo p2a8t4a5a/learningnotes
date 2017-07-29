@@ -1,0 +1,13 @@
+
+# 创建一个新的shell
+docker exec -t -i showdoc /bin/bash
+
+
+
+# 在后台执行一个交互任务
+docker exec -d daemon_dave touch /etc/new_config_file
+
+
+# cp
+docker cp 123.txt bb089aa:/root/
+
