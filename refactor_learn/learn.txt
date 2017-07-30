@@ -62,10 +62,20 @@ RULES:
 
 2.InlineMethod:1. 对于清晰的小函数放回大函数中
                2. 在ReplaceMethodWithMethodObject中特别适用
-               3. 使用了太多的间接层时
+               3. 使用了太多的间接层时 => 去掉
 
+3.InlineTemp:1. 通常用于ReplaceTempWithQuery
+             2. 将只用过一次的临时变量放进去
 
+4.ReplaceTempWithQuery:
+             1. 临时变量会驱使你把函数写的很长
+             2. 
+    
 
 
 
 ReplaceMethodWithMethodObject: 用对象取代函数
+SepatateQueryFromModifier: 查询和修改函数分离 
+                        1. 任何有返回值的函数都不应该有看的到的副作用
+
+
