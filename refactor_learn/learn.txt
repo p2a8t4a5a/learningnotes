@@ -69,12 +69,23 @@ RULES:
 
 4.ReplaceTempWithQuery:
              1. 临时变量会驱使你把函数写的很长
-             2. 
-    
+
+5.IntroduceExplainingVariable:
+             1.用变量名来解释复杂表达式
+             2.用函数通常更好(除非有太多临时变量)
+
+6.SplitTemporaryVariable:
+            1.分解临时变量
+
+7.RemoveAssignmentsToParameters:
+            1.移除对参数的赋值
+
+8.ReplaceMethodWithMethodObject: 用对象取代函数
 
 
 
-ReplaceMethodWithMethodObject: 用对象取代函数
+
+
 SepatateQueryFromModifier: 查询和修改函数分离 
                         1. 任何有返回值的函数都不应该有看的到的副作用
 
