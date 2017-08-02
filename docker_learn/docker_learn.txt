@@ -1,3 +1,12 @@
+镜像
+
+容器
+仓库
+
+
+
+
+
 
 # 创建一个新的shell
 docker exec -t -i showdoc /bin/bash
@@ -10,4 +19,6 @@ docker exec -d daemon_dave touch /etc/new_config_file
 
 # cp
 docker cp 123.txt bb089aa:/root/
+
+
 

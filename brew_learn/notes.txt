@@ -1,0 +1,14 @@
+https://stackoverflow.com/questions/3987683/homebrew-install-specific-version-of-formula
+
+
+# show brew info
+brew info postgresql
+
+# switch brew version
+brew switch postgresql
+
+# show old version
+brew search postgresql
+
+
+
