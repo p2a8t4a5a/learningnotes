@@ -87,15 +87,27 @@ git merge -s ours dev
 
 
 
-
-
-
-
-
-
-
-
 # GIT 仓库的子目录独立成新仓库
 https://juejin.im/entry/586afb42ac502e006d81b1da
 
 
+# git 使用规范
+commit msg
+one thing one commit
+* feat (feature)
+* fix (bug fix)
+* docs (documentation)
+* style (formating, missing semi colons, …)
+* refactor
+* test (when adding missing tests)
+* chore (maintain)
+
+EXAMPLE
+fix($compile): couple of unit tests for IE9
+ 
+Older IEs serialize html uppercased, but IE9 does not...
+Would be better to expect case insensitive, unfortunately jasmine does
+not allow to user regexps for throw expectations.
+ 
+Closes #392
+Breaks foo.bar api, foo.baz should be used instead
