@@ -1,0 +1,42 @@
+# start drill
+bin/sqlline -u jdbc:drill:zk=local
+
+# 文件系统查询
+select sum(review_count) as totalreviews from dfs.`/<path-to-yelp-dataset>/yelp/yelp_academic_dataset_business.json`;
+
+
+
+# drill 用法
+your machine(needs to access to hadoop):/usr/local/apache-drill-1.10.0/bin/sqlline -u jdbc:drill:zk=kafka02:2181 -n your_username -p your_password
+
+# hdfs
+hdfs.dw => hdfs:/data/dw 即数据仓库根目录
+hdfs.root => hdfs:/ 即hdfs根目录
+hdfs.csv => hdfs根目录，强制将数据按照csv格式读取
+hdfs.tsv => hdfs根目录，强制将数据按照tsv格式读取
+hdfs.json => hdfs 根目录，强制将数据按照json格式读取
+
+
+# 难以支持describe
+# 由于对文件格式支持极其广泛，因此在设计上舍弃了对数据表进行show schema的支持。可通过select * from *** limit 查看数据schema
+# [编辑]show files
+# 可以通过show files查看文件路径与文件结构。 show files from ``
+
+
+# 特殊支持
+# a. 拿文件当表，因此需要``
+# b. 内部字段冲突，如date， 需要`date`
+
+
+# 中文
+select * from hdfs.dw.`activate/daily/contactplus/parquet/20170201` where ip_city = _UTF16'中国|湖北|十堰' limit 2;
+
+
+# reserved 字段
+date
+value
+day
+current
+hour
+interval
+
