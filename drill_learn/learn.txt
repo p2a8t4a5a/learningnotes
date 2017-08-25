@@ -31,7 +31,6 @@ hdfs.json => hdfs 根目录，强制将数据按照json格式读取
 # 中文
 select * from hdfs.dw.`activate/daily/contactplus/parquet/20170201` where ip_city = _UTF16'中国|湖北|十堰' limit 2;
 
-
 # reserved 字段
 date
 value
@@ -40,3 +39,25 @@ current
 hour
 interval
 
+
+# CATS 建表操作，对于计算结果较大或者中间结果可以通过建表去减小sql的复杂读。
+create table hdfs.root.`/user/drill/test/test1.out` as (select uid from `activate/daily/contactplus/parquet/20170227` where activate_type = 'new');
+
+
+# 数据格式转换
+select t0.uid as uid, TO_CHAR(TO_TIMESTAMP(t0.callItem.`date`), 'yyyyMMdd') from `calllog/parquet/20161011` t0 limit 2;
+
+TO_CHAR
+TO_DATE
+TO_NUMBER
+TO_TIMESTAMP
+
+
+# 通配符使用
+1. union可以使用，但没有 通配符简单易用
+2. 常见的通配符样式如下：
+select * from hdfs.dw.`activate/dailly/contactplus/parquet/201701*` limit 2
+select * from hdfs.dw.`activate/dailly/contactplus/parquet/{201609,201610}*` limit 2
+select * from hdfs.dw.`activate/daily/contactplus/parquet/{201609,201610}??` limit 2
+
+# sql 调优
