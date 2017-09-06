@@ -92,3 +92,6 @@ chmod g=u -R .
 
 # xargs 复杂命令
 ls | xargs -I{} sh -c 'n={};cp $n ${n%.sample}'
+
+# 系统负载
+grep -c 'model name' /proc/cpuinfo
