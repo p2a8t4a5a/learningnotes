@@ -97,6 +97,50 @@ RULES:
 4.InlineClass
     某个类没有做太多事情
         
+5.HideDelegate
+    尽可能少的了解系统的其他部分
+
+6.RemoveMiddleMan
+    委托过多时
+
+7.IntroduceForeignMethod
+    引入外加函数, 来添加功能
+
+8.IntroduceLocalExtension
+    引入本地扩展,实现想要的功能
+    不在扩展累中复写原函数
+
+
+
+==================== 第八章 重新组织数据 ============
+1.SelfEncapsulateField
+    setField() getField()
+
+2.ReplaceDataValueWithObject
+    
+3.ChangeValueToReference
+    使用工厂函数
+    create
+
+4.ChangeReferenveToValue
+    将引用对象改为值对象
+    值对象有个非常重要的特性，不可变。如果要不改变，只能用一个新的对象。
+
+5.ReplaceArrayWithObject
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
