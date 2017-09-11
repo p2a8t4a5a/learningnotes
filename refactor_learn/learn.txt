@@ -142,8 +142,6 @@ RULES:
 
 
 
-
-
 SepatateQueryFromModifier: 查询和修改函数分离 
                         1. 任何有返回值的函数都不应该有看的到的副作用
 
