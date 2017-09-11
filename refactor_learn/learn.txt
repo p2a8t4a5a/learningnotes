@@ -127,6 +127,16 @@ RULES:
     值对象有个非常重要的特性，不可变。如果要不改变，只能用一个新的对象。
 
 5.ReplaceArrayWithObject
+    数组不是一个好的方式来描述对象
+
+6.DuplicateObserverdData
+    对于GUI可以用这个方式来实现分离
+
+7.ChangeUnidirectionalAssociationToBidirectional
+    将单向关联改为双向关联
+    1. 一对多，由一来维护
+    2. 多对多，任意一个维护即可
+
 
     
 
