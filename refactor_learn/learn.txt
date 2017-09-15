@@ -137,9 +137,15 @@ RULES:
     1. 一对多，由一来维护
     2. 多对多，任意一个维护即可
 
+8.ChangeBidirectionalAssociationToUnidirectional
+    将双向关联改为单向关联
+    1. 先用赋值的方式来替换
 
-    
 
+9.ReplaceMagicNumberWithSymbolicConstant    
+
+10.EncapsulateCollection
+    封装集合
 
 
 
