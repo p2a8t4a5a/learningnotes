@@ -151,3 +151,5 @@ resolvconf -u
 修改base生效
 
 
+# 查看指定几行
+LINE=10240000; sed -n "${LINE}, $(( ${LINE} + 5 ))p;$(( ${LINE} + 6 ))q" 2017091401_nginx_ap-nginx01.southeast.cootek.com.log

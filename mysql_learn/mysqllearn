@@ -6,6 +6,8 @@ create user 'yaoge'@'%' identified by '123456'
 grant select,insert,update,create,alter on web_db.* to 'freeweb'@'localhost';
 grant all on wantjrdb.* to 'wantjruser'@'localhost';
 
+LOCK TABLES
+
 flush privileges;
 
 # 有时候问题是bind-address = 127.0.0.1 不能访问
