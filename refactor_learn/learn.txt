@@ -144,14 +144,35 @@ RULES:
 
 9.ReplaceMagicNumberWithSymbolicConstant    
 
-10.EncapsulateCollection
+11.EncapsulateCollection
     封装集合
+    1. 不要提供修改集合的方式,而是提供删除或增加的方式
+
+12.ReplaceRecordWithDataClass
+    以数据类取代记录
+    1. 用一个类封装
+
+13.ReplaceTypeCodeWithClass
+    以类取代类型码(不会影响宿主类的行为)
+    1.本质上是一个数字，无法强制使用符号名，大大降低代码可读性，成为bug之源
+
+14.ReplaceTypeCodeWithSubclasses
+    以子类取代类型码(会影响宿主类的行为)
+    1. 好处，当添加一个新的行为变化，只有添加一个子类即可，不用改条件表达式
+
+15.ReplaceTypeCodeWithState
+    类型码的值在生命周期会改变
+
+16.ReplaceSubclassWithFields
+    以字段取代子类(太基础的类，没有存在的意义)
 
 
 
-
-
-
+==================第九章 简化条件表达式======================
+多态鲜为人知的用途，通过引入NullObject去除对于null值的检验
+1.DecomposrConditional
+    分解条件表达式
+    1. 提炼成一个函数
 
 
 
