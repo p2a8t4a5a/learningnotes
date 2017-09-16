@@ -174,10 +174,28 @@ RULES:
     分解条件表达式
     1. 提炼成一个函数
 
+2.ConsolidateConditionalExpression
+    合并条件表达式
+    1.将返回相同值的逻辑写在一起，更清晰
+    2.使用逻辑或，逻辑与
 
+3.ConsolidateDuplicateConditionalFragments
+    合并重复的条件片段
 
+4.RemoveControlFlag
+    移除控制标记
+    1. 使用return最好，其次break, 不要赋值来判断
 
+5.ReplaceNestedConditionalWithGuardClauses
+    以卫语句取代嵌套条件表达式
+    1. 正常行为使用if else, 表示同等的逻辑
+    2. 极其重要的直接使用if return, 或抛出异常(guard clauses)
 
+6.ReplaceConditoinalWithPolymorphoism
+    以多态取代条件表达式
+
+7.IntroduceNullObject
+    引入Null 对象
 
 SepatateQueryFromModifier: 查询和修改函数分离 
                         1. 任何有返回值的函数都不应该有看的到的副作用
