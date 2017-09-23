@@ -196,7 +196,71 @@ RULES:
 
 7.IntroduceNullObject
     引入Null 对象
+    1.不需要再三检查对象是否为NULL, 通常用于经常需要判断null的地方
+    做法:继承原来的类，增加isNull方法, 改写其他方法
+
+8.IntroduceAssertion
+    1.不要滥用断言，不要使用它来检查"你认为应该是真"的条件，而是检查必须为真的条件
+    
+
+
+==================第十章 简化函数调用======================
+1. SperateQueryFromModifier
+    讲查询函数和修改函数分离
+    有返回值的函数不会修改是一个很好的习惯
+
+2. ParameterizeMethod
+    令函数携带参数
+    1. 若干函数做了类似的工作，增加参数讲他们合并在一起
+
+3. ReplaceParameterWithExplictMethod
+   通常参数比较特殊，只有几个选择 
+   如: switch.on() switch.off()
+
+4. PreserveWholeObject
+    保持对象完整, 传递整个对象
+    
+5. ReplaceParameterWithMethods
+    很棒的一个方法
+
+6. IntroduceParameterObject
+    引入参数对象, 把值设为不可变
+
+7. RemoveSettingMethod
+    移除设值函数
+    1. 不需要就不用提供，改为初始化的时候提供
+
+8. HideMethod
+    隐藏函数, 降低可见度
+
+9. ReplaceConstructorWithFactoryMethod
+    以工厂函数取代构造函数
+    1. 创建对象时不仅仅是做简单的建构动作
+
+10. EncapsulateDowncast
+    封装向下转型
+
+
+
+
+
+
+
+
+
+
 
 SepatateQueryFromModifier: 查询和修改函数分离 
                         1. 任何有返回值的函数都不应该有看的到的副作用
+
+
+
+
+
+
+
+
+
+
+
 
