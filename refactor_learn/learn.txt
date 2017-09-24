@@ -237,14 +237,36 @@ RULES:
     以工厂函数取代构造函数
     1. 创建对象时不仅仅是做简单的建构动作
 
-10. EncapsulateDowncast
-    封装向下转型
+10. ReplaceErrorWithException
+    1. 如果调用者有责任在调用前检查必要状态, 就抛出非受控异常
+    2. 如果想抛出受控异常，你可以新建一个异常类，也可以使用现有的异常类。
+
+11. ReplaceExceptionWithTest
+    以测试取代异常
+    1. 异常应该是一种极其罕见的情况，不要滥用异常
 
 
 
 
-
-
+==================第十一章 处理概括关系======================
+1. PullUpField
+    在开发过程中经常会有两个子类拥有共同的属性
+2. PullUpMethod
+    函数上移
+3. PullUpConstructorBody
+    构造函数本体上移
+4. PushDownMethod
+    函数下移(只被部分子类用到)
+5. PushDownField
+    字段下移
+6. ExtractSubclass
+    提炼子类
+    1. 类中的某些行为只被一部分实例用到
+7. ExtractSuperclass
+    提炼超类
+8. ExtractInterface
+    提炼接口
+    
 
 
 
