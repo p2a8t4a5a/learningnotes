@@ -51,3 +51,6 @@ sed "/123/d;s/456/666/g" data.out
 # 貌似本地有问题
 sed ‘1!G;h;$!d’  data.out
 
+
+# on mac
+sed -i "" "s/UpdateNotifyCenterVipData/NotifyCenterVipData/g" src/baseclient/proto/module.proto
