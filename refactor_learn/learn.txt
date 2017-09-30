@@ -144,15 +144,129 @@ RULES:
 
 9.ReplaceMagicNumberWithSymbolicConstant    
 
-10.EncapsulateCollection
+11.EncapsulateCollection
     封装集合
+    1. 不要提供修改集合的方式,而是提供删除或增加的方式
+
+12.ReplaceRecordWithDataClass
+    以数据类取代记录
+    1. 用一个类封装
+
+13.ReplaceTypeCodeWithClass
+    以类取代类型码(不会影响宿主类的行为)
+    1.本质上是一个数字，无法强制使用符号名，大大降低代码可读性，成为bug之源
+
+14.ReplaceTypeCodeWithSubclasses
+    以子类取代类型码(会影响宿主类的行为)
+    1. 好处，当添加一个新的行为变化，只有添加一个子类即可，不用改条件表达式
+
+15.ReplaceTypeCodeWithState
+    类型码的值在生命周期会改变
+
+16.ReplaceSubclassWithFields
+    以字段取代子类(太基础的类，没有存在的意义)
+
+
+
+==================第九章 简化条件表达式======================
+多态鲜为人知的用途，通过引入NullObject去除对于null值的检验
+1.DecomposrConditional
+    分解条件表达式
+    1. 提炼成一个函数
+
+2.ConsolidateConditionalExpression
+    合并条件表达式
+    1.将返回相同值的逻辑写在一起，更清晰
+    2.使用逻辑或，逻辑与
+
+3.ConsolidateDuplicateConditionalFragments
+    合并重复的条件片段
+
+4.RemoveControlFlag
+    移除控制标记
+    1. 使用return最好，其次break, 不要赋值来判断
+
+5.ReplaceNestedConditionalWithGuardClauses
+    以卫语句取代嵌套条件表达式
+    1. 正常行为使用if else, 表示同等的逻辑
+    2. 极其重要的直接使用if return, 或抛出异常(guard clauses)
+
+6.ReplaceConditoinalWithPolymorphoism
+    以多态取代条件表达式
+
+7.IntroduceNullObject
+    引入Null 对象
+    1.不需要再三检查对象是否为NULL, 通常用于经常需要判断null的地方
+    做法:继承原来的类，增加isNull方法, 改写其他方法
+
+8.IntroduceAssertion
+    1.不要滥用断言，不要使用它来检查"你认为应该是真"的条件，而是检查必须为真的条件
+    
+
+
+==================第十章 简化函数调用======================
+1. SperateQueryFromModifier
+    讲查询函数和修改函数分离
+    有返回值的函数不会修改是一个很好的习惯
+
+2. ParameterizeMethod
+    令函数携带参数
+    1. 若干函数做了类似的工作，增加参数讲他们合并在一起
+
+3. ReplaceParameterWithExplictMethod
+   通常参数比较特殊，只有几个选择 
+   如: switch.on() switch.off()
+
+4. PreserveWholeObject
+    保持对象完整, 传递整个对象
+    
+5. ReplaceParameterWithMethods
+    很棒的一个方法
+
+6. IntroduceParameterObject
+    引入参数对象, 把值设为不可变
+
+7. RemoveSettingMethod
+    移除设值函数
+    1. 不需要就不用提供，改为初始化的时候提供
+
+8. HideMethod
+    隐藏函数, 降低可见度
+
+9. ReplaceConstructorWithFactoryMethod
+    以工厂函数取代构造函数
+    1. 创建对象时不仅仅是做简单的建构动作
+
+10. ReplaceErrorWithException
+    1. 如果调用者有责任在调用前检查必要状态, 就抛出非受控异常
+    2. 如果想抛出受控异常，你可以新建一个异常类，也可以使用现有的异常类。
+
+11. ReplaceExceptionWithTest
+    以测试取代异常
+    1. 异常应该是一种极其罕见的情况，不要滥用异常
 
 
 
 
-
-
-
+==================第十一章 处理概括关系======================
+1. PullUpField
+    在开发过程中经常会有两个子类拥有共同的属性
+2. PullUpMethod
+    函数上移
+3. PullUpConstructorBody
+    构造函数本体上移
+4. PushDownMethod
+    函数下移(只被部分子类用到)
+5. PushDownField
+    字段下移
+6. ExtractSubclass
+    提炼子类
+    1. 类中的某些行为只被一部分实例用到
+7. ExtractSuperclass
+    提炼超类
+8. ExtractInterface
+    提炼接口
+    
 
 
 
@@ -160,4 +274,15 @@ RULES:
 
 SepatateQueryFromModifier: 查询和修改函数分离 
                         1. 任何有返回值的函数都不应该有看的到的副作用
+
+
+
+
+
+
+
+
+
+
+
 
