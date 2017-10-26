@@ -95,3 +95,6 @@ ls | xargs -I{} sh -c 'n={};cp $n ${n%.sample}'
 
 # 系统负载
 grep -c 'model name' /proc/cpuinfo
+
+# 复制对应文件
+ls | grep user | xargs -I{} cp {} ~/data_my/20171012/
