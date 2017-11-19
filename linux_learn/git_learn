@@ -111,3 +111,8 @@ not allow to user regexps for throw expectations.
  
 Closes #392
 Breaks foo.bar api, foo.baz should be used instead
+
+# cherry-pick
+git cherry-pick comit_id
+git cherry-pick comit_id..comit_id2 (,]
+git cherry-pick comit_id^..comit_id2 [,]
