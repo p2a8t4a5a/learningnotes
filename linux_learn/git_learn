@@ -116,3 +116,12 @@ Breaks foo.bar api, foo.baz should be used instead
 git cherry-pick comit_id
 git cherry-pick comit_id..comit_id2 (,]
 git cherry-pick comit_id^..comit_id2 [,]
+
+# revert multi commit
+A->B->C->D
+$ git revert --no-commit D
+$ git revert --no-commit C
+$ git revert --no-commit B
+$ git commit -m "the commit message"
+
+
