@@ -125,3 +125,8 @@ $ git revert --no-commit B
 $ git commit -m "the commit message"
 
 
+# git rebase
+git rebase -i dev
+git rebase -i HEAD~3
+
+
