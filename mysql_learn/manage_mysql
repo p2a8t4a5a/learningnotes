@@ -9,6 +9,7 @@ SELECT CONCAT(ROUND(SUM(index_length)/(1024*1024), 2), ' MB') AS 'Total Index Si
 
 
 
-
+# 查看binlog
+mysqlbinlog -v -v mysql-bin.000001
 
 

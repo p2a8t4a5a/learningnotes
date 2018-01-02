@@ -98,3 +98,7 @@ grep -c 'model name' /proc/cpuinfo
 
 # 复制对应文件
 ls | grep user | xargs -I{} cp {} ~/data_my/20171012/
+给父进程发送一个TERM信号，试图杀死它和它的子进程。 
+  
+# 杀死父进程的子进程
+# kill -TERM PPID  

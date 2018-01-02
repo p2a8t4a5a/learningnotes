@@ -54,3 +54,6 @@ sed ‘1!G;h;$!d’  data.out
 
 # on mac
 sed -i "" "s/UpdateNotifyCenterVipData/NotifyCenterVipData/g" src/baseclient/proto/module.proto
+
+# 匹配多行
+sed -e '/abc/,/efg/!d' [file-with-content]
