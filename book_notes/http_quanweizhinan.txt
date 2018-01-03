@@ -1,0 +1,32 @@
+第一章:
+1. MIME类型
+    例:Content-type: image/jpeg
+    用斜杠分隔
+    text/plain
+    text/html
+
+2. URI统一资源标识符(Uniform Resource Identifier)
+    URL:
+        http://www.baidu.com/index.html
+        http://www.baidu.com/index.jpg
+    URN:
+        urn:ietf:rfc:2141
+        还在实验阶段
+
+3. HTTP方法
+    GET
+    POST
+    PUT
+    DELETE
+    HEAD -- 仅发送命名资源响应中的头部
+
+4. HTTP报文
+    # 起始行
+    POST /test/hi.txt HTTP/1.0
+    # 首部字段 ":" 分隔
+    Accept: text/*
+    Accept-Language: en,fr
+
+    # 主体
+    this is a content
+
