@@ -30,3 +30,8 @@
     # 主体
     this is a content
 
+5. telnet 实现HTTP
+    telnet 115.231.99.135 80 
+    GET /campaign/manfit/share HTTP/1.1
+    Host: zh-campaign.touchpal.com
+
