@@ -35,3 +35,25 @@
     GET /campaign/manfit/share HTTP/1.1
     Host: zh-campaign.touchpal.com
 
+
+
+6. 端口扫描
+    telnet www.wantjr.com 3306
+    telnet www.wantjr.com 3307
+
+for (( i=1;i<=65536;++i)) do echo $i >> data.out; telnet www.wantjr.com $i >> data.out; done;
+
+
+7. URL格式
+<scheme>://<user>:<passwd>@<host>:<port>/<path>;<params>?<query>#>frag>
+
+params: 比较特殊的参数,似乎不常见
+
+URL编码
+对不安全的字符进行编码，确保能够正常访问
+
+8. 
+
+
+# mark  40
+
