@@ -1,9 +1,12 @@
-第一章:
+# HTTP 权威指南笔记
+
+
+
+
+## 第一章
 1. MIME类型
     例:Content-type: image/jpeg
-    用斜杠分隔
-    text/plain
-    text/html
+    用斜杠分隔, text/plain, text/html
 
 2. URI统一资源标识符(Uniform Resource Identifier)
     URL:
@@ -31,9 +34,9 @@
     this is a content
 
 5. telnet 实现HTTP
-    telnet 115.231.99.135 80 
-    GET /campaign/manfit/share HTTP/1.1
-    Host: zh-campaign.touchpal.com
+telnet 115.231.99.135 80 
+GET /campaign/manfit/share HTTP/1.1
+Host: zh-campaign.touchpal.com
 
 
 
@@ -62,19 +65,57 @@ rtsp:实时流传输协议
 
 第三章http报文
 
-206 Partial Content
 
-# mark  49
 
 
 
 
 # 状态码表示 
+100 - 199 信息性状态码
+    100 Continue 收到了客户端的消息，可以继续发送
 200 - 299 成功
+    200 OK
+    201 Created
+    202 Accepted 服务器接受了请求，但是还未执行，需要返回继续请求的地址
+    203 Not-Authoritative Information
+    204 No Content 没有实体的主体部分
+    205 Reset Content 告知浏览器清除HTML表单中的内容
+    206 Partial Content 告知客户端成功的执行了范围请求
+                        
 300 - 399 重定向
-400 - 499 客户端错误
-500 - 599 服务器错误
+    300 Multi Choices 返回的内容可以包含Location作为首选项
+    301 Moved Permanently 返回的Location包含现在的地址
+    302 Found 临时定位到Location的url,以后还是用原先的url访问
+    303 See Other 用别的方式获取资源，包含在LOCATION中
+        HTTP/1.1引入 
+    304 Not Modified 不应该包含实体部分     请求头: IF-modified-since:  2017
+    305 Use Proxy 返回的Location中需要包含代理的地址
+    306 保留
+    307 Temporary Redirect ~= 302
+        HTTP/1.1引入, 302的一个问题， 即使客户端发送的是POST，重定向后变成了GET
 
+400 - 499 客户端错误
+    400 Bad Request 错误的请求
+    401 Unauthorized 未认证
+    402 Payment required 未启动该功能
+    403 Forbidden 通常不想告诉客户端原因
+    404 Not Found
+    405 Method Not Allow 用Allow告知客户端哪些方法是支持的
+    406 Not Acceptabe 不接受该类型的实体
+    407 Proxy Authentication Required  类似401
+    408 Request Timeout  客户端完成请求过长，对正常请求，时间是足够的
+    409 Conflict 请求可能在资源上引发冲突
+    410 Gone 类似404
+    413 Request Entity Too Large 请求的主体太大 
+    414 Request URI Too Long 请求URI太长
+
+500 - 599 服务器错误
+    500 Internal Server Error 服务器内部错误    
+    501 Not Implemented 服务器还未支持, 或超出了能力范围
+    502 Bad Gateway 无法连接网关
+    503 Service Unavaiable 服务暂时不可用, Retry After 字段表示多久后重试
+    504 Gateway Timeout 网关响应超时
+    505 Http Version Not supported
 
 
 版本号的比较
@@ -93,3 +134,58 @@ Server: Test Server
 
 
 HTTP/0.9
+EXAMPLE:
+GET /campaign/manfit/share (没有版本号)
+
+
+HTTP方法
+1.GET
+2.HEAD(HTTP/1.1)
+    只返回GET的首部(gb_server不支持)
+3.PUT
+    用于向服务器的资源(文件)中存储数据
+4.POST
+    用于向服务器发送数据
+5.TRACE
+    用于追踪请求头变成什么样子(gb_server不支持)
+6.OPTIONS
+    access-control-allow-methods :GET, POST, DELETE, OPTIONS
+7.DELETE
+    HTTP规范允许服务器在不通知客户端的情况下撤销这个请求
+
+扩展方法:
+1. LOCK
+    锁定资源
+2. UNLOCK
+    取消锁定
+
+惯例: 对所发送的内容严格，对接收的内容宽松
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# mark  70
