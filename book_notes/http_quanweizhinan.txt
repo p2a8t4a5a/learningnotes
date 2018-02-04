@@ -162,6 +162,20 @@ HTTP方法
 惯例: 对所发送的内容严格，对接收的内容宽松
 
 
+首部：
+1. 通用首部:
+    Date: Tue, 3 OCT 1974 02:16:00 GMT
+
+2. 请求首部:
+    Accept: */* 接受全部类型
+
+3. 响应首部:
+    Server:TornadoServer/2.4.1
+
+4. 实体首部:
+    Content-type: text/html
+
+5. 
 
 
 
@@ -183,9 +197,4 @@ HTTP方法
 
 
 
-
-
-
-
-
-# mark  70
+# mark  71
