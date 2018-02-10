@@ -1,8 +1,6 @@
 # HTTP 权威指南笔记
 
 
-
-
 ## 第一章
 1. MIME类型
     例:Content-type: image/jpeg
@@ -50,7 +48,11 @@ for (( i=1;i<=65536;++i)) do echo $i >> data.out; telnet www.wantjr.com $i >> da
 7. URL格式
 <scheme>://<user>:<passwd>@<host>:<port>/<path>;<params>?<query>#>frag>
 
-params: 比较特殊的参数,似乎不常见
+params:
+    1. 参数为type, 值为d
+        ftp://prep.ai.mit.edu/pub/gnu;type=d 
+    2. 两个路径段
+        http://www.joe-hardware.com/hammers;sale=false/index.html;graphics=true
 
 URL编码
 对不安全的字符进行编码，确保能够正常访问
@@ -165,36 +167,55 @@ HTTP方法
 首部：
 1. 通用首部:
     Date: Tue, 3 OCT 1974 02:16:00 GMT
+    Cache-Control:
 
 2. 请求首部:
-    Accept: */* 接受全部类型
+    信息性首部:
+        Client-IP:
+        Host:
+        User-Agent:
+    Accept首部:
+        Accept: */* 接受全部类型
+        Accept-Charest: 
+        Accept-Encoding: 
+    条件请求首部:
+        if-Match:
+        if-Modified-Since:
+        if-Unmodified-Since:
+        Range:
+    安全请求首部:
+        Authorization:
+        Cookie:
+        Cookie2:用来说明支持的cookie版本
+    代理请求:
+        Proxy-Authorization:
+        Proxy-Connection:
 
 3. 响应首部:
     Server:TornadoServer/2.4.1
+    Retry-After: 如果资源不可用在此时间后重试
+    协商首部:
+        Accept-Ranges:
+    安全响应首部:
+        Set-Cookie:
 
 4. 实体首部:
     Content-type: text/html
-
-5. 
-
-
-
-
-
-
-
-
-
+    Allow: GET,POST
+    Location: 告诉客户端实际在何处
+    1. 内容首部
+        Content-Language:
+        Content-Length:
+    2. 实体缓存首部:
+        Last-Modified:
+        ETag:
+        Expires:
 
 
-
+# 第四章 连接管理
 
 
 
 
 
-
-
-
-
-# mark  71
+# mark 80
