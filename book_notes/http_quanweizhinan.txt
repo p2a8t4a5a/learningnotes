@@ -213,9 +213,26 @@ HTTP方法
 
 
 # 第四章 连接管理
+    TCP的可靠数据管道
+        更深入参考资料: 《TCP/IP详解》
+    HTTP网络协议栈:
+        HTTP -> TCP -> IP -> 数据链路层
+        HTTP -> TSL/SSL -> TCP -> IP -> 数据链路层
+    TCP连接通过4个值来识别:
+        <源IP, 源端口，目的IP，目的端口>
 
-
-
+Socket编程
+s = socket(<parameters>)
+bind(s, <local ip, port>)
+connect(s, <remote ip, port>)
+listen(s, ...)
+s2 = accept(s)
+n = read(s, buffer, n)
+n = write(s, buffer, n)
+close(s) # 完全关闭
+shutdown(s, <side>) # 只关闭输入或输出
+getsocketopt(s, ...) # 获取socket选项
+setsocketopt(s, ...) # 设置socket选项
 
 
 # mark 80
