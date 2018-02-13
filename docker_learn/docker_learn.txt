@@ -19,10 +19,19 @@ docker cp 123.txt bb089aa:/root/
 brew install docker docker-compose docker-machine
 brew cask install virtualbox
 
-# start machine
+# create machine
 docker-machine create --driver virtualbox default
+docker-machine start default
 
 # test docker
 docker run hello-world
 
 
+# pull images
+docker pull nginx
+
+# docker run
+docker run -d -p 80:80 --name webserver nginx
+
+# docker stop
+# docker rm
