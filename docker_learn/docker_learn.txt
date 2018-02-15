@@ -1,22 +1,50 @@
 # Docker让应用的部署、测试和分发变得前所未有的高效和轻松
 
-
+## 基本概念
 镜像 --> 只读
+   镜像构建时会一层层构建，前一层是后一层的基础,如果在后一层的镜像删除了文件，也只会标记删除，不是真正的删除。
+   基础镜像是可以依赖的, 节约硬盘空间
 容器 --> 系统
-仓库
+    容器启东时在上面创建一个存储层，存储层的生命周期和容器一样, 任何存储层的东西都会随着容器的删除而消失。
+仓库 -->  Docker Registry             
+    仓库名经常以两段式路径形式出现: 如 jwilder/nginx-proxy
+    Registry公开服务: 官方Docker Hub
+    也可搭建自己的私有仓库
 
-
+## 一键安装docker
+curl -fsSL get.docker.com -o get-docker.sh
+sudo sh get-docker.sh --mirror Aliyun
+    ### 启动docker
+        sudo systempctl enable docker
+        sudo systempctl start docker
+    ### ubuntu 14.04
+        sudo service docker start
+                                            
 
 # 创建一个新的shell
-docker exec -t -i showdoc /bin/bash
-
-
-# 在后台执行一个交互任务
+docker exec -it showdoc /bin/bash # 在已经运行的程序中执行命令
 docker exec -d daemon_dave touch /etc/new_config_file
+docker run -it ubuntu bash
+
+# 启动镜像
+docker start 8ace22b4f825 # 启动老的镜像
+docker run 8ace22b4f825 # 运行一个新的镜像
+
+# 建立docker组:
+sudo groupadd docker
+sudo usermod -aG docekr $USER
+
+
+# mark 55
+
+
+
+
+
+
 
 # cp
 docker cp 123.txt bb089aa:/root/
-
 
 # install mac
 brew install docker docker-compose docker-machine
