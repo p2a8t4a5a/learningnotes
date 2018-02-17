@@ -34,17 +34,35 @@ docker run 8ace22b4f825 # 运行一个新的镜像
 sudo groupadd docker
 sudo usermod -aG docekr $USER
 
-
-# mark 55
-
-
-
+# 运行
+docker run -it --rm unbuntu bash
+#  --rm 容器退出后随即删除 
 
 
+# 镜像体积
+docker images ls 所看到的的体积不是真实的体积，因为使用的是Union FS, 很多层可以共用的
+
+# 虚悬镜像
+docker image ls -f dangling=true
+docker image prune # 删除虚悬镜像
+
+# 中间层镜像
+docker image ls -a
+
+# docker 删除镜像的时候可能删不掉
+1. 一个镜像对应多个标签
+2. 别的镜像依赖这个镜像
+3. 容器对这个镜像有依赖
+
+# commit
+    commit是用来理解镜像构成，或者特殊场合，如保存入侵现场，定制镜像用Dockerfile完成
+    因为commit以后是一个黑箱操作, 
+
+docker diff webserver 查看改动
+docker commit webserver nginx:v2
+docker histroy
 
 
-# cp
-docker cp 123.txt bb089aa:/root/
 
 # install mac
 brew install docker docker-compose docker-machine
@@ -57,12 +75,48 @@ docker-machine start default
 # test docker
 docker run hello-world
 
-
 # pull images
 docker pull nginx
 
 # docker run
 docker run -d -p 80:80 --name webserver nginx
 
-# docker stop
-# docker rm
+
+
+
+# docker 命令
+# cp
+docker cp 123.txt bb089aa:/root/
+# add 
+是cp的升级版本，可以自动下载链接文件, 但还是建议用run wget
+某些情况有用，会自动解压压缩文件
+
+# CMD容器启动命令
+docker run -it ubuntu # 会自动进入bash
+docker run -it ubuntu cat /etc/os-release
+
+shell格式: CMD <命令>
+    echo $HOME
+    实际会转化成 ["sh", "-c", "echo $HOME"]
+exec格式: CMD ["可执行文件", "argv1", "argv2"]
+    用"", 因为会解析成json
+
+docker内的应用都应该前台执行
+
+
+# ENTRYPOINT
+用法一:
+本质上和CMD是一样的，但是变成添加附加参数
+asd = ENTRYPOINT ["echo"]
+docker run asd 123
+
+asd = CMD ["echo", "123"]
+docker run asd
+
+用法二:
+应用前的准备工作
+1. 一个预处理脚本
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["redis-server"]
+
+# mark 87
