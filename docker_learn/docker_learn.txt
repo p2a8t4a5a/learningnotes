@@ -124,4 +124,17 @@ ENV key1 value1
 ENV key1=value1 key2=value2 \
     key3="111 111"
 
-# mark 89
+
+ARG 构建参数
+    ARG和ENV效果一样, 区别是在容器运行时就不存在了
+
+VOLUME定义匿名卷
+
+
+
+
+
+
+
+
+
