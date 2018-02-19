@@ -129,12 +129,35 @@ ARG 构建参数
     ARG和ENV效果一样, 区别是在容器运行时就不存在了
 
 VOLUME定义匿名卷
+VOLUME /data
+docker run -d -v mydata:/data xxxx # 用mydata这个匿名卷来替换
+
+EXPOSE 声明端口
+EXPOSE 80 81 82
+1. 帮助使用者理解这个镜像服务的守护端口
+2. docker run -P 时会自动映射EXPOSE的端口
+    -p <宿主机端口>:<容器端口> # 用法不同
 
 
+WORKDIR指定工作目录
+以后各层的当前的目录, 就被改为指定的目录
+默认是/
+
+USER指定当前用户
+RUN groupadd -r redis && useradd -r -g reids redis
+USER redis
+RUN ["redis-server"]
+
+# gosu 以另外的用户执行
+RUN groupadd -r redis && useradd -r -g reids redis
+RUN wget -O /usr/local/bin/gosu "https://github.comm/tianon/gosu/release/download1.7/gosu-amd64"\
+    && chmod +x /usr/local/bin/gosu \
+    && gosu nobody true
+CMD [ "exec", "gosu", "redis", "redis-server" ]
 
 
+HEALTHCHECK健康检查
+HEALTHCHECK --interval=5s --timeout=3s \
+            CMD curl -fs http://localhost/ || exit 1
 
-
-
-
-
+ONBUILD为他人做嫁衣
