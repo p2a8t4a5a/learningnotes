@@ -161,3 +161,17 @@ HEALTHCHECK --interval=5s --timeout=3s \
             CMD curl -fs http://localhost/ || exit 1
 
 ONBUILD为他人做嫁衣
+    是一个特殊的指令，它后面是其他指令，比如RUN, COPY等
+    这些指令在镜像构建时不会被执行，只有以当前镜像为基础镜像时才会被执行
+
+    FROM node:slim
+    RUN mkdir /app
+    WORKDIR /app
+    ONBUILD COPY ./package.json /app
+    ONBUILD RUN ["npm", "install"]
+    ONBUILD COPY . /app/
+    CMD ["npm", "start"]
+
+    FROM my-node
+
+# mark 100
