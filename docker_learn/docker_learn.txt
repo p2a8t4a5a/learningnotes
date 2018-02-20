@@ -203,16 +203,47 @@ docker save ubuntu:14.04 | bzip2 | pv | ssh server 'cat | docker load'
     使用UnionFS将不同的层结合到一个镜像中去
 
 操作Docker容器
-# mark 107
+docker run -it ubuntu:14.04 bash 
+docker run ubuntu:14.04 /bin/echo "hello, world"
+
+运行docker run 以后的后台标准操作
+1. 检查本地是否存在指定的镜像，不存在就从公有仓库下载
+2. 利用镜像创建并启动一个容器
+3. 分配一个文件系统，并在只读镜像外挂载一层可读写层
+4. 从宿主机配置的网桥接口中桥接一个虚拟接口到容器中
+5. 从地址池配置一个ip地址给容器
+6. 执行用户指定的应用程序
+7. 执行完毕容器被终止
+
+attach命令
+docker run -dit ubuntu
+docker attach 243c
+如果从这个stdin中exit, 会导致容器停止
+
+exec命令
+如果从这个stdin中exit, 容器不会停止
 
 
+导出容器
+docker export 7691a811437 > ubuntu.tar # 导出容器的快照
+
+导入容器
+cat ubuntu.tar | docker import  - test/ubuntu:v1.0
+docker import http://example.com/example.tgz example/exampkepo
+
+# import 和 load的区别
+load会保存所以的历史记录
+import不会保存, 可以重新指定标签等元数据信息
+
+# 删除所有停止的容器
+docker container prune
 
 
+# docker search centos --filter=stars=30 # 30星以上的镜像
+# docker pull 下载
 
 
+用户在登录后通过docker push来将镜像推送到Docker Hub
+docker tag ubuntu:17.10 username/ubuntu:17.01
 
-
-
-
-
-
+# mark  119
