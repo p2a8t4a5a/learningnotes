@@ -1,15 +1,14 @@
 # Docker让应用的部署、测试和分发变得前所未有的高效和轻松
 
 ## 基本概念
-镜像 --> 只读
-   镜像构建时会一层层构建，前一层是后一层的基础,如果在后一层的镜像删除了文件，也只会标记删除，不是真正的删除。
-   基础镜像是可以依赖的, 节约硬盘空间
-容器 --> 系统
-    容器启东时在上面创建一个存储层，存储层的生命周期和容器一样, 任何存储层的东西都会随着容器的删除而消失。
-仓库 -->  Docker Registry             
-    仓库名经常以两段式路径形式出现: 如 jwilder/nginx-proxy
-    Registry公开服务: 官方Docker Hub
-    也可搭建自己的私有仓库
+    1. 镜像:只读
+       a. 镜像构建时会一层层构建，前一层是后一层的基础,如果在后一层的镜像删除了文件，也只会标记删除，不是真正的删除。
+       b. 基础镜像是可以依赖的, 节约硬盘空间
+    2. 容器:系统
+        容器启动时在上面创建一个存储层，存储层的生命周期和容器一样, 任何存储层的东西都会随着容器的删除而消失。
+    3. 仓库:Docker Registry             
+        仓库名经常以两段式路径形式出现: 如 jwilder/nginx-proxy
+        Registry公开服务: 官方Docker Hub, 也可搭建自己的私有仓库
 
 ## 一键安装docker
 curl -fsSL get.docker.com -o get-docker.sh
@@ -38,127 +37,165 @@ sudo usermod -aG docekr $USER
 docker run -it --rm unbuntu bash
 #  --rm 容器退出后随即删除 
 
-
 # 镜像体积
-docker images ls 所看到的的体积不是真实的体积，因为使用的是Union FS, 很多层可以共用的
+    docker images ls
+    所看到的的体积不是真实的体积，因为使用的是Union FS, 很多层可以共用的
 
-# 虚悬镜像
-docker image ls -f dangling=true
-docker image prune # 删除虚悬镜像
+# 虚悬镜像(停止运行的)
+    docker image ls -f dangling=true
+    docker image prune # 删除虚悬镜像
 
 # 中间层镜像
-docker image ls -a
+    docker image ls -a
 
 # docker 删除镜像的时候可能删不掉
-1. 一个镜像对应多个标签
-2. 别的镜像依赖这个镜像
-3. 容器对这个镜像有依赖
+    1. 一个镜像对应多个标签
+    2. 别的镜像依赖这个镜像
+    3. 容器对这个镜像有依赖
 
 # commit
     commit是用来理解镜像构成，或者特殊场合，如保存入侵现场，定制镜像用Dockerfile完成
     因为commit以后是一个黑箱操作, 
-
-docker diff webserver 查看改动
-docker commit webserver nginx:v2
-docker histroy
-
-
+    docker diff webserver 查看改动
+    docker commit webserver nginx:v2
+    docker histroy
 
 # install mac
-brew install docker docker-compose docker-machine
-brew cask install virtualbox
+    brew install docker docker-compose docker-machine
+    brew cask install virtualbox
 
 # create machine
-docker-machine create --driver virtualbox default
-docker-machine start default
+    docker-machine create --driver virtualbox default
+    docker-machine start default
 
 # test docker
-docker run hello-world
+    docker run hello-world
 
 # pull images
-docker pull nginx
+    docker pull nginx
 
 # docker run
-docker run -d -p 80:80 --name webserver nginx
+    docker run -d -p 80:80 --name webserver nginx
+
+#  基本语法
+    FROM nginx # 基础镜像
+    FROM scratch # 空镜像
+
+# RUN
+    RUN apt-get update
+    RUN apt-get install -y gcc libc6-dev make
+    RUN wget -O redis.tar.gz "http://download.redis.io/releases/redis-3.2.5.tar.gz"
+    RUN mkdir -p /usr/src/redis
+    RUN tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1
+    RUN make -C /usr/src/redis
+    RUN make -C /usr/src/redis install
+
+Dockerfile中每个指令都会建立一层镜像, RUN也不例外, 所以正确的做法是写在一起
+RUN buildDeps='gcc libc6-dev make' \
+    && apt-get update \
+    && apt-get install -y $buildDeps \
+    && wget -O redis.tar.gz "http://download.redis.io/releases/redis-3.2.5.tar.gz" \
+    && mkdir -p /usr/src/redis \
+    && tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1 \
+    && make -C /usr/src/redis \
+    && make -C /usr/src/redis install \
+    && rm -rf /var/lib/apt/lists/* \ # 清理不用的文件
+    && rm redis.tar.gz \
+    && rm -r /usr/src/redis \
+    && apt-get purge -y --auto-remove $buildDeps # 清理apt-get缓存文件
 
 
+# 创建镜像
+    docker build -t nginx:v3 .
 
+# 解决方案
+    # Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+    docker-machine restart&&eval "$(docker-machine env default)"&&docker-machine env
+
+DOCKER 会把当前context中的文件复制到docker引擎中
+
+# COPY 错误用法
+    COPY ../package.json /app 或者 COPY /opt/xxxx /app
+# COPY 正确用法
+    COPY ./package.json /app/
+
+# docker build 用法
+    docker build -t nginx:v3 .
+    docker build https://github.com/twang2218/gitlab-ce-zh.git#
+    docker build http://server/context.tar.gz
 
 # docker 命令
-# cp
-docker cp 123.txt bb089aa:/root/
-# add 
-是cp的升级版本，可以自动下载链接文件, 但还是建议用run wget
-某些情况有用，会自动解压压缩文件
+    # cp
+    docker cp 123.txt bb089aa:/root/
+    # add 
+    是cp的升级版本，可以自动下载链接文件, 但还是建议用run wget
+    某些情况有用，会自动解压压缩文件
 
 # CMD容器启动命令
-docker run -it ubuntu # 会自动进入bash
-docker run -it ubuntu cat /etc/os-release
+    docker run -it ubuntu # 会自动进入bash
+    docker run -it ubuntu cat /etc/os-release
 
 shell格式: CMD <命令>
     echo $HOME
     实际会转化成 ["sh", "-c", "echo $HOME"]
-exec格式: CMD ["可执行文件", "argv1", "argv2"]
-    用"", 因为会解析成json
+    exec格式: CMD ["可执行文件", "argv1", "argv2"], 用"", 因为会解析成json
 
 docker内的应用都应该前台执行
 
 
 # ENTRYPOINT
-用法一:
-本质上和CMD是一样的，但是变成添加附加参数
-asd = ENTRYPOINT ["echo"]
-docker run asd 123
+    用法一:
+    本质上和CMD是一样的，但是变成添加附加参数
+    asd = ENTRYPOINT ["echo"]
+    docker run asd 123
 
-asd = CMD ["echo", "123"]
-docker run asd
+    asd = CMD ["echo", "123"]
+    docker run asd
 
 用法二:
-应用前的准备工作
-1. 一个预处理脚本
-ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["redis-server"]
+    应用前的准备工作
+    1. 一个预处理脚本
+    ENTRYPOINT ["docker-entrypoint.sh"]
+    CMD ["redis-server"]
 
-ENV 设置环境变量
-ENV key1 value1
-ENV key1=value1 key2=value2 \
-    key3="111 111"
-
+    ENV 设置环境变量
+    ENV key1 value1
+    ENV key1=value1 key2=value2 \
+        key3="111 111"
 
 ARG 构建参数
     ARG和ENV效果一样, 区别是在容器运行时就不存在了
 
 VOLUME定义匿名卷
-VOLUME /data
-docker run -d -v mydata:/data xxxx # 用mydata这个匿名卷来替换
+    VOLUME /data
+    docker run -d -v mydata:/data xxxx # 用mydata这个匿名卷来替换
 
 EXPOSE 声明端口
-EXPOSE 80 81 82
-1. 帮助使用者理解这个镜像服务的守护端口
-2. docker run -P 时会自动映射EXPOSE的端口
-    -p <宿主机端口>:<容器端口> # 用法不同
-
+    EXPOSE 80 81 82
+    1. 帮助使用者理解这个镜像服务的守护端口
+    2. docker run -P 时会自动映射EXPOSE的端口
+        -p <宿主机端口>:<容器端口> # 用法不同
 
 WORKDIR指定工作目录
-以后各层的当前的目录, 就被改为指定的目录
-默认是/
+    以后各层的当前的目录, 就被改为指定的目录
+    默认是/
 
 USER指定当前用户
-RUN groupadd -r redis && useradd -r -g reids redis
-USER redis
-RUN ["redis-server"]
+    RUN groupadd -r redis && useradd -r -g reids redis
+    USER redis
+    RUN ["redis-server"]
 
 # gosu 以另外的用户执行
-RUN groupadd -r redis && useradd -r -g reids redis
-RUN wget -O /usr/local/bin/gosu "https://github.comm/tianon/gosu/release/download1.7/gosu-amd64"\
-    && chmod +x /usr/local/bin/gosu \
-    && gosu nobody true
-CMD [ "exec", "gosu", "redis", "redis-server" ]
+    RUN groupadd -r redis && useradd -r -g reids redis
+    RUN wget -O /usr/local/bin/gosu "https://github.comm/tianon/gosu/release/download1.7/gosu-amd64"\
+        && chmod +x /usr/local/bin/gosu \
+        && gosu nobody true
+    CMD [ "exec", "gosu", "redis", "redis-server" ]
 
 
 HEALTHCHECK健康检查
-HEALTHCHECK --interval=5s --timeout=3s \
-            CMD curl -fs http://localhost/ || exit 1
+    HEALTHCHECK --interval=5s --timeout=3s \
+                CMD curl -fs http://localhost/ || exit 1
 
 ONBUILD为他人做嫁衣
     是一个特殊的指令，它后面是其他指令，比如RUN, COPY等
@@ -190,60 +227,70 @@ ONBUILD为他人做嫁衣
 
 其他制作镜像的方式
     docker import http://download.../unbuntu.tar.gz openvz/ubuntu:14:04
-
-# 以前的方式，docker save, docker load 保存为tar文件，再导入
-docker save alping | gzip > alpine-latest.tar.gz
-docker load -i alpine-latest.tar.gz
+    # 以前的方式，docker save, docker load 保存为tar文件，再导入
+    docker save alping | gzip > alpine-latest.tar.gz
+    docker load -i alpine-latest.tar.gz
 
 写成一行
-docker save ubuntu:14.04 | bzip2 | pv | ssh server 'cat | docker load'
-
+    docker save ubuntu:14.04 | bzip2 | pv | ssh server_a 'cat | docker load'
 
 镜像的实现原理
     使用UnionFS将不同的层结合到一个镜像中去
 
 操作Docker容器
-docker run -it ubuntu:14.04 bash 
-docker run ubuntu:14.04 /bin/echo "hello, world"
+    docker run -it ubuntu:14.04 bash 
+    docker run ubuntu:14.04 /bin/echo "hello, world"
 
 运行docker run 以后的后台标准操作
-1. 检查本地是否存在指定的镜像，不存在就从公有仓库下载
-2. 利用镜像创建并启动一个容器
-3. 分配一个文件系统，并在只读镜像外挂载一层可读写层
-4. 从宿主机配置的网桥接口中桥接一个虚拟接口到容器中
-5. 从地址池配置一个ip地址给容器
-6. 执行用户指定的应用程序
-7. 执行完毕容器被终止
+    1. 检查本地是否存在指定的镜像，不存在就从公有仓库下载
+    2. 利用镜像创建并启动一个容器
+    3. 分配一个文件系统，并在只读镜像外挂载一层可读写层
+    4. 从宿主机配置的网桥接口中桥接一个虚拟接口到容器中
+    5. 从地址池配置一个ip地址给容器
+    6. 执行用户指定的应用程序
+    7. 执行完毕容器被终止
 
 attach命令
-docker run -dit ubuntu
-docker attach 243c
-如果从这个stdin中exit, 会导致容器停止
+    docker run -dit ubuntu
+    docker attach 243c
+    如果从这个stdin中exit, 会导致容器停止
 
 exec命令
-如果从这个stdin中exit, 容器不会停止
-
+    如果从这个stdin中exit, 容器不会停止
 
 导出容器
-docker export 7691a811437 > ubuntu.tar # 导出容器的快照
+    docker export 7691a811437 > ubuntu.tar # 导出容器的快照
 
 导入容器
-cat ubuntu.tar | docker import  - test/ubuntu:v1.0
-docker import http://example.com/example.tgz example/exampkepo
+    cat ubuntu.tar | docker import  - test/ubuntu:v1.0
+    docker import http://example.com/example.tgz example/exampkepo
 
 # import 和 load的区别
-load会保存所以的历史记录
-import不会保存, 可以重新指定标签等元数据信息
+    load会保存所有的历史记录
+    import不会保存, 可以重新指定标签等元数据信息
 
 # 删除所有停止的容器
-docker container prune
-
+    docker container prune
 
 # docker search centos --filter=stars=30 # 30星以上的镜像
 # docker pull 下载
 
-
 用户在登录后通过docker push来将镜像推送到Docker Hub
 docker tag ubuntu:17.10 username/ubuntu:17.01
 
-# mark  119
+私有仓库
+    docker-registry 创建私有仓库
+    # 用registry镜像来运行
+    docker run -d -p 5000:5000 -v /opt/data/registry:/var/lib/registry registry
+
+    标记镜像:
+    docker tag ubuntu:latest 127.0.0.1:5000/ubuntu:latest
+    docker push 127.0.0.1:5000/ubuntu:latest
+    # 查看镜像
+    curl 127.0.0.1:5000/v2/_catalog
+
+私有仓库高级配置
+
+
+
+# mark  125
