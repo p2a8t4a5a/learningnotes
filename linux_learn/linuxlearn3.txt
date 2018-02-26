@@ -102,3 +102,7 @@ ls | grep user | xargs -I{} cp {} ~/data_my/20171012/
   
 # 杀死父进程的子进程
 # kill -TERM PPID  
+
+
+私钥生成公钥
+ssh-keygen -f ~/.ssh/id_rsa -y > ~/.ssh/id_rsa.pub
