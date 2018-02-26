@@ -302,10 +302,20 @@ Docker数据管理
     docker volume create my-vol
     docker volume ls
     docker volume inspect ee9cff1ffe # 查看详情
+    docker volume prune # 清除无主容器
 
     # 启动一个挂载数据卷的容器, 数据卷可挂载多个
     docker run -d -P --name web --mount source=my-vol,targer=/webapp traning/webapp python app.py
 
 2. 挂载主机目录(Bind mounts)
+    - 挂载一个主机目录作为数据卷
+    docker run -d -P --name web --mount type=bind, source=/src/webapp,target=/opt/webapp \
+        training/webapp python app.py
+    # readonly 变成只读目录
+    - 挂载一个本地主机文件作为数据卷
+    docker run --rm -it --mount type=bind,source=$HOME/.bash_history, target=/root/.bash_history \
+        ubuntu:17.10 bash
 
-# mark 130
+
+Docker中的网络功能介绍
+# mark 136
