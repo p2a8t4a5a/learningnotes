@@ -316,6 +316,31 @@ Docker数据管理
     docker run --rm -it --mount type=bind,source=$HOME/.bash_history, target=/root/.bash_history \
         ubuntu:17.10 bash
 
+    Dockerfile的VOLUME指令后的任何东西都不能改变该Volume，比如：
+
+    FROM debian:wheezy
+    RUN useradd foo
+    VOLUME /data
+    RUN touch /data/x
+    RUN chown -R foo:foo /data
+
+3. 远程目录
+    # docker host
+    docker plugin install --grant-all-permissions vieux/sshfs
+    
+    # create a volume
+    docker volume create --driver vieux/sshfs \
+          -o sshcmd=test@node2:/home/test \
+          -o password=testpassword \
+          sshvolume
+
+    # create a volume while start
+    docker run -d \
+          --name sshfs-container \
+          --volume-driver vieux/sshfs \
+          --mount src=sshvolume,target=/app,volume-opt=sshcmd=test@node2:/home/test,volume-opt=password=testpassword \
+            nginx:latest
 
 Docker中的网络功能介绍
+
 # mark 136
