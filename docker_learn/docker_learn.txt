@@ -342,5 +342,21 @@ Docker数据管理
             nginx:latest
 
 Docker中的网络功能介绍
+1. 外部访问容器
+    docker run -P training/webapp 会随机映射一个49000-49900的端口到内部容器
+    docker run -p 5000:5000 -p 6000:6000 training/webapp  # 默认所以ip
+    docker run -p 127.0.0.1:5000:5000 training/webapp  # 指定127.0.0.1
+    docker run -p 127.0.0.1::5000 training/webapp  # 分配任意一个端口
+    docker port nostalgic_mores 5000 # 查看5000对应的绑定地址
 
-# mark 136
+2. 容器互联
+    新建网络(bridge, overlay)
+        docker network create -d bridge my-net
+    连接容器
+        docker run -it --rm --name busybox1 --network my-net busybox sh
+        docker run -it --rm --name busybox2 --network my-net busybox sh
+        ping busybox1
+        ping busybox2
+        # 多个容器之间互联需要docker compose
+
+# mark 141
