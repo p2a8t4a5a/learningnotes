@@ -106,3 +106,10 @@ ls | grep user | xargs -I{} cp {} ~/data_my/20171012/
 
 私钥生成公钥
 ssh-keygen -f ~/.ssh/id_rsa -y > ~/.ssh/id_rsa.pub
+
+
+
+# 查看某个包的版本
+apt-cache policy <package name>
+# 安装特定版本
+sudo apt-get install package=version
