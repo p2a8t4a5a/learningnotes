@@ -130,3 +130,8 @@ git rebase -i dev
 git rebase -i HEAD~3
 
 git pull 命令会执行一次merge，但你可以传入--rebase 来强制它通过rebase来整合远程分支。
+
+
+
+get pull 和 fetch区别
+pull = fetch + merge 
