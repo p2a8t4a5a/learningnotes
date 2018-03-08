@@ -359,9 +359,60 @@ Docker中的网络功能介绍
         ping busybox2
         # 多个容器之间互联需要docker compose
 
-# 127.0.0.1 运行不了
+# mac 127.0.0.1 运行不了
 docker-machine ip
 
+配置DNS
+    容器内使用mount查看挂载的信息
+    宿主机的/etc/resolv.conf更新时，容器内也可以更新
 
-# mark 141
+    配置全部容器的DNS, 可以在/etc/docker/daemon.json
+    {
+        "dns": [
+            "114.114.114.114",
+            "8.8.8.8"
+        ]
+    }
+    通过docker run -it --rm ubuntu:14.04 cat /etc/resolv.conf
 
+    指定hostname -h HOSTNAME, 但是只会在容器内看到，容器外看不到
+
+
+高级网络配置
+    docker 启动时会自动在主机上创建一个docker0虚拟网桥,实际是linux的一个bridge
+    可以理解为一个软件交换机, 挂载到它的网口之间进行转发。
+    同时docker随机分配一个本地未占用的私有网段中的一个地址给docker0接口, 比如
+    典型的172.17.42.1, 掩码255.255.0.0, 此后启动容器内的网口也会自动分配一个同一
+    网段172.17.0.0/16的地址
+
+    当创建一个Docker容器时，同时会创建一对veth pair接口,例如vethAQI2QT,
+    这样主机可以和容器通信，容器之间也可以相互通信
+
+快速配置指南
+    只有在Docker服务启动的时候才能配置，不能马上生效
+    -b BRIDGE 指定挂载的网桥
+    --bip=CIDR 定制 docker0的掩码
+    -H SOCKER... Docker服务端接收命令的通道
+    --icc=true|false 是否支持容器之间进行通信
+    --ip-forward=true|false 参见下文容器之间的通信
+    --iptables=true|false 是否允许Docker添加iptables规则
+    --mtu=BYTE 容器网络中的MTU
+
+    可以在启动服务或者启动容器时指定
+    --dns=IP_ADDRESS
+    --dns-search=DOMAIN 指定DNS搜索域
+
+    docker run时使用
+    -h HOSTNAME HOSTNAME 配置主机名
+    --link=CONTAINER_NAME:ALIAS 添加到另一个容器的连接
+    --net=bridge|none|container:NAME_OR_ID|host 配置容器的桥接模式
+    -p SPEC 映射容器端口到宿主机
+    -P 映射容器所有端口到宿主机
+
+
+容器访问控制
+
+
+
+
+# mark 146
