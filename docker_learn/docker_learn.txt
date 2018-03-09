@@ -437,7 +437,18 @@ docker-machine ip
         允许相互访问开放的端口, 取决于Dockerfile中的expose指令
 
     映射容器端口到宿主机的实现
+        容器访问外部实现
+            源地址都会被NAT成本地系统的IP地址, 使用iptables的源地址伪装操作实现
+        sudo iptables -t nat -nL # 查看主机的NAT规则
+        ...
+        Chain POSTROUTING (policy ACCEPT)
+        target     prot opt source              destination
+        MASQUERADE  all  --  172.17.0.0/16      !172.17.0.0/16
+        ...
+        将所有源地址在172.17.0.0/16网段，目标地址为其他网段的流量动态伪装成从系统网卡发出的
+        MASQUERADE 跟传统SNAT的好处是它能从动态从网卡获取地址
 
-# mark 146
-
-
+    外部访问容器的视线
+        本地的nat表中添加相应的规则
+        
+# mark 150
