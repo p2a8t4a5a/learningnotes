@@ -411,8 +411,33 @@ docker-machine ip
 
 
 容器访问控制
+    通过liunx的iptables防火墙来进行管理和实现的
+    
+    容器访问外部网络
+        检查转发是否打开
+        $sysctl net.ipv4.ip_forward
+        net.ipv4.ip_forward = 1
 
+        # 手动打开
+        $sysctl -w net.ipv4.ip_forward=1
 
+    容器之间访问
+        1. 网络拓扑是否已经互联，默认都会连接到docker0网桥上
+        2. 本地系统的iptables是否允许通过
+    
+    访问所有端口:
+        Docker服务启动时默认添加一条转发策略到iptables的FORWARD链上。取决于icc的值
+    
+    访问指定端口:
+        配置icc=false关闭网络访问后，key通过--link=CONTANER_NAME:ALIAS来访问容器的开放端口
 
+        实际例子:
+        启动docker时设置, icc=false --iptables=true,关闭容器互联，允许docker修改系统的iptables
+        之后启动容器时，使用--link=CONTANER_NAME:ALIAS, 会在iptable 中添加ACCEPT规则，
+        允许相互访问开放的端口, 取决于Dockerfile中的expose指令
+
+    映射容器端口到宿主机的实现
 
 # mark 146
+
+
