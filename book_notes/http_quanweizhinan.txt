@@ -355,9 +355,14 @@ web服务器会做什么
 
 代理获取流量
     - 修改客户端, 有意的将HTTP请求直接发送给代理
+        - 手动配置
+        - 代理自动配置(Proxy Auto-Configuration PAC), 提供一个URI，指向一个用JavaScript编写的代理自动配置文件, 运行它决定是否应该使用一个代理
+        - 
     - 修改网络(拦截代理), 在客户端不知情的情况下, 对其进行拦截, 将流量导入一个代理。
     - 修改DNS的命名空间, 假扮服务器(nginx)
     - 重定向到代理进行通信
+    - WPAD的代理发现(Web Proxy Autodiscovery Protocol)
+    - 
 
 
 # mark 148
