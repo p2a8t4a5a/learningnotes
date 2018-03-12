@@ -362,7 +362,9 @@ web服务器会做什么
     - 修改DNS的命名空间, 假扮服务器(nginx)
     - 重定向到代理进行通信
     - WPAD的代理发现(Web Proxy Autodiscovery Protocol)
-    - 
+        1. 用WPAD找到PAC的URI
+        2. 从指定的URI获取PAC文件
+        3. 执行PAC文件来判定代理服务器
+        4. 为请求使用代理服务器
 
-
-# mark 148
+# mark 151
