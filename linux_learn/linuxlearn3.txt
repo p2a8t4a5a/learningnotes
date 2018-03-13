@@ -119,3 +119,6 @@ Linux 中每个 TCP 连接最少占用多少内存？
 3kb最少，10000个链接，31552KB
 https://zhuanlan.zhihu.com/p/25241630
 比较/proc/meminfo
+
+# redis show keys 
+info keyspace
