@@ -9,3 +9,7 @@ DELETE  用来删除资源
 
 
 
+# 查看域名解析
+$dig +noall +answer wantjr.com
+wantjr.com.     464 IN  A   192.30.252.154
+wantjr.com.     464 IN  A   192.30.252.153
