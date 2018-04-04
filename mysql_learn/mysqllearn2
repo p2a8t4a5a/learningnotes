@@ -5,3 +5,64 @@ https://stackoverflow.com/questions/2108824/mysql-incorrect-string-value-error-w
 utf8 is an alias for the utfmb3 character set. For more information, see Section 10.9.2, “The utf8mb3 Character Set (3-Byte UTF-8 Unicode Encoding)”.
 
 
+-- 查看表的具体字符
+
+alter table account_v2_55 MODIFY COLUMN account_info_3p text  CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+
+
+
+
+python decode encode
+
+
+字符串在Python内部的表示是unicode
+
+
+str1.decode('gb2312') 表示将gb2312编码的字符串str1转换成unicode编码
+如str2.encode('gb2312')，表示将unicode编码的字符串str2转换成gb2312编码。 
+
+因此，转码的时候一定要先搞明白，字符串str是什么编码，然后decode成unicode，然后再encode成其他编码
+
+
+
+
+MySQL utf8类型不能存储Emoji的解决方案
+原因:
+    mysql的utf8实际是utf8mb3类型的, 不支持真正的utf8mb4
+
+依赖:
+    mysql5.5.3
+
+解决方案:
+    将需要的某个字段改成utf8mb4即可
+
+执行方案:
+# 查看原先的字段类型
+show full columns from account_v2_55;
+> +------------------------+---------------------+--------------------+------+-----+---------+-------+---------------------------------+---------+
+> | Field                  | Type                | Collation          | Null | Key | Default | Extra | Privileges                      | Comment |
+> +------------------------+---------------------+--------------------+------+-----+---------+-------+---------------------------------+---------+
+> | account_info_3p        | text                | utf8_general_ci | NO   |     | NULL    |       | select,insert,update,references |         |
+> +------------------------+---------------------+--------------------+------+-----+---------+-------+---------------------------------+---------+
+
+# 改成现在的类型
+alter table account_v2_55 MODIFY COLUMN account_info_3p text CHARACTER SET utf8mb4 NOT NULL;
+> +------------------------+---------------------+--------------------+------+-----+---------+-------+---------------------------------+---------+
+> | Field                  | Type                | Collation          | Null | Key | Default | Extra | Privileges                      | Comment |
+> +------------------------+---------------------+--------------------+------+-----+---------+-------+---------------------------------+---------+
+> | account_info_3p        | text                | utf8mb4_general_ci | NO   |     | NULL    |       | select,insert,update,references |         |
+> +------------------------+---------------------+--------------------+------+-----+---------+-------+---------------------------------+---------+
+
+
+代码:
+db_url = "mysql+mysqldb://root:root@127.0.0.1:3306/global_account?charset=utf8mb4"
+engine = create_engine(db_url)
+...
+
+# 因为python不认识这个utf8mb4编码
+import codecs
+codecs.register(lambda name: codecs.lookup('utf8') if name == 'utf8mb4' else None
+
+
+# 补充：对于一个新表，在sqlalchemy定义的时候,增加一个collation即可
+account_info_3p = Column(TEXT(collation='utf8mb4_general_ci'))
