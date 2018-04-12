@@ -487,3 +487,7 @@ docker-machine ip
 
 
 # mark 152
+
+
+# 调整进入docker后的窗口大小
+echo "export TERM=xterm" >> /root/.bashrc
