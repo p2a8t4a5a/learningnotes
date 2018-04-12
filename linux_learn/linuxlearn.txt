@@ -325,3 +325,11 @@ https://zhuanlan.zhihu.com/p/25241630
 info keyspace
 
 
+
+
+
+run(){
+    local a=1
+    echo $a
+}
+run
