@@ -1,6 +1,4 @@
-内存调查笔记:
-
-
+# 内存调查笔记:
 pyrasite-shell 11
 
 import gc
@@ -21,3 +19,6 @@ pip install pyrasite
 
 pyrasite-memory-viewer 11
 
+
+# redis 信息
+/usr/local/redis/bin/redis-cli -h 192.168.173.117 -p 5000 info | grep instan
