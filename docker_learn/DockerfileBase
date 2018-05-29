@@ -4,4 +4,8 @@ COPY echo.sh /root/echo.sh
 ARG NAME=yde
 ENV NAME2=yde2
 VOLUME /data
-ENTRYPOINT [ "bash", "echo.sh"]
+
+RUN apt-get update && apt-get install -y google-perftools
+
+# ENTRYPOINT ["LD_PRELOAD=/usr/lib/libtcmalloc.so.4", "bash", "echo.sh"]
+CMD ["/bin/sh", "-c", "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc.so.4 bash echo.sh"]
