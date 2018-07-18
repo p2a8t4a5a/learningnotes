@@ -57,3 +57,9 @@ sed -i "" "s/UpdateNotifyCenterVipData/NotifyCenterVipData/g" src/baseclient/pro
 
 # 匹配多行
 sed -e '/abc/,/efg/!d' [file-with-content]
+
+
+
+# 删除第几行
+sed -i '1d' a.txt
+sed -i '$d' a.txt
