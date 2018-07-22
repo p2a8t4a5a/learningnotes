@@ -333,3 +333,6 @@ run(){
     echo $a
 }
 run
+
+# find depth
+find . -type d -maxdepth 2 -name 4302
