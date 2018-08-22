@@ -336,3 +336,24 @@ run
 
 # find depth
 find . -type d -maxdepth 2 -name 4302
+
+
+
+# set, env, export 用法总结 
+
+# 读
+# env 显示用户变量
+# set 显示用户变量示 + 私有变量
+# export 私有变量导出为用户变量的变量
+
+# 写
+# export a=123
+# a=123 ; export a
+
+# 单引号将剥夺其中的所有字符的特殊含义
+# 而双引号中的'$'（参数替换）和'`'（命令替换）是例外
+
+aaa=123 && bash -c 'echo $aaa' # 无用
+export aaa=123 && bash -c 'echo $aaa' # 有用
+aaa=123 bash -c 'echo $aaa' # 用用
+aaa=123 && bash -c "echo $aaa" # 有用
