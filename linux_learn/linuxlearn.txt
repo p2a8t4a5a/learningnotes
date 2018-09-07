@@ -357,3 +357,9 @@ aaa=123 && bash -c 'echo $aaa' # 无用
 export aaa=123 && bash -c 'echo $aaa' # 有用
 aaa=123 bash -c 'echo $aaa' # 用用
 aaa=123 && bash -c "echo $aaa" # 有用
+
+
+# 获取内存使用情况
+ps aux | grep "python test" | awk '{sum=sum+$6}; END {print sum/1024 " MB"}'
+
+
