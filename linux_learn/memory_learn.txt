@@ -1,0 +1,54 @@
+# 获取内存使用情况
+ps aux | grep "python test" | awk '{sum=sum+$6}; END {print sum/1024 " MB"}'
+
+
+buffers
+系统分配但未被使用的buffers 数量
+
+cached
+系统分配但未被使用的cache 数量
+
+page cache用来缓存文件数据，buffer cache用来缓存磁盘数据
+
+A buffer is something that has yet to be “written” to disk. A cache is something that has been “read” from the disk and stored for later use ; 对于共享内存（Shared memory
+
+buffer ：作为buffer cache的内存，是块设备的读写缓冲区
+
+cache：作为page cache的内存， 文件系统的cache
+
+buffer是即将要被写入磁盘的，而cache是被从磁盘中读出来的
+
+
+strace free
+跟踪命令
+
+
+优先使用内存还是swap
+swappiness
+1. =0 只使用内存
+2. =1 优先使用内存，内存用完使用缓存
+3. =100 尽可能使用缓存
+
+
+swap的设置
+  从上可以看出，当物理内存使用完或者达到一定比例之后，我们可以使用swap做临时的内存使用。当物理内存和swap都被使用完那么就会出错，out of memory。对于使用多大比例内存之后开始使用swap，在系统的配置文件中可以通过调整参数进行修改。
+cat  /proc/sys/vm/swappiness
+
+
+# 查看物理机内存情况
+dmidecode --type=memory
+
+cpu wa (Waiting for I/O )
+
+# 查看当前docker的使用情况
+docker stats aaaxxx
+
+top 按f键查看缓存
+
+
+vmstat 1 20 查看内存使用状态
+
+## 参看文档
+https://blog.csdn.net/zwan0518/article/details/12059213
+https://linuxhint.com/linux-memory-management-swap-space/
+(Swap Usage - 5 Years Later)[http://northernmost.org/blog/swap-usage-5-years-later/]

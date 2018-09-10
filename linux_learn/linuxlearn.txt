@@ -357,24 +357,3 @@ aaa=123 && bash -c 'echo $aaa' # 无用
 export aaa=123 && bash -c 'echo $aaa' # 有用
 aaa=123 bash -c 'echo $aaa' # 用用
 aaa=123 && bash -c "echo $aaa" # 有用
-
-
-# 获取内存使用情况
-ps aux | grep "python test" | awk '{sum=sum+$6}; END {print sum/1024 " MB"}'
-
-
-buffers
-系统分配但未被使用的buffers 数量
-
-cached
-系统分配但未被使用的cache 数量
-
-page cache用来缓存文件数据，buffer cache用来缓存磁盘数据
-
-A buffer is something that has yet to be “written” to disk. A cache is something that has been “read” from the disk and stored for later use ; 对于共享内存（Shared memory
-
-buffer ：作为buffer cache的内存，是块设备的读写缓冲区
-
-cache：作为page cache的内存， 文件系统的cache
-
-buffer是即将要被写入磁盘的，而cache是被从磁盘中读出来的
