@@ -1,0 +1,24 @@
+Mysql事物整理
+
+
+1. read uncommitted
+- 未提交的时候，别的地方就能读到
+
+2. read committed
+- 不可重复读
+- 一个事物有个写，不会阻塞别的写
+
+3. repeatable read
+- 一个事物有个写，会阻塞别的写
+
+4. serializable
+- 一个事物即使有读，也会阻塞别的写
+
+
+测试方法
+set session transaction isolation level read committed;
+start transaction;
+commit;
+
+
+两个不同级别的事物，会按照高的来
