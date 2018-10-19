@@ -1,0 +1,8 @@
+from test:v1
+
+# RUN apt-get install -y cron
+RUN rm -rf /ime
+COPY docker_learn /ime/docker_learn
+COPY . /ime
+
+ENTRYPOINT ["cron", "-f"]
