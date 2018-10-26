@@ -63,3 +63,7 @@ sed -e '/abc/,/efg/!d' [file-with-content]
 # 删除第几行
 sed -i '1d' a.txt
 sed -i '$d' a.txt
+
+
+# 删除空行 
+sed -i temp -e '/^$/d'
