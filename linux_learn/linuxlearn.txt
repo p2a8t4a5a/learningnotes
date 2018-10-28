@@ -366,3 +366,7 @@ nc -l 2000 > tmp.in
 
 # 传输数据
 nc 127.0.0.1 2000
+
+
+apt-get 删除及依赖
+apt-get autoremove zookeeper 
