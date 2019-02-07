@@ -15,3 +15,11 @@ CREATE RETENTION POLICY "a_month" ON "telegraf" DURATION 30d REPLICATION 1
 # 创建采样策略
 CREATE CONTINUOUS QUERY "cq_2m_referrer" ON "telegraf" BEGIN SELECT sum("value") AS "sum_value" INTO "autogen"."ad_sspat_all" FROM "a_month"."ad_sspat_new" GROUP BY time(2m), referrer END
 
+# 删除采用策略
+DROP CONTINUOUS QUERY cq_1m on ime_us_01
+
+# 查看采用策略
+show CONTINUOUS QUERIES;
+
+# 删除表
+drop measurement ad_sspat_new;
