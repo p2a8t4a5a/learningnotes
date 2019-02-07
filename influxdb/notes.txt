@@ -1,0 +1,17 @@
+# 展示 distinct 索引
+SHOW TAG VALUES from ad_sspat with key = referrer;
+
+# 查询语法
+select * from one_day.ad_sspat where "time" > 1549103257 order by time desc limit 1 ; 
+select sum(value) as sum_value from one_day.ad_sspat where "time" > 1549100660 * (10**9) group by "app_name"  limit 20;
+select sum("value") AS "sum_value" INTO "autogen"."ad_sspat_new" FROM "autogen"."ad_sspat" GROUP BY time(1m), referrer limit 1;
+
+# 汇聚数据
+SELECT sum("value") AS "sum_value" INTO "autogen"."ad_sspat_new" FROM "one_day"."ad_sspat" GROUP BY time(1m) limit 10;
+
+# 创建留存策略
+CREATE RETENTION POLICY "a_month" ON "telegraf" DURATION 30d REPLICATION 1
+
+# 创建采样策略
+CREATE CONTINUOUS QUERY "cq_2m_referrer" ON "telegraf" BEGIN SELECT sum("value") AS "sum_value" INTO "autogen"."ad_sspat_all" FROM "a_month"."ad_sspat_new" GROUP BY time(2m), referrer END
+

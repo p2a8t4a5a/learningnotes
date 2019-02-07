@@ -1,0 +1,9 @@
+# 查看全部的日志
+journalctl -f -u influxdb.service 
+
+# mac下时间戳转换
+date -r 1549100660
+# 等价于ubuntu下转换 
+date -d@1549100660
+
+
