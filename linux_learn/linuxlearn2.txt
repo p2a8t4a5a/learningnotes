@@ -7,3 +7,13 @@ date -r 1549100660
 date -d@1549100660
 
 
+# UDP丢包检查
+查看UDP的socket缓存区大小
+通过 cat /proc/sys/net/core/rmem_default 和cat /proc/sys/net/core/rmem_max可以查看socket缓冲区的缺省值和最大值。如
+
+测试丢包率
+30个线程以5Mbps速度测试60s
+iperf -u -c 目的IP  -b 5M -P 30 -t 60
+
+iperf -u -s --port 8126 -D
+iperf -u -c 127.0.0.1  -b 5M -P 1 -t 10 -p 8126
