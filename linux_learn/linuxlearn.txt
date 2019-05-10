@@ -370,3 +370,9 @@ nc 127.0.0.1 2000
 
 apt-get 删除及依赖
 apt-get autoremove zookeeper 
+
+
+# 查看对应端口进程id
+lsof -i:8080
+netstat -nlp | grep 80
+ss -nlp
