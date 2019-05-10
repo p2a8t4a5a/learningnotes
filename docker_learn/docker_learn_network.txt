@@ -1,0 +1,35 @@
+# 查看当前的网络
+docker network ls
+
+# 创建测试网络
+docker network create test-network
+
+# 查看网络
+docker network inspect test-network
+
+# 创建的时候设置网络
+docker run -itd --name=test1 --net=test-network ppc64le/busybox /bin/sh
+
+# 动态地接入网络
+docker run -itd --name=test2 ppc64le/busybox /bin/sh
+docker network connect test-network test2
+docker network inspect test-network
+
+
+
+# Docker网络模式
+1. bridge
+2. host 直接使用主机网络
+3. overlay 网络将多个Docker守护进程连接在一起
+4. macvlan：Macvlan 网络允许为容器分配 MAC 地址，使其显示为网络上的物理设备。
+5. none：对于此容器，禁止所有联网。
+
+
+" busybox只有几MB，集成了一百多个最常用的Linux工具, cat, echo, grep, mount, telnet, ping ,ifconfig
+
+
+
+
+# 对比自定义 bridge(my-net)与默认 bridge(docker0)
+1. 默认的docker0的桥接模式下，ip是通的，但是不能使用容器名作为通信的host
+2. 自定义bridge可以直接通过容器名字访问, 会自动将所有端口相互暴露，不用配置-p
