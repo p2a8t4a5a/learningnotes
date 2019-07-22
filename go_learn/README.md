@@ -1,4 +1,5 @@
 https://milapneupane.com.np/2019/07/06/learning-golang-from-zero-to-hero/
+https://blog.golang.org/go-slices-usage-and-internals
 
 ### base
 1. package main
@@ -34,8 +35,28 @@ var b,c int = 2, 3
         // letters := []string{"a", "b", "c"}
 
         // b := []byte{'g', 'o', 'l', 'a', 'n', 'g'}
+
+        // 有点类似指针的概念
         // b[1:4] == []byte{'o', 'l', 'a'}
+
         // x := b[:]
 
-        
         // slice internals
+        the distinction between length and capacity
+        A slice cannot be grown beyond its capacity.
+
+        // double the slices
+        t := make([]byte, len(s), (cap(s) +1)*2)
+        copy(t, s)
+        s = t
+
+        // append
+        append(s, 1,2,3,4)
+        t := []byte{5,6,7}
+        s = append(s, t...)
+        
+        // slice doesn't make a copy of the underlying array
+        // a simple way
+        c := make([]int, 5)
+        copy(c, b)
+        return c
