@@ -1,6 +1,7 @@
 package main
 import (
     "fmt"
+    "io/ioutil"
 )
 
 
@@ -57,10 +58,17 @@ func TestArray() {
     fmt.Println(b)
 }
 
+func TestMemory() string {
+    // xxxHello,World
+    a,_ := ioutil.ReadFile("data.in")
+    res := make([]byte, 0, len(a)-3)
+    res = append(res, a[3:]...)
+    return string(res)
+}
+
 func main() {
     // TestAppend()
     // TestCopy()
-    TestArray()
+    tmp := TestMemory()
+    fmt.Println(tmp)
 }
-
-
