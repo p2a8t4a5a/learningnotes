@@ -184,5 +184,4 @@ func main() {
 
     // mark METHODS
     // https://milapneupane.com.np/2019/07/06/learning-golang-from-zero-to-hero/
-    //
 }
