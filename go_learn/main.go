@@ -2,6 +2,7 @@ package main
 import (
     "fmt"
     "io/ioutil"
+    "person"
 )
 
 
@@ -160,6 +161,12 @@ type person struct {
     gender string
 }
 
+type person2 struct {
+    name string 
+    age int
+    gender string
+}
+
 func TestStruct() {
     a := person{name: "Bob", age: 42, gender: "male"}
     b := person{"Bob", 42, "male"}
@@ -167,6 +174,67 @@ func TestStruct() {
     fmt.Println(b.age)
     p := &a
     fmt.Println(p.gender)
+}
+
+
+func (p *person) changeAge(age int) {
+    fmt.Println(p)
+    p.age = age
+}
+
+func (p *person2) changeAge(age int) {
+    p.age = age
+    fmt.Println(p)
+}
+
+func (p person) changeName(name string) {
+    // will not change name
+    p.name = name
+}
+
+func TestMethod() {
+    a := person{"bob", 13, "male"}
+    fmt.Println(a)
+    a.changeAge(14)
+    a.changeName("alice")
+    fmt.Println(a)
+
+    b := person2{"bob", 13, "male"}
+    b.changeAge(15)
+}
+
+
+
+type animal interface {
+    description() string
+}
+
+type cat struct {
+    Type string
+    Sound string
+}
+type snake struct {
+    Type string
+    Poisonous bool
+}
+
+func (c cat) description() string{
+    fmt.Println("i am cat", c)
+    return ""
+}
+
+func (s snake) description() string{
+    fmt.Println("i am snake", s)
+    return ""
+}
+
+func TestInterface() {
+    var a animal
+    a = cat{Sound:"aaa"}
+    a.description()
+
+    a = snake{Poisonous: true}
+    a.description()
 }
 
 func main() {
@@ -182,6 +250,9 @@ func main() {
     // TestFunc()
     // TestStruct()
 
+    // TestMethod()
+    TestInterface()
+
     // mark METHODS
-    // https://milapneupane.com.np/2019/07/06/learning-golang-from-zero-to-hero/
+    // https://milapneupane.com.np/2019/07/06/learning-golang-from-zero-to-hero
 }

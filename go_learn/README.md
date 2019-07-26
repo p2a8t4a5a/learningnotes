@@ -60,3 +60,9 @@ var b,c int = 2, 3
         c := make([]int, 5)
         copy(c, b)
         return c
+
+
+### packages
+    // install
+    go get github.com/satori/go.uuid
+
