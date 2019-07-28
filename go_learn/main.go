@@ -418,3 +418,8 @@ func main() {
 	// TestFirstArrive()
 	// TestBufferChannel()
 }
+
+
+func init() {
+    fmt.Println("I am init")
+}
