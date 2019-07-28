@@ -66,3 +66,26 @@ var b,c int = 2, 3
     // install
     go get github.com/satori/go.uuid
 
+    go install 
+    use either method
+    - mv package into go/src 
+    - set go path
+
+	package person
+
+
+	func Description(name string) string {
+		return "the Person name is: " + name
+	}
+
+	func secretName(name string) string {
+		// """ this is private """
+		return "Do not share"
+	}   
+
+    // 启动一个go的文档
+    godoc -http=":8080"
+
+
+
+In Go, panic is not the ideal way to handle exceptions in a program. It is recommended to use an error object instead. When a panic occurs, the program execution get’s halted. The thing that gets executed after a panic is the defer.

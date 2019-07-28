@@ -2,7 +2,10 @@ package main
 import (
     "fmt"
     "io/ioutil"
-    "person"
+    "encoding/json"
+    "net/http"
+    "errors"
+    "time"
 )
 
 
@@ -237,6 +240,85 @@ func TestInterface() {
     a.description()
 }
 
+func TestJsonMarshal() {
+    mapA := map[string]int{"name": 337, "age": 10}
+    mapB, _ :=  json.Marshal(mapA)
+    fmt.Println(string(mapB))
+}
+
+func TestErrorHandle() {
+    resp, err := http.Get("http://baidu.com")
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(resp)
+}
+
+func Add(num int) (int, error) {
+    if num < 4 {
+        return num, errors.New("Error: bigger than 4")
+    } else {
+        return num + 1, nil
+    }
+}
+
+func TestErrorHandle2() {
+    num := 3
+    if res, err := Add(num) ; err != nil {
+        fmt.Println(err)
+    } else {
+        fmt.Printf("res: %v", res)
+    }
+}
+
+ func TestPanicAndCatch() {
+     f()
+     fmt.Println("Returned normally from f.")
+ }
+
+ func f() {
+     defer func() {
+         if r := recover(); r != nil {
+             fmt.Println("Recovered in f", r)
+         }
+     }()
+     fmt.Println("Calling g.")
+     g(0)
+     fmt.Println("Returned normally from g.")
+ }
+
+ func g(i int) {
+     if i > 3 {
+         fmt.Println("Panicking!")
+         panic(fmt.Sprintf("this is a panic: %v", i))
+     }
+     defer fmt.Println("Defer in g", i)
+     fmt.Println("Printing in g", i)
+     g(i + 1)
+ }
+
+ func TestGo() {
+     go c()
+     fmt.Println("I am main")
+     time.Sleep(time.Second * 3)
+ }
+
+ func c() {
+     time.Sleep(time.Second * 2)
+     fmt.Println("I am concurrent")
+ }
+
+ // Golang prefers not sharing the variables of one thread with another because this adds a chance of deadlock and resource waiting. There is another way to share resources between Go routines: via go channels.
+
+func TestChannel() {
+    c := make(chan string)
+    go func() {  time.Sleep(time.Second * 3); c <- "hello";}()
+    msg := <-c
+    fmt.Println(msg)
+}
+
+
 func main() {
     // TestAppend()
     // TestCopy()
@@ -251,8 +333,13 @@ func main() {
     // TestStruct()
 
     // TestMethod()
-    TestInterface()
+    // TestInterface()
 
     // mark METHODS
     // https://milapneupane.com.np/2019/07/06/learning-golang-from-zero-to-hero
+    // TestJsonMarshal()
+    // TestErrorHandle()
+    // TestErrorHandle2()
+    // TestPanicAndCatch()
+    TestChannel()
 }
