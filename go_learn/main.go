@@ -246,6 +246,19 @@ func TestJsonMarshal() {
     fmt.Println(string(mapB))
 }
 
+type response struct {
+    Name string `json:"name"`
+    Age int `json:"age"`
+    hobby string
+}
+
+func TestJsonUnmarshal() {
+    raw_str := `{"name":"bob", "age":13}`
+    res := response{hobby:"code"}
+    json.Unmarshal([]byte(raw_str), &res)
+    fmt.Println(res)
+}
+
 func TestErrorHandle() {
     resp, err := http.Get("http://baidu.com")
     if err != nil {
@@ -318,6 +331,64 @@ func TestChannel() {
     fmt.Println(msg)
 }
 
+func sc(ch chan<- string) {
+    // here ch is a send only type
+    ch <- "hello"
+}
+
+func TestOneWayChannel() {
+    ch := make(chan string)
+    go sc(ch)
+    fmt.Println(<-ch)
+}
+
+func TestFirstArrive() {
+    c1 := make(chan string)
+    c2 := make(chan string)
+    go speed1(c1)
+    go speed2(c2)
+    fmt.Println("The first to arrive is:")
+    select {
+		case s1 := <-c1:
+			fmt.Println(s1)
+		case s2 := <-c2:
+			fmt.Println(s2)
+    }
+}
+
+func speed1(ch chan string) {
+    time.Sleep(5 * time.Second)
+    ch <- "speed 1"
+}
+
+func speed2(ch chan string) {
+    time.Sleep(1 * time.Second)
+    ch <- "speed 2"
+}
+
+func consume(ch chan string, t time.Duration) {
+	time.Sleep( t * time.Second)
+	fmt.Println(<-ch)
+}
+
+func TestBufferChannel() {
+	ch := make(chan string, 2)
+	go consume(ch, 3)
+	go consume(ch, 5)
+	go consume(ch, 7)
+	ch <- "aaa";
+	ch <- "bbb";
+	ch <- "ccc";
+	fmt.Println("success send ccc")
+	ch <- "ddd";
+	fmt.Println("success send ddd")
+	ch <- "eee";
+	fmt.Println("success send eee")
+}
+
+
+
+
 
 func main() {
     // TestAppend()
@@ -338,8 +409,12 @@ func main() {
     // mark METHODS
     // https://milapneupane.com.np/2019/07/06/learning-golang-from-zero-to-hero
     // TestJsonMarshal()
+    TestJsonUnmarshal()
     // TestErrorHandle()
     // TestErrorHandle2()
     // TestPanicAndCatch()
-    TestChannel()
+    // TestChannel()
+    // TestOneWayChannel()
+	// TestFirstArrive()
+	// TestBufferChannel()
 }
