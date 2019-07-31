@@ -13,6 +13,10 @@ var a = 1 // automatically assigned as an int
 message := "hello world" // a shorthand definition for the variable declaraion
 var b,c int = 2, 3
 
+### const value
+const s string = "hello world"
+const pi float32 = 3.1415926
+
 ### Data types 
 - int, int8, int16, int64, uint, uint32 and so on
 - string
@@ -87,5 +91,27 @@ var b,c int = 2, 3
     godoc -http=":8080"
 
 
-
 In Go, panic is not the ideal way to handle exceptions in a program. It is recommended to use an error object instead. When a panic occurs, the program execution get’s halted. The thing that gets executed after a panic is the defer.
+
+
+switch 语句：
+没有break，使用逗号case多个值
+switch i {
+    case 1:
+        fmt.Println("11")
+    case 2,3,4:
+        fmt.Println("234")
+    default:
+        fmt.Println("dft")
+}
+
+
+Go具有两个分配内存的机制，分别是内建的函数new和make
+
+new是一个分配内存的内建函数, 只是将内存清零，而不是初始化内存。
+返回的是一个指针
+
+make用于创建分片，初始化了一个实例，不是指针
+
+
+

@@ -6,6 +6,11 @@ import (
     "net/http"
     "errors"
     "time"
+    "math/rand"
+    // "runtime"
+    "sync"
+    "sync/atomic"
+	"os"
 )
 
 
@@ -235,9 +240,13 @@ func TestInterface() {
     var a animal
     a = cat{Sound:"aaa"}
     a.description()
-
     a = snake{Poisonous: true}
     a.description()
+
+    animals := []animal{&cat{Sound:"aaa"}, &snake{Poisonous: true}}
+    for _, ani := range animals{
+        ani.description()
+    }
 }
 
 func TestJsonMarshal() {
@@ -388,7 +397,181 @@ func TestBufferChannel() {
 
 
 
+func testDefer() (num int, err error) {
+    // fmt.Println("reached fmt.Println")
+    //  会是倒序输出
+    defer fmt.Println("defer reached fmt.Println 1")
+    defer fmt.Println("defer reached fmt.Println 2")
+    defer fmt.Println("defer reached fmt.Println 3")
+    return
+}
 
+func testPanic(){
+    defer fmt.Println("defer fmt.Println 405")
+    defer func(){ if r:=recover();r !=nil{
+        fmt.Println(r)
+    }}()
+
+
+    if true {
+        panic("no value for $USER")
+    }
+}
+
+func subRoutine(name string, delay time.Duration, ch chan string) {
+    t0 := time.Now()
+    fmt.Printf("name:%s, start:%s\n", name, t0)
+
+    time.Sleep(delay * time.Second)
+
+    t1 := time.Now()
+    fmt.Printf("name:%s, end:%s\n", name, t1)
+    fmt.Printf("name:%s, used:%s\n", name, t1.Sub(t0))
+    ch <- "a"
+}
+
+func testRoutine() {
+    ts := time.Now().Unix()
+    rand.Seed(ts)
+    var name string
+    ch := make(chan string)
+    n := 3
+    for i:=0; i<n; i++ {
+        name = fmt.Sprintf("go_%02d", i)
+        // 0-4 s
+        go subRoutine(name, time.Duration(rand.Intn(5)), ch)
+        // 默认不是真正的并发
+    }
+    for i:=0; i<n; i++ {
+        <-ch
+    }
+}
+
+func doSomeThingHard(n int, thread string, ch chan string) (sum int){
+    t0 := time.Now()
+    for i:=0; i<n; i++{
+        sum += i
+    }
+    fmt.Printf("sum:%d, thread:%s, time used:%s\n", sum, thread, time.Now().Sub(t0))
+    ch <- thread
+    return
+}
+
+func testCPU() {
+    // runtime.GOMAXPROCS(1)
+    t0 := time.Now()
+    n := 10000000000
+    ch := make(chan string)
+    go doSomeThingHard(n, "1", ch)
+    go doSomeThingHard(n, "2", ch)
+    go doSomeThingHard(n, "3", ch)
+    go doSomeThingHard(n, "4", ch)
+    for i:=0 ; i< 4; i++ {
+        <-ch
+    }
+    fmt.Println(time.Now().Sub(t0))
+}
+
+func testSellTicket() {
+    // mutex := sync.Mutex{}
+    var mutex sync.Mutex
+    mutex.Lock()
+    fmt.Println("123")
+    mutex.Unlock()
+}
+
+func testAtomic() {
+    var cnt uint32
+    for i:=0; i< 100 ; i++ {
+        go func() {
+            for j:=0; j<2000; j++ {
+                // time.Sleep(time.Millisecond)
+                // cnt ++
+                atomic.AddUint32(&cnt, 1)
+            }
+        }()
+    }
+    time.Sleep(time.Second)
+    cntFinal := atomic.LoadUint32(&cnt)
+    fmt.Println("cnt", cnt)
+    fmt.Println("cntFinal", cntFinal)
+}
+
+func PrintlnWithSequence(strs ...string) {
+	fmt.Println(strs)
+}
+
+func TestChannel2(){
+	channel := make(chan string) //注意: buffer为0
+    go func() {
+        channel <- "hello"
+        fmt.Println("write \"hello\" done!")
+		os.Stdout.Sync()
+
+        channel <- "World" //Reader在Sleep，这里在阻塞
+        fmt.Println("write \"World\" done!")
+		os.Stdout.Sync()
+
+        fmt.Println("Write go sleep 3s...")
+        time.Sleep(3*time.Second)
+		os.Stdout.Sync()
+
+        channel <- "channel"
+        fmt.Println("write \"channel\" done!")
+		os.Stdout.Sync()
+    }()
+
+    fmt.Println("start...")
+    time.Sleep(2*time.Second)
+    fmt.Println("Reader Wake up...")
+
+    msg := <-channel
+    fmt.Println("Reader: ", msg)
+
+    msg = <-channel
+    fmt.Println("Reader: ", msg)
+
+    msg = <-channel //Writer在Sleep，这里在阻塞
+    fmt.Println("Reader: ", msg)
+}
+
+func TestChannelTimeout(){
+	ch := make(chan string)
+	go func() {
+		time.Sleep(5 * time.Second)
+		ch <- "finished success"
+	}()
+	select {
+		case msg:= <-ch:
+			fmt.Println(msg)
+		case <- time.After(6 * time.Second):
+			fmt.Println("timeout")
+	}
+}
+
+func TestChannelClose(){
+	// 会根据返回的不同调整返回策略
+	ch := make(chan string)
+	go func() {
+		for i:=0; i<3; i++ {
+			ch <- fmt.Sprintf("name:%d", i)
+		}
+        defer close(ch)
+	}()
+	// more := true
+	// var msg string
+    // for more {
+    //     msg, more = <-ch
+    //     if more{
+    //         fmt.Println(msg)
+    //     } else {
+    //         fmt.Println("closed channel")
+    //     }
+    // }
+    for msg := range ch {
+        fmt.Println(msg)
+    }
+}
 
 func main() {
     // TestAppend()
@@ -409,17 +592,27 @@ func main() {
     // mark METHODS
     // https://milapneupane.com.np/2019/07/06/learning-golang-from-zero-to-hero
     // TestJsonMarshal()
-    TestJsonUnmarshal()
+    // TestJsonUnmarshal()
     // TestErrorHandle()
     // TestErrorHandle2()
     // TestPanicAndCatch()
     // TestChannel()
     // TestOneWayChannel()
+    // TestChannel2()
+    // TestChannelTimeout()
+	TestChannelClose()
 	// TestFirstArrive()
+
 	// TestBufferChannel()
+    // testDefer()
+    // testPanic()
+    // testRoutine()
+    // testCPU()
+    // testSellTicket()
+    /// testAtomic()
 }
 
 
 func init() {
-    fmt.Println("I am init")
+    // fmt.Println("I am init")
 }
