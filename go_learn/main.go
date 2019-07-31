@@ -11,6 +11,9 @@ import (
     "sync"
     "sync/atomic"
 	"os"
+    "strings"
+    "os/exec"
+    "flag"
 )
 
 
@@ -573,6 +576,63 @@ func TestChannelClose(){
     }
 }
 
+func testTimeer() {
+    // first
+    <-time.After(3 * time.Second)
+    fmt.Println("after 3 s")
+
+    // second 可以stop
+    timer := time.NewTimer(2*time.Second)
+    <-timer.C
+    fmt.Println("after 2 s")
+
+    // third
+    time.Sleep(1*time.Second)
+    fmt.Println("after 1 s")
+}
+
+func testTicker() {
+    ticker := time.NewTicker(time.Second)
+    for t := range ticker.C {
+        fmt.Println("Tick at", t)
+    }
+}
+
+func testShowEnv(){
+    os.Setenv("WEB", "sss")
+    println(os.Getenv("WEB"))
+
+    for _, env := range os.Environ(){
+        e := strings.Split(env, "=")
+        println(e[0], "=", e[1])
+    }
+}
+
+func testExec(){
+    cmd := exec.Command("curl", "www.baidu.com")
+
+    out, err := cmd.Output()
+    if err != nil {
+        println("Command error:"+ err.Error())
+        return
+    }
+    println(string(out))
+}
+
+func testArgs() {
+    args := os.Args
+    fmt.Println(args)
+    fmt.Println(args[1:])
+}
+
+func testFullArgs() {
+    host := flag.String("host", "123.123.123.123", "the full hostname")
+    port := flag.Int("port", 80, "num of port")
+    flag.Parse()
+    fmt.Println("host:", host)
+    fmt.Println("port:", port)
+}
+
 func main() {
     // TestAppend()
     // TestCopy()
@@ -600,7 +660,7 @@ func main() {
     // TestOneWayChannel()
     // TestChannel2()
     // TestChannelTimeout()
-	TestChannelClose()
+	// TestChannelClose()
 	// TestFirstArrive()
 
 	// TestBufferChannel()
@@ -609,7 +669,13 @@ func main() {
     // testRoutine()
     // testCPU()
     // testSellTicket()
-    /// testAtomic()
+    // testAtomic()
+    // testTimeer()
+    // testTicker()
+    // testShowEnv()
+    // testExec()
+    // testArgs()
+    testFullArgs()
 }
 
 
