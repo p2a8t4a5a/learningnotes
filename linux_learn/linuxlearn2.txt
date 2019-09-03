@@ -26,3 +26,14 @@ curl ifconfig.me
 查看具体端口
 sudo lsof -i:13212
 ps -ef | grep 17623
+
+
+# ps 用法笔记
+只查看root用户的信息
+ps -f -u root
+
+树桩结构：
+ps -f  -C python --forest
+
+# 展示所有的线程：
+ps -p 3150 -L
