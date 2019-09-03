@@ -137,3 +137,5 @@ pip install hiredis
 
 
 
+启动redis/codis
+/opt/codis/codis-server --port 6379 --daemonize yes --protected-mode no
