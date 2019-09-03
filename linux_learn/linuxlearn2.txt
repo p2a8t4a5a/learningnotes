@@ -22,3 +22,7 @@ iperf -u -c 127.0.0.1  -b 5M -P 1 -t 10 -p 8126
 查看自己的出口IP 
 curl ifconfig.me
 
+
+查看具体端口
+sudo lsof -i:13212
+ps -ef | grep 17623
