@@ -29,22 +29,22 @@ func AppendByte(slice []byte, data ...byte) []byte {
     slice = slice[0:n]
     copy(slice[m:n], data)
     return slice
-
-    // for i:= range data:
 }
 
 func TestAppend() {
     a := make([]byte, 5, 10)
-    b := AppendByte(a, 7, 11)
+    // b := append(a, 7, 11)
+    b := AppendByte(a, 7, 11) // equals append
     fmt.Println("Hello World~")
-    a = a[:6]
+    a = a[:6] // 改变了a的长度，因为实际a和b是共享内存的
     fmt.Println(a[5])
     fmt.Println(b[5])
     fmt.Println(a)
+    fmt.Println(b)
     fmt.Println(len(a))
     fmt.Println(cap(a))
-
 }
+
 
 func TestCopy() {
     a := []byte{1,2}
@@ -629,15 +629,16 @@ func testFullArgs() {
     host := flag.String("host", "123.123.123.123", "the full hostname")
     port := flag.Int("port", 80, "num of port")
     flag.Parse()
-    fmt.Println("host:", host)
-    fmt.Println("port:", port)
+    fmt.Println("host:", *host)
+    fmt.Println("port:", *port)
 }
 
 func main() {
     // TestAppend()
     // TestCopy()
-    // tmp := TestMemory()
-    // fmt.Println(tmp)
+
+    tmp := TestMemory()
+    fmt.Println(tmp)
     // TestMap()
     // TestPoint()
     // TestIF()
@@ -675,7 +676,7 @@ func main() {
     // testShowEnv()
     // testExec()
     // testArgs()
-    testFullArgs()
+    // testFullArgs()
 }
 
 
