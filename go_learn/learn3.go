@@ -72,7 +72,7 @@ func TestArray() {
 
 func TestMemory() string {
     // xxxHello,World
-    a,_ := ioutil.ReadFile("data.in")
+    a,_ := ioutil.ReadFile("data/data.in")
     res := make([]byte, 0, len(a)-3)
     res = append(res, a[3:]...)
     return string(res)
