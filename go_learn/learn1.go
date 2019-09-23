@@ -77,111 +77,101 @@ func my_func(par []int,size int){
     }
 }
 
-
-
-// ================================================
-
-
-func test3(a float32,b int)(float32,float32){
-    return a,float32(b)
+func showArray() {
+    // is ok
+    // var Array [3][2]int
+    // is ok
+    // Array := [3][2] int{ [2]int{1, }, }
+    Array := [3][2] int{}
+    t := Array[0]
+    fmt.Println(t)
 }
 
+
+func showCircle() {
+    var a Circle
+    a.radius=1.0
+    fmt.Println(a.getArea())
+}
 
 type Circle struct{
     radius float64
 }
-func(a Circle) getArea() float64{return a.radius*a.radius}
+
+func(a Circle) getArea() float64{return 3.14 * a.radius*a.radius}
 
 
+// ================================================
+func test3(a float32,b int)(float32,float32){
+    return a,float32(b)
+}
 
-// http://www.runoob.com/go/go-pointers.html
+func showParse(){
+    fmt.Println(test3(2,3))
+}
+
+func showFuncReturn(){
+    my_func := func() func() int{
+        var i int=0
+        return func() int{
+            i+=1
+            return i
+        }
+    }
+    temp := my_func()
+    fmt.Println(temp())
+    fmt.Println(temp())
+    fmt.Println(temp())
+    fmt.Println(temp())
+}
+
+
+func showArray2() {
+    numbers := [6]int{1,2,3,4}
+    fmt.Println(numbers)
+    for i:= range numbers{
+        fmt.Printf("%d \n", i)
+    }
+}
+
+func showFor(){
+    var i ,j int = 0,4
+    for i<j {
+        fmt.Println("123")
+        i+=1
+    }
+}
+
+func showInt() {
+    var a int = 2147483648
+    fmt.Println(a)
+    fmt.Println(unsafe.Sizeof(a))
+    var b * int
+    b= &a
+    println(b) // value
+    fmt.Printf("%T",b) // type
+}
+func showIf(){
+    if (1==2){
+        fmt.Println(1)
+    }else{
+        fmt.Println(2)
+    }
+}
+
 func main(){
     // var arr= []int{1,2,3,4}
     // my_func(arr,3)
     // showHIJK()
     // testSwitch()
+    // showSize()
+    // showArray()
+    // showCircle()
+    // showParse()
+    // showFuncReturn()
+    // showArray2()
+    // showFor()
+    // showInt()
+    showIf()
 
-    showSize()
-
-    /* 
-        Array := [3][2]int
-        t := Array[1]
-        fmt.Println(t)
-
-        var a Circle
-        a.radius=2.0
-        fmt.Println(a.getArea())
-
-        fmt.Println(test3(2,3))
-        my_func := func()func()int{
-            var i int=0
-            return func() int{
-                i+=1
-                return i
-            }
-        }
-        temp := my_func()
-        fmt.Println(temp())
-        fmt.Println(temp())
-        fmt.Println(temp())
-        fmt.Println(temp())
-
-        numbers := [6]int{1,2,3,4}
-        fmt.Println(numbers)
-        for i:=range numbers{
-            fmt.Printf("%d \n",i)
-        }
-        var i ,j int ="a",4
-        for i<j{
-            fmt.Println("123")
-            i+=1
-        }
-        
-        fmt.Printf("a,%d\n",123)
-        var a int =2147483648
-        fmt.Println(a)
-        var b * int
-        b= &a
-        fmt.Printf("%T",b)
-        if (1==2){
-            fmt.Println(1)
-        }else{
-            fmt.Println(2)
-        }
-        if (1==1){
-            fmt.Println(3)
-        }
-        fmt.Println("Hello,Wolrd")
-        var age int =10
-        var age2 uint8 = 255
-        var age3 int64 = 256
-        var age4 float64 = 256.0
-        var age5 complex64 = 256+2i
-        test()
-        fmt.Println(a,age,age2,age3,age4,age5)
-    */
-}
-
-
-
-
-
-
-
-
-
-
-func test(){
-    var age byte = 128
-    var age2 rune = -128
-    var age3 int = -123
-    const temp ="aaa"
-    a := 10
-    a = 100000000000
-    fmt.Println(a,age,age2,age3,temp)
-}
-
-func test2(){
-    var a string = "asd"
-    fmt.Println(a)
 }
