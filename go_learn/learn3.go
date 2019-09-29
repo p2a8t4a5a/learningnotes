@@ -7,13 +7,14 @@ import (
     "errors"
     "time"
     "math/rand"
-    // "runtime"
+    "runtime"
     "sync"
     "sync/atomic"
 	"os"
     "strings"
     "os/exec"
     "flag"
+    "reflect"
 )
 
 
@@ -72,7 +73,7 @@ func TestArray() {
 
 func TestMemory() string {
     // xxxHello,World
-    a,_ := ioutil.ReadFile("data/data.in")
+    a, _ := ioutil.ReadFile("data/data.in")
     res := make([]byte, 0, len(a)-3)
     res = append(res, a[3:]...)
     return string(res)
@@ -189,8 +190,8 @@ func TestStruct() {
 
 
 func (p *person) changeAge(age int) {
-    fmt.Println(p)
     p.age = age
+    fmt.Println(p)
 }
 
 func (p *person2) changeAge(age int) {
@@ -255,6 +256,8 @@ func TestInterface() {
 func TestJsonMarshal() {
     mapA := map[string]int{"name": 337, "age": 10}
     mapB, _ :=  json.Marshal(mapA)
+    fmt.Println("type:", reflect.TypeOf(mapB))
+    fmt.Println(mapB)
     fmt.Println(string(mapB))
 }
 
@@ -265,10 +268,16 @@ type response struct {
 }
 
 func TestJsonUnmarshal() {
+    // raw_str := `{\"name\":\"bob\", \"age\":13}`
     raw_str := `{"name":"bob", "age":13}`
+    fmt.Println("type", reflect.TypeOf(raw_str))
     res := response{hobby:"code"}
-    json.Unmarshal([]byte(raw_str), &res)
-    fmt.Println(res)
+    err := json.Unmarshal([]byte(raw_str), &res)
+    if err == nil {
+        fmt.Println(res)
+    } else {
+        fmt.Println(err)
+    }
 }
 
 func TestErrorHandle() {
@@ -282,7 +291,7 @@ func TestErrorHandle() {
 
 func Add(num int) (int, error) {
     if num < 4 {
-        return num, errors.New("Error: bigger than 4")
+        return num, errors.New("Error: bigger or equal than 4")
     } else {
         return num + 1, nil
     }
@@ -334,18 +343,20 @@ func TestErrorHandle2() {
      fmt.Println("I am concurrent")
  }
 
- // Golang prefers not sharing the variables of one thread with another because this adds a chance of deadlock and resource waiting. There is another way to share resources between Go routines: via go channels.
+ // Golang prefers not sharing the variables of one thread with another 
+ // because this adds a chance of deadlock and resource waiting. 
+ // There is another way to share resources between Go routines: via go channels.
 
 func TestChannel() {
     c := make(chan string)
-    go func() {  time.Sleep(time.Second * 3); c <- "hello";}()
+    go func() {  time.Sleep(time.Second * 5); c <- "hello"; }()
+    fmt.Println("before msg")
     msg := <-c
     fmt.Println(msg)
 }
 
 func sc(ch chan<- string) {
-    // here ch is a send only type
-    ch <- "hello"
+    ch <- "hello, this is a send only type"
 }
 
 func TestOneWayChannel() {
@@ -380,7 +391,7 @@ func speed2(ch chan string) {
 
 func consume(ch chan string, t time.Duration) {
 	time.Sleep( t * time.Second)
-	fmt.Println(<-ch)
+    showMsgImm("Recived", <-ch)
 }
 
 func TestBufferChannel() {
@@ -390,12 +401,13 @@ func TestBufferChannel() {
 	go consume(ch, 7)
 	ch <- "aaa";
 	ch <- "bbb";
+    showMsgImm("success send aaa, bbb")
 	ch <- "ccc";
-	fmt.Println("success send ccc")
+    showMsgImm("success send ccc")
 	ch <- "ddd";
-	fmt.Println("success send ddd")
+    showMsgImm("success send ddd")
 	ch <- "eee";
-	fmt.Println("success send eee")
+    showMsgImm("success send eee")
 }
 
 
@@ -423,7 +435,7 @@ func testPanic(){
 
 func subRoutine(name string, delay time.Duration, ch chan string) {
     t0 := time.Now()
-    fmt.Printf("name:%s, start:%s\n", name, t0)
+    fmt.Printf("name:%s, start:%s, delay:%s\n", name, t0, delay* time.Second)
 
     time.Sleep(delay * time.Second)
 
@@ -438,11 +450,12 @@ func testRoutine() {
     rand.Seed(ts)
     var name string
     ch := make(chan string)
-    n := 3
+    n := 5
     for i:=0; i<n; i++ {
         name = fmt.Sprintf("go_%02d", i)
         // 0-4 s
-        go subRoutine(name, time.Duration(rand.Intn(5)), ch)
+        // go subRoutine(name, time.Duration(rand.Intn(5)), ch)
+        go subRoutine(name, 3, ch)
         // 默认不是真正的并发
     }
     for i:=0; i<n; i++ {
@@ -456,20 +469,24 @@ func doSomeThingHard(n int, thread string, ch chan string) (sum int){
         sum += i
     }
     fmt.Printf("sum:%d, thread:%s, time used:%s\n", sum, thread, time.Now().Sub(t0))
+    os.Stdout.Sync()
+
     ch <- thread
     return
 }
 
 func testCPU() {
-    // runtime.GOMAXPROCS(1)
+    // 限制最大核数, 默认为CPU的个数
+    runtime.GOMAXPROCS(5)
     t0 := time.Now()
-    n := 10000000000
+    n := 20000000000
     ch := make(chan string)
     go doSomeThingHard(n, "1", ch)
     go doSomeThingHard(n, "2", ch)
     go doSomeThingHard(n, "3", ch)
     go doSomeThingHard(n, "4", ch)
-    for i:=0 ; i< 4; i++ {
+    go doSomeThingHard(n, "5", ch)
+    for i:=0 ; i< 5; i++ {
         <-ch
     }
     fmt.Println(time.Now().Sub(t0))
@@ -504,38 +521,44 @@ func PrintlnWithSequence(strs ...string) {
 	fmt.Println(strs)
 }
 
+func showMsgImm(msg string, a ...interface{}){
+    // fmt.Println("Type", reflect.TypeOf(a))
+    if len(a) > 0 {
+        fmt.Println(msg, a)
+    } else {
+        fmt.Println(msg)
+    }
+    os.Stdout.Sync()
+}
+
 func TestChannel2(){
 	channel := make(chan string) //注意: buffer为0
     go func() {
         channel <- "hello"
-        fmt.Println("write \"hello\" done!")
-		os.Stdout.Sync()
+        showMsgImm("write \"hello\" done!")
 
         channel <- "World" //Reader在Sleep，这里在阻塞
-        fmt.Println("write \"World\" done!")
-		os.Stdout.Sync()
+        showMsgImm("write \"World\" done!")
 
-        fmt.Println("Write go sleep 3s...")
         time.Sleep(3*time.Second)
-		os.Stdout.Sync()
+        showMsgImm("after sleep 3s...")
 
         channel <- "channel"
-        fmt.Println("write \"channel\" done!")
-		os.Stdout.Sync()
+        showMsgImm("after send \"channel\" done!")
     }()
 
-    fmt.Println("start...")
+    showMsgImm("start...")
     time.Sleep(2*time.Second)
-    fmt.Println("Reader Wake up...")
+    showMsgImm("Reader Wake up...")
 
     msg := <-channel
-    fmt.Println("Reader: ", msg)
+    showMsgImm("Reader: ", msg)
 
     msg = <-channel
-    fmt.Println("Reader: ", msg)
+    showMsgImm("Reader: ", msg)
 
     msg = <-channel //Writer在Sleep，这里在阻塞
-    fmt.Println("Reader: ", msg)
+    showMsgImm("Reader: ", msg)
 }
 
 func TestChannelTimeout(){
@@ -547,7 +570,7 @@ func TestChannelTimeout(){
 	select {
 		case msg:= <-ch:
 			fmt.Println(msg)
-		case <- time.After(6 * time.Second):
+		case <- time.After(3 * time.Second):
 			fmt.Println("timeout")
 	}
 }
@@ -636,9 +659,9 @@ func testFullArgs() {
 func main() {
     // TestAppend()
     // TestCopy()
+    // tmp := TestMemory()
+    // fmt.Println(tmp)
 
-    tmp := TestMemory()
-    fmt.Println(tmp)
     // TestMap()
     // TestPoint()
     // TestIF()
@@ -669,6 +692,7 @@ func main() {
     // testPanic()
     // testRoutine()
     // testCPU()
+
     // testSellTicket()
     // testAtomic()
     // testTimeer()
